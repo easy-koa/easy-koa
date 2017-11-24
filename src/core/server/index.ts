@@ -12,8 +12,29 @@ class Server extends Plugin {
         return 'server';
     }
 
-    constructor(options: ServerContext) {
+    constructor({ middlewares, interceptors }: ServerContext) {
         super();
+        const { application } = this;
+
+        application.use(async function(ctx: any, next: Function) {
+            try {
+                next();
+            } catch(e) {
+
+            }
+        });
+
+        application.use(async function() {
+            // preHandle
+        });
+        
+        middlewares.forEach(function(middleware: any) {
+            application.use(middleware);
+        })
+        
+        application.use(async function() {
+            // postHandle
+        });
     }
 
     service() {

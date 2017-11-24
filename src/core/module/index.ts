@@ -21,7 +21,7 @@ export default class Module {
         return new Module( moduleContext );
     }
 
-    private configure({ interceptors = [], controllers = [], middleways = [], components = [], microServices = null }: ModuleContext): void {
+    private configure({ interceptors = [], controllers = [], middlewares = [], components = [], microServices = null }: ModuleContext): void {
         const { application } = this;
 
         const interfaces = microServices ? microServices.interfaces: [];
@@ -38,7 +38,7 @@ export default class Module {
             controllers,
             interceptors,
             components: [ ...components, ...interfaces ],
-            middleways
+            middlewares
         }));
     }
 

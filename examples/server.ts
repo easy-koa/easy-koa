@@ -1,4 +1,4 @@
-import AppModule from '../src/core/index';
+import Kap from '../src/core/index';
 import { Controller, Service, Interceptor, Module } from '../src/common/index';
 import LoginService from './services/login';
 import TopicService from './services/topic';
@@ -15,15 +15,17 @@ import TopicController from './controllers/topic';
             LoginService, TopicService
         ]
     },
-    middleways: [], // koa middleways, async function first
+    middlewares: [], // koa middlewares, async function first
     interceptors: [ LoginInterceptor ],
     controllers: [ TopicController ],
-    components: []
+    components: [
+        LoginService
+    ]
 })
-class ApplicationModule extends AppModule {}
+class Zone extends Kap {}
 
 
-ApplicationModule
+Zone
     .create()
     .run(9999)
     .then(function() {

@@ -10,14 +10,12 @@ interface Options extends BaseObject{
     enable: boolean;
 }
 
-export class Plugin {
+export abstract class Plugin {
     id = pid();
     
     $options: Options = { enable: true };
     
-    name() {
-        return this.constructor.name
-    };
+    abstract name(): string;
 
     service(): Services {
         return {};
