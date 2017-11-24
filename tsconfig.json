@@ -1,0 +1,35 @@
+{
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "typeRoots": [
+            "./@types/",
+            "./node_modules/@types/"
+        ],
+        "target": "es5",
+        "outDir": "dist",
+        "types": [
+            "chalklog",
+            "parrotsay-api",
+            "@kaola/microservices",
+            "log4js"
+        ],
+        "lib": [
+            "es2015",
+            "es2017"
+        ],
+        "experimentalDecorators": true
+    },
+    "files": [
+        "src/index.ts"
+    ],
+    "include": [
+        "src/**/*"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
+}
