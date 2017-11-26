@@ -1,5 +1,5 @@
 import { Plugin } from './plugin';
-import BaseObject from '../shared/interfaces/base-object';
+import { BaseObject } from '../shared/interfaces/index';
 
 type Stash = BaseObject;
 

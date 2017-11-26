@@ -1,6 +1,6 @@
-import Message from './message';
+import { Message } from './message';
 
-export default interface logger {
+export interface logger {
     info(message: Message): void;
 
     success(message: Message): void;

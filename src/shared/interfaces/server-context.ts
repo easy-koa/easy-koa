@@ -1,4 +1,4 @@
-export default interface ServerContext {
+export interface ServerContext {
     interceptors: any[];
     controllers?: any[];
     components?: any[];

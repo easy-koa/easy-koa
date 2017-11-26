@@ -1,9 +1,7 @@
-import Services from './services';
+import { Services } from './services';
 
-interface initOptions {
+export interface InitOptions {
     getter(key: string): any;
     service(key: string): Services;
     names(): string[];
 }
-
-export default initOptions

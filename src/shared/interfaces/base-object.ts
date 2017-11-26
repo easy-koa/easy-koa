@@ -1,3 +1,3 @@
-export default interface BaseObject {
+export interface BaseObject {
     [propName: string]: any;
 }

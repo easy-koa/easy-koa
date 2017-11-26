@@ -1,8 +1,5 @@
-import ensurePromise from '../shared/utils/ensure-promise';
-import createSystemId from '../shared/utils/create-systemid';
-import BaseObject from '../shared/interfaces/base-object';
-import Services from '../shared/interfaces/services';
-import initOptions from '../shared/interfaces/init-options';
+import { createSystemId } from "../shared/utils/create-systemid";
+import { BaseObject, Services, InitOptions } from "../shared/interfaces/index";
 
 const pid = createSystemId();
 
@@ -21,7 +18,7 @@ export abstract class Plugin {
         return {};
     };
 
-    init(options: initOptions) {};
+    init(options: InitOptions) {};
 
     ready() {}
 

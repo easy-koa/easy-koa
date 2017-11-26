@@ -1,7 +1,7 @@
-import BaseObject from "../interfaces/base-object";
+import { BaseObject } from "../interfaces/index";
 
 
-export default function entries(obj: BaseObject) {
+export function entries(obj: BaseObject) {
     return Object.keys(obj).map((item: string) => [
         item, obj[item]
     ])

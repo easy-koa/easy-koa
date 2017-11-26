@@ -1,11 +1,9 @@
-import Application from '../../common/application';
+// import Application from '../../common/application';
 import MicroServices from '../microservices/index';
-import Logger from '../logger/index';
 import Server from '../server';
 import { isNil, isNumber } from '../../shared/utils/shared';
-import BaseObject from '../../shared/interfaces/base-object';
-import ModuleContext from '../../shared/interfaces/module-context';
-
+import { Application } from '../../common/index';
+import { ModuleContext } from '../../shared/interfaces/module-context';
 
 
 export default class Module {
@@ -21,25 +19,14 @@ export default class Module {
         return new Module( moduleContext );
     }
 
-    private configure({ interceptors = [], controllers = [], middlewares = [], components = [], microServices = null }: ModuleContext): void {
+    private configure({ interceptors = [], controllers = [], middlewares = [], components = [], plugins = [] }: ModuleContext): void {
         const { application } = this;
+        
+        plugins.forEach(plugin => 
+            application.use(plugin)
+        );
 
-        const interfaces = microServices ? microServices.interfaces: [];
-
-        application.use(new Logger(
-            'xxx', {}
-        ));
-
-        if (!isNil(microServices)) {
-            application.use(new MicroServices(microServices));
-        }
-
-        application.use(new Server({
-            controllers,
-            interceptors,
-            components: [ ...components, ...interfaces ],
-            middlewares
-        }));
+        application.use(new Server({ controllers, interceptors, components, middlewares }));
     }
 
     public run(port: number) {

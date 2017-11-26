@@ -1,40 +1,20 @@
 /// <reference types="koa" />
 
 import { Plugin } from '../../common/plugin';
-import initOptions from '../../shared/interfaces/init-options';
-import ServerContext from '../../shared/interfaces/server-context';
 import Koa = require('koa');
+import { InitOptions, ServerContext } from '../../shared/interfaces/index';
 
 class Server extends Plugin {
     readonly application: Koa = new Koa();
+    serverContext: ServerContext;
 
     name() {
         return 'server';
     }
 
-    constructor({ middlewares, interceptors }: ServerContext) {
+    constructor(serverContext: ServerContext) {
         super();
-        const { application } = this;
-
-        application.use(async function(ctx: any, next: Function) {
-            try {
-                next();
-            } catch(e) {
-
-            }
-        });
-
-        application.use(async function() {
-            // preHandle
-        });
-        
-        middlewares.forEach(function(middleware: any) {
-            application.use(middleware);
-        })
-        
-        application.use(async function() {
-            // postHandle
-        });
+        this.serverContext = serverContext;
     }
 
     service() {
@@ -48,8 +28,26 @@ class Server extends Plugin {
         };
     }
     
-    async init({ service }: initOptions) {
+    async init({ service }: InitOptions) {
+        const { application, serverContext } = this;
+        const { middlewares, interceptors } = serverContext;
         
+        application.use(async function(ctx: any, next: Function) {
+            next(ctx);
+            console.log(ctx.status);
+        });
+
+        application.use(async function() {
+            // preHandle
+        });
+        
+        middlewares.forEach((middleware: any) =>
+            application.use(middleware)
+        );
+
+        application.use(async function() {
+            // postHandle
+        });
     }
 
     destroy() {

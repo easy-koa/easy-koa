@@ -1,5 +1,3 @@
-import BaseObject from './base-object';
+import { BaseObject } from './base-object';
 
-type Message = string | number | boolean | BaseObject;
-
-export default Message;
+export type Message = string | number | boolean | BaseObject;

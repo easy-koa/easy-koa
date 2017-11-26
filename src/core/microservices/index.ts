@@ -1,6 +1,5 @@
 import { Plugin } from '../../common';
-import initOptions from '../../shared/interfaces/init-options';
-import BaseObject from '../../shared/interfaces/base-object';
+import { InitOptions, BaseObject } from '../../shared/interfaces';
 import rpc = require('@kaola/rpc');
 
 interface Services {
@@ -37,7 +36,7 @@ class MicroServices extends Plugin {
         };
     }
     
-    async init({ service }: initOptions) {
+    async init({ service }: InitOptions) {
         this.logger = service('logger');
         
         await rpc.createClient(this.$options).connect()

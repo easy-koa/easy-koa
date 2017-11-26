@@ -3,10 +3,11 @@ import * as ora from 'ora';
 import { Plugin, Plugins } from './plugin';
 import Registry from './registry';
 import { logger } from '../shared/utils/logger';
-import entries from '../shared/utils/entries';
-import Services from '../shared/interfaces/services';
+import { Services } from '../shared/interfaces/index';
+import { entries } from '../shared/utils/entries';
 
-class Core {
+
+export class Application {
     readonly pluginRegistry: Registry = new Registry();
     readonly serviceRegistry: Registry = new Registry();
 
@@ -157,8 +158,6 @@ class Core {
     }
 
     public static create() {
-        return new Core();
+        return new this();
     }
 };
-
-export default Core;
