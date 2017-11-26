@@ -3,17 +3,17 @@ import { ModuleContext } from "./shared/interfaces";
 import { Server } from "./components/server/index";
 import { isNumber } from "./shared/utils/index";
 
-export class Module {
+export class Kapp {
     readonly application: Application = new Application();
 
     constructor(moduleContext: ModuleContext) {
         this.configure(moduleContext);
     }
 
-    public static create(): Module {
+    public static create(): Kapp {
         const moduleContext: ModuleContext = <any> this;
 
-        return new Module( moduleContext );
+        return new this( moduleContext );
     }
 
     private configure({ interceptors = [], controllers = [], middlewares = [], components = [], plugins = [] }: ModuleContext): void {

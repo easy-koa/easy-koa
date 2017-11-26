@@ -1,3 +1,3 @@
-import { Module } from "./module";
+import { Kapp } from "./module";
 
-export default Module;
+export default Kapp;

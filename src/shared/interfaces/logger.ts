@@ -1,6 +1,6 @@
 import { Message } from './message';
 
-export interface logger {
+export interface Logger {
     info(message: Message): void;
 
     success(message: Message): void;

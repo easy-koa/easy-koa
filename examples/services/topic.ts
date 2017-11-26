@@ -1,4 +1,4 @@
-import { Controller, Service, Interceptor, Module } from '../../src/common/index';
+import { Service } from '../../src/shared';;
 
 @Service()
 export default class TopicService {

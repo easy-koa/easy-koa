@@ -1,4 +1,4 @@
-import { Controller, Service, Interceptor, Module } from '../../src/common/index';
+import {  Interceptor } from  '../../src/shared';
 import LoginService from '../services/login';
 
 @Interceptor()
