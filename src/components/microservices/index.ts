@@ -1,4 +1,4 @@
-import { Plugin } from '../../common';
+import { Plugin } from '../../core';
 import { InitOptions, BaseObject } from '../../shared/interfaces';
 import rpc = require('@kaola/rpc');
 
@@ -6,7 +6,7 @@ interface Services {
     [propName: string]: BaseObject;
 };
 
-class MicroServices extends Plugin {
+export class MicroServices extends Plugin {
     private logger: any;
     private services: BaseObject;
     private client: any;
@@ -56,5 +56,3 @@ class MicroServices extends Plugin {
         }
     }
 }
-
-export default MicroServices;

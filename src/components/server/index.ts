@@ -1,10 +1,10 @@
 /// <reference types="koa" />
 
-import { Plugin } from '../../common/plugin';
+import { Plugin } from '../../core/plugin';
 import Koa = require('koa');
 import { InitOptions, ServerContext } from '../../shared/interfaces/index';
 
-class Server extends Plugin {
+export class Server extends Plugin {
     readonly application: Koa = new Koa();
     serverContext: ServerContext;
 
@@ -54,5 +54,3 @@ class Server extends Plugin {
         
     }
 }
-
-export default Server;

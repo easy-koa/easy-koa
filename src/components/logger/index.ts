@@ -1,7 +1,7 @@
 import logger = require('log4js');
-import { Plugin } from '../../common';
+import { Plugin } from '../../core';
 
-class Logger extends Plugin{
+export class Logger extends Plugin{
     private _logger: any;
     
     constructor(name: string, cfg: any) {
@@ -32,5 +32,3 @@ class Logger extends Plugin{
         }
     }
 }
-
-export default Logger;

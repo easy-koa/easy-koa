@@ -1,3 +1,2 @@
-import Module from './module/index';
-
-export default Module;
+export * from './application';
+export * from './plugin';

@@ -1,3 +1,3 @@
-import Core from './core/index';
+import { Module } from "./module";
 
-export default Core;
+export default Module;

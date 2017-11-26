@@ -1,10 +1,10 @@
 import * as dotProp from 'dot-prop';
 import * as ora from 'ora';
 import { Plugin, Plugins } from './plugin';
-import Registry from './registry';
-import { logger } from '../shared/utils/logger';
-import { Services } from '../shared/interfaces/index';
-import { entries } from '../shared/utils/entries';
+import { Registry } from './registry';
+import { logger } from '../shared/utils';
+import { Services } from '../shared/interfaces';
+import { entries } from '../shared/utils';
 
 
 export class Application {

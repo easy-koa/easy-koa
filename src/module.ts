@@ -1,12 +1,9 @@
-// import Application from '../../common/application';
-import MicroServices from '../microservices/index';
-import Server from '../server';
-import { isNil, isNumber } from '../../shared/utils/shared';
-import { Application } from '../../common/index';
-import { ModuleContext } from '../../shared/interfaces/module-context';
+import { Application } from "./core/index";
+import { ModuleContext } from "./shared/interfaces";
+import { Server } from "./components/server/index";
+import { isNumber } from "./shared/utils/index";
 
-
-export default class Module {
+export class Module {
     readonly application: Application = new Application();
 
     constructor(moduleContext: ModuleContext) {

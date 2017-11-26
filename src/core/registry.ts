@@ -3,7 +3,7 @@ import { BaseObject } from '../shared/interfaces/index';
 
 type Stash = BaseObject;
 
-class Registry {
+export class Registry {
     $: Stash = {};
 
     all() {
@@ -22,5 +22,3 @@ class Registry {
         return this.$[name];
     }
 }
-
-export default Registry;
