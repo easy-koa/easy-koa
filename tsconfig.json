@@ -21,13 +21,12 @@
             "es2015",
             "es2017"
         ],
-        "experimentalDecorators": true
+        "experimentalDecorators": true,
+        "allowJs": true
     },
-    "files": [
-        "src/index.ts"
-    ],
     "include": [
-        "src/**/*"
+        "src/**/*",
+        "examples/**/*"
     ],
     "exclude": [
         "node_modules"

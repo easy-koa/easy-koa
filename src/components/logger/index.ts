@@ -14,15 +14,24 @@ export class Logger extends Plugin{
         return 'logger';
     }
 
-    service() {
+    public fatal(message: any) {
         const logger = this._logger;
+        return logger.fatal(message);
+    }
 
-        return {
-            fatal:  logger.fatal.bind(logger),
-            info:   logger.info.bind(logger),
-            error:  logger.error.bind(logger),
-            warn:   logger.warn.bind(logger)
-        };
+    public info(message: any) {
+        const logger = this._logger;
+        return logger.info(message);
+    }
+
+    public error(message: any) {
+        const logger = this._logger;
+        return logger.error(message);
+    }
+
+    public warn(message: any) {
+        const logger = this._logger;
+        return logger.warn(message);
     }
 
     destroy(error: any) {

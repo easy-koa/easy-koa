@@ -14,9 +14,7 @@ export abstract class Plugin {
     
     abstract name(): string;
 
-    service(): Services {
-        return {};
-    };
+    registerComponent(constructor: any, component: any) {}
 
     init(options: InitOptions) {};
 

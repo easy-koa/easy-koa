@@ -1,5 +1,9 @@
+import 'reflect-metadata';
+import { moduleMeta } from '../constants';
+
+
 export function Module (options: any) {
     return function(target: any) {
-        Object.assign(target, options);
+        Reflect.defineMetadata(moduleMeta, options, target);
     }
 }

@@ -1,24 +1,38 @@
 import { Plugin } from './plugin';
 import { BaseObject } from '../shared/interfaces/index';
 
-type Stash = BaseObject;
-
 export class Registry {
-    $: Stash = {};
+    registry: Map<any, any> = new Map()
 
     all() {
-        return this.$;
+        return this;
     }
 
-    register(name: string, stuff: BaseObject) {
-        this.$[name] = stuff;
+    register(name: any, stuff: BaseObject) {
+        this.registry.set(name, stuff);
     }
 
-    unregister(name: string) {
-        delete this.$[name];
+    unregister(name: any) {
+        this.registry.delete(name);
     }
 
-    lookup(name: string) {
-        return this.$[name];
+    lookup(name: any) {
+        return this.registry.get(name); 
+    }
+
+    keys() {
+        return this.registry.keys(); 
+    }
+
+    values() {
+        return this.registry.values(); 
+    }
+
+    size() {
+        return this.registry.size; 
+    }
+
+    static create(...args: any[]) {
+        return new this(...args)
     }
 }

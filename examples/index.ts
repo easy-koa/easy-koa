@@ -1,10 +1,10 @@
 import Kapp from '../src';
-import LoginService from './services/login';
 import TopicService from './services/topic';
 import LoginInterceptor from './interceptors/login';
 import TopicController from './controllers/topic';
 import { Logger, MicroServices } from '../src/components';
 import { Module } from '../src/shared';
+import { LoginInterface } from './services/login';
 
 @Module({
     plugins: [
@@ -16,7 +16,7 @@ import { Module } from '../src/shared';
             version: '3.0.3.3',
             register: '10.165.124.205:2181',
             interfaces: [
-                LoginService, TopicService
+                new LoginInterface()
             ]
         })
     ],
@@ -24,12 +24,11 @@ import { Module } from '../src/shared';
     interceptors: [
         {
             mappding: '/*',
-            interceptor: LoginInterceptor
+            interceptor: new LoginInterceptor()
         }
     ],
-    controllers: [ TopicController ],
-    components: [
-        LoginService
+    controllers: [
+        new TopicController()
     ]
 })
 class ZoneKapp extends Kapp {}
@@ -42,8 +41,11 @@ zoneKapp
     .then(function() {
         const logger = zoneKapp
             .application
-            .service('logger');
+            .getPlugin(Logger);
 
         console.log('Server run successfully on port 9999');
         logger.info('Server run successfully on port 9999');
+    })
+    .catch(e => {
+        console.log(e);
     });

@@ -1,122 +1,94 @@
+import 'reflect-metadata';
 import * as dotProp from 'dot-prop';
 import * as ora from 'ora';
 import { Plugin, Plugins } from './plugin';
-import { Registry } from './registry';
 import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
-
+import { Registry } from './registry';
+const servicesKey = 'services';
 
 export class Application {
-    readonly pluginRegistry: Registry = new Registry();
-    readonly serviceRegistry: Registry = new Registry();
+    readonly pluginRegistry: Registry = Registry.create();
+    readonly componentRegistry: Registry = Registry.create();
 
     public plugins() {
         return this.pluginRegistry.all();
-    }
-
-    public services() {
-        return this.serviceRegistry.all();
     }
 
     public use(plugin: Plugin) {
         if (!(plugin instanceof Plugin)) {
             return;
         }
-        
         plugin.afterCreated();
-
         this.register(plugin);
     }
 
     private register(plugin: Plugin) {
-        const name = plugin.name();
-        const services = plugin.service();
-        const service = this.bindServiceContext(services, plugin);
-
-        this.pluginRegistry.register(name, plugin);
-        this.serviceRegistry.register(name, service);
+        this.pluginRegistry.register(plugin.constructor, plugin);
     }
 
-    // 绑定service上下文
-    private bindServiceContext(services: Services, context: Plugin) {
-        const newServices: Services = {};
-
-        for (let [
-            name, service
-        ] of entries(services)) {
-            newServices[name] = service.bind(context);
-        }
-
-        return newServices;
+    public registerComponent(constructor: any, component: any) {
+        this.componentRegistry.register(constructor, component);
     }
-
-    private getter(keypath: string) {
-        const [pluginName, ...rest] = keypath.split('.');
-        const plugin = this.pluginRegistry.lookup(pluginName);
-        if (!plugin) {
-            return;
-        }
-
-        if (rest.length === 0) {
-            // TODO: deepClone
-            return plugin.$options;
-        }
-
-        return dotProp.get(plugin.$options, rest.join('.'));
-    }
-
-    public service(keypath: string) {
-        const [pluginName, serviceName] = keypath.split('.');
-        const pluginService = this.serviceRegistry.lookup(pluginName);
-        if (!serviceName) {
-            if (pluginService) {
-                return pluginService;
-            }
-
-            throw `plugin "${pluginName}" is not found!`;
-        }
-
-        const services = this.serviceRegistry.lookup(pluginName);
-
-        if (services && serviceName in services) {
-            return services[serviceName];
-        }
-
-        throw `service "${keypath}" is not found!`;
-    }
-
 
     private names() {
-        const plugins: Plugins = this.pluginRegistry.all();
-        return Object.keys(plugins);
+        return this.pluginRegistry.keys();
+    }
+
+    public getPlugin(pluginConstuctor: any) {
+        const { pluginRegistry, componentRegistry } = this;
+        return pluginRegistry.lookup(pluginConstuctor) || componentRegistry.lookup(pluginConstuctor);
+    }
+
+    public inject(plugin: any) {
+        const dependencies = Reflect.getMetadata(servicesKey, plugin);
+
+        if (dependencies) {
+            dependencies.forEach((dependencyPlugin: any, pluginName: string) => {
+                const dependency = this.getPlugin(dependencyPlugin);;
+                if (dependency) {
+                    plugin[pluginName] = dependency;
+                } else {
+                    throw new Error(`inject dependency error, pleace check the service${dependencyPlugin.name}`)
+                }
+            });
+        }
     }
 
     public start() {
-        const plugins: Plugins = this.pluginRegistry.all();
-
-        const getter = this.getter.bind(this);
-        const service = this.service.bind(this);
-        const names = this.names.bind(this);
+        const pluginRegistry = this.pluginRegistry;
 
         const spinner = ora();
 
+        const inject = this.inject.bind(this);
+        const registerComponent = this.registerComponent.bind(this);
+        
         logger.newline();
 
         async function start(): Promise<void> {
             spinner.start();
 
-            const pluginNum = Object.keys(plugins).length;
-
             let counter = 0;
+            let iterator;
+            const plugins = pluginRegistry.values();
+            const pluginNum = pluginRegistry.size();
 
-            for (let [ name, plugin ] of <[string, Plugin][]> entries(plugins)) {
+            while (iterator = plugins.next()) {
+                if (iterator.done) {
+                    break;
+                }
+
+                const plugin = iterator.value;
+                
                 counter++;
                 spinner.text = `[${counter}/${pluginNum}] Loading ${plugin.name()}`;
 
                 try {
                     if (plugin.$options.enable) {
-                        await plugin.init({ getter, service, names});
+                        inject(plugin);
+                        plugin.registerComponent = registerComponent;
+                        await plugin.init();
                     }
 
                     spinner.succeed(`Plugin ${plugin.name()} loaded`);
@@ -129,20 +101,37 @@ export class Application {
             return Promise.resolve();
         }
 
-        return start().then(() => {
-            for (let [ name, plugin ] of <[string, Plugin][]> entries(plugins)) {
-                plugin.ready();
-            }
-            return Promise.resolve();
-        }).catch((error) => {
-            return this.stop(error);
-        });
+        return start()
+            .then(() => {
+                let iterator;
+                const plugins = pluginRegistry.values();
+                
+                while (iterator = plugins.next()) {
+                    if (iterator.done) {
+                        break;
+                    }
+
+                    const plugin = iterator.value;
+                    plugin.ready();
+                }
+
+                return Promise.resolve();
+            }).catch((error) => {
+                return this.stop(error);
+            });
     }
 
     public async stop(error?: any) {
-        const plugins = this.pluginRegistry.all();
-
-        for (let [ name, plugin ] of <[string, Plugin][]> entries(plugins)) {
+        const pluginRegistry = this.pluginRegistry;
+        let iterator;
+        
+        const plugins = pluginRegistry.values();
+        
+        while (iterator = plugins.next()) {
+            if (iterator.done) {
+                break;   
+            }
+            const plugin = iterator.value;
             if (plugin.$options.enable) {
                 try {
                     await plugin.destroy(error);

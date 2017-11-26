@@ -1,14 +1,17 @@
 import { Plugin } from '../../core';
 import { InitOptions, BaseObject } from '../../shared/interfaces';
 import rpc = require('@kaola/rpc');
+import { Injection } from '../../shared/decorators/injection';
+import { Logger } from '../index';
+import { entries } from '../../shared/index';
 
 interface Services {
     [propName: string]: BaseObject;
 };
 
 export class MicroServices extends Plugin {
-    private logger: any;
-    private services: BaseObject;
+    @Injection(Logger)
+    private logger: Logger;
     private client: any;
     
     name() {
@@ -19,25 +22,20 @@ export class MicroServices extends Plugin {
         super();
         const { interfaces = [] } = options;
 
-        this.services = interfaces.reduce((services: Services, Interface: any) => {
+        options.services = interfaces.reduce((services: Services, service: any) => {
             return Object.assign(services, {
-                [Interface.name]: new Interface()
+                [service.constructor.name]: service
             })
         }, {});
-
         this.$options = options;
     }
 
-    service() {
-        return {
-            services() {
-                return this.services;
-            }
-        };
+    public services() {
+        return this.services;
     }
     
-    async init({ service }: InitOptions) {
-        this.logger = service('logger');
+    async init() {
+        const interfaces = this.$options.interfaces;
         
         await rpc.createClient(this.$options).connect()
             .then(({
@@ -45,6 +43,18 @@ export class MicroServices extends Plugin {
             }) => {
                 this.client = client;
                 this.services = services;
+                for (let [
+                    serviceName
+                ] of entries(services)) {
+                    const apis = interfaces.filter((api: any) => {
+                        return api.constructor.name === serviceName
+                    });
+                    if (apis.length > 0) {
+                        const ServiceConstructor = apis[0].compose.constructor;
+                        this.registerComponent(ServiceConstructor, services[serviceName]);
+                    }
+                }
+                
             })
     }
 

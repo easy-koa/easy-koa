@@ -1,13 +1,22 @@
-import { Controller } from '../../src/shared';
+import 'reflect-metadata';
+
+import { Controller, RequestMapping } from '../../src/shared';
 import TopicService from '../services/topic';
-const formatMetadataKey = Symbol("format");
+import { methodTypes } from '../../src/shared/constants';
+import { Injection } from '../../src/shared/decorators/injection';
 
 
-@Controller()
-// @Controller()
+@Controller('/hello')
 export default class TopicController {
-    topicService: TopicService;
 
-    constructor(topicService: TopicService) {}
+    // @Injection(TopicService)
+    // topicService: TopicService;
 
+    @RequestMapping({
+        path: '/world'
+    })
+    async helloworld(ctx: any) {
+        const topicService = Reflect.getMetadata('services', this);
+        ctx.body = `Your name is ${ctx.kaolaContext.accountId}`;
+    }
 }
