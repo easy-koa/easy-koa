@@ -36,7 +36,7 @@ export class Application {
         return this.pluginRegistry.keys();
     }
 
-    public getPlugin(pluginConstuctor: any) {
+    public getPlugin<T>(pluginConstuctor: T) {
         const { pluginRegistry, componentRegistry } = this;
         return pluginRegistry.lookup(pluginConstuctor) || componentRegistry.lookup(pluginConstuctor);
     }
