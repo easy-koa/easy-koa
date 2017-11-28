@@ -20,14 +20,16 @@ export class RouterExplorer {
     
         const instancePrototype = Object.getPrototypeOf(ctx);
 
-        const methods = Object.keys(instancePrototype).map(item =>
+        const routers: IRouter[] = Object.getOwnPropertyNames(
+            instancePrototype
+        ).filter(item =>
+            item !== 'constructor'
+        ).map(item =>
             instancePrototype[item]
-        );
-        
-        const routers: IRouter[] = methods.reduce(function(routers: any, handle: Function) {
+        ).reduce((routers: any, handle: Function) => {
             const path = Reflect.getMetadata(pathMeta, handle);
             const methodTypes = Reflect.getMetadata(methodsMeta, handle);
-            
+        
             if ( !isUndefined(methodTypes) && !isUndefined(path) ) {
                 routers.push({
                     methods: methodTypes,
@@ -47,11 +49,13 @@ export class RouterExplorer {
 
     private create() {
         const { prefix, routers }: IRouters = this.expore();
-        
+
         routers.forEach(({ path, handle, methods }: IRouter) => {
             this.router.register(path, methods, handle);
         })
 
+        console.log(`register routes: prefix - ${prefix}, routers - ${JSON.stringify(routers)}`);
+        
         return { prefix, router: this.router }
     }
 
