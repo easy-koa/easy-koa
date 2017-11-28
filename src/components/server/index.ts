@@ -9,14 +9,10 @@ import { RoutersExplorer } from './routers-explorer';
 import Router = require('koa-router');
 import { IRouter } from './interfaces/index';
 import { Injection } from '../../shared/decorators/injection';
-import { MicroServices } from '../index';
 
 export class Server extends Plugin {
     readonly application: Koa = new Koa();
     serverContext: ServerContext;
-
-    @Injection(MicroServices)
-    private microServices: MicroServices;
 
     name() {
         return 'server';

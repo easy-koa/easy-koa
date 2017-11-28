@@ -22,11 +22,10 @@
             "es2017"
         ],
         "experimentalDecorators": true,
-        "allowJs": true
+        "declaration": true
     },
-    "include": [
-        "src/**/*",
-        "examples/**/*"
+    "files": [
+        "src/index.ts"
     ],
     "exclude": [
         "node_modules"

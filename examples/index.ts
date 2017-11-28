@@ -22,10 +22,7 @@ import { LoginInterface } from './services/login';
     ],
     middlewares: [], // koa middlewares, async function first
     interceptors: [
-        {
-            mappding: '/*',
-            interceptor: new LoginInterceptor()
-        }
+        new LoginInterceptor()
     ],
     controllers: [
         new TopicController()
@@ -43,7 +40,6 @@ zoneKapp
             .application
             .getPlugin(Logger);
 
-        console.log('Server run successfully on port 9999');
         logger.info('Server run successfully on port 9999');
     })
     .catch(e => {

@@ -10,7 +10,7 @@ interface Options extends BaseObject{
 export abstract class Plugin {
     id = pid();
     
-    $options: Options = { enable: true };
+    $options: any = { enable: true };
     
     abstract name(): string;
 
