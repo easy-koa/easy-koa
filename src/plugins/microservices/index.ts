@@ -13,7 +13,7 @@ export class MicroServices extends Plugin {
     @InjectPlugin(Logger)
     private logger: Logger;
     private client: any;
-    private services: any;
+    public services: any;
     
     name() {
         return 'rpc';
@@ -21,13 +21,9 @@ export class MicroServices extends Plugin {
 
     constructor(options: any) {
         super();
-        const { interfaces = [] } = options;
+        const { interfaces = {} } = options;
 
-        options.services = interfaces.reduce((services: Services, service: any) => {
-            return Object.assign(services, {
-                [service.constructor.name]: service
-            })
-        }, {});
+        options.services = interfaces;
         this.$options = options;
     }
 
@@ -41,18 +37,6 @@ export class MicroServices extends Plugin {
             }) => {
                 this.client = client;
                 this.services = services;
-                for (let [
-                    serviceName
-                ] of entries(services)) {
-                    const apis = interfaces.filter((api: any) => {
-                        return api.constructor.name === serviceName
-                    });
-                    if (apis.length > 0) {
-                        const ServiceConstructor = apis[0].compose.constructor;
-                        this.registerService(ServiceConstructor, services[serviceName]);
-                    }
-                }
-                
             })
     }
 

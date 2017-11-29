@@ -1,4 +1,6 @@
 import { Service } from  '../../src/shared';
+import { InjectPlugin, InjectService } from '../../src/shared/decorators/injection';
+import { MicroServices } from '../../src/plugins/index';
 
 function createType(className: string, value: any) {
     return {
@@ -26,18 +28,10 @@ const types = {
 
 
 export class LoginService {
-    getLoginAccount(cookie: string): any {
-        return [
-            types.string(cookie)
-        ];
-    }
-}
+    @InjectPlugin(MicroServices)
+    microServices: MicroServices;
 
-@Service()
-export class LoginInterface {
-    interface = 'com.netease.haitao.account.service.AccountLoginServiceFacade';
-    version = '1.0';
-    timeout = 6000;
-    group = 'stable_master';
-    compose = new LoginService()
+    async getLoginAccount(cookie: string) {
+        return await this.microServices.services.login.getLoginAccount(types.string(cookie));
+    }
 }

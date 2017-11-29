@@ -8,7 +8,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
         const { path, methods, interceptor } = interceptorMapping;
         const pathReg = <RegExp> path;
 
-        if (pathReg.test(ctx.path)) {
+        if (!pathReg.test(ctx.path)) {
             return await next(ctx);
         }
 

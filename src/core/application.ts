@@ -28,8 +28,8 @@ export class Application {
         this.pluginRegistry.register(plugin.constructor, plugin);
     }
 
-    public registerService(constructor: any, component: any) {
-        this.serviceRegistry.register(constructor, component);
+    public registerService(constructor: any, service: any) {
+        this.serviceRegistry.register(constructor, service);
     }
 
     private names() {
@@ -72,7 +72,16 @@ export class Application {
         this.injectInstance(
             plugin,
             injection.service,
-            (constructor: any) => this.getServce(constructor)
+            (constructor: any) => {
+                let instance = this.getServce(constructor);
+
+                if (!instance) {
+                    instance = new constructor();
+                    this.injectAll(instance);
+                }
+                
+                return instance
+            }
         );
     }
 

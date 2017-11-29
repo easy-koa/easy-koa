@@ -1,6 +1,7 @@
 import Koa = require('koa');
 
 export interface Interceptor {
+    new(): Interceptor;
     preHandle: (ctx: Koa.Context) => (boolean | void);
     postHandle: (ctx: Koa.Context) => (boolean | void);
 }
