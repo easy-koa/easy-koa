@@ -9,9 +9,6 @@ import { methodTypes } from '../../src/shared/constants';
 @Controller('/hello')
 export default class TopicController {
 
-    // @Injection(TopicService)
-    // topicService: TopicService;
-
     @RequestMapping({
         path: '/world'
     })

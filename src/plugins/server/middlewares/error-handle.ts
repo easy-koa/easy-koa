@@ -6,6 +6,7 @@ export function errorHandleMiddleware() {
             await next(ctx);
         } catch(e) {
             console.log(ctx.status);
+            console.log(e);
         }
     }
 }

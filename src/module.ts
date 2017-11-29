@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Application } from "./core/index";
 import { ModuleContext } from "./shared/interfaces";
-import { Server } from "./components/server/index";
+import { Server } from "./plugins/server/index";
 import { isNumber } from "./shared/utils/index";
 import { moduleMeta, methodTypes } from './shared/constants';
 import { InterceptorMapping, Interceptor, InterceptorItem } from './shared/interfaces/interceptor';
@@ -46,13 +46,14 @@ export class Kapp {
             interceptors = [],
             controllers = [],
             middlewares = [],
-            plugins = []
+            plugins = [],
+            services = []
         }: ModuleOptions = moduleOptions;
 
         const interceptorMappings = <InterceptorMapping[]> interceptors.map((interceptorItem: InterceptorItem) => {
             let interceptorMapping;
 
-            if ('preHandle' in interceptorItem || 'postHandle' in interceptorItem) {
+            if (!('interceptor' in interceptorItem)) {
                 interceptorMapping = {
                     path: '*',
                     methods: [
@@ -67,10 +68,14 @@ export class Kapp {
 
             interceptorMapping.path = pathToRegexp(interceptorMapping.path);
 
+            interceptorMapping.interceptor = new interceptorMapping.interceptor();
+
             return interceptorMapping;
         });
 
-        this.moduleContext = { interceptorMappings, controllers, middlewares, plugins }
+        controllers = controllers.map((Item) => new Item());
+
+        this.moduleContext = { interceptorMappings, controllers, middlewares, plugins, services }
     }
 
     public run(port: number) {
@@ -82,6 +87,9 @@ export class Kapp {
         
         return application.start()
             .then(() => {
+                this.moduleContext.services.forEach(function(item) {
+                    application.registerService(item.constructor, item);
+                });
                 this.registerModule();
                 this.start(port);
             });
@@ -89,7 +97,7 @@ export class Kapp {
 
     private cacheResgiterModule() {
         const { registerCache } = this;
-        const { controllers = [], interceptorMappings = []} = this.moduleContext;
+        const { controllers = [], interceptorMappings = [], services = []} = this.moduleContext;
 
         controllers.forEach(item => {
             registerCache.add(item);
@@ -97,6 +105,10 @@ export class Kapp {
         
         interceptorMappings.forEach(item => { 
             registerCache.add(item.interceptor);
+        });
+
+        services.forEach(item => { 
+            registerCache.add(item);
         });
     }
 
@@ -112,7 +124,6 @@ export class Kapp {
     private start(port: number) {
         const { application } = this;
         return new Promise(function(resolve, reject) {
-            
             application
                 .getPlugin(Server)
                 .listen(port, (error: Error) => {

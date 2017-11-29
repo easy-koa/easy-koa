@@ -1,8 +1,8 @@
 import {  Interceptor } from  '../../src/shared';
 import { LoginService } from '../services/login';
 import { InjectService } from '../../src/shared/decorators/injection';
+import TopicService from '../services/topic';
 
-@Interceptor()
 export default class LoginInterceptor {
     @InjectService(LoginService)
     loginService: LoginService;
@@ -14,7 +14,7 @@ export default class LoginInterceptor {
         cookie = cookie || cookieMock;
 
         ctx.kaolaContext = ctx.kaolaContext || {};
-
+        
         if (!cookie) {
             ctx.kaolaContext.accountId = null;
         } else {
