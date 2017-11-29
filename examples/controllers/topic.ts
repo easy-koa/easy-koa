@@ -16,7 +16,6 @@ export default class TopicController {
         path: '/world'
     })
     async helloworld(ctx: any) {
-        const topicService = Reflect.getMetadata('services', this);
         ctx.body = `Your name is ${ctx.kaolaContext.accountId}`;
     }
 }

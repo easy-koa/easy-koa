@@ -22,6 +22,7 @@
             "es2017"
         ],
         "experimentalDecorators": true,
+        "allowJs": true,
         "declaration": true
     },
     "files": [

@@ -73,7 +73,6 @@ export class RoutersExplorer{
                 return;
             }
 
-
             const { prefix, router } = RouterExplorer.create(controller)
             
             compose.use(

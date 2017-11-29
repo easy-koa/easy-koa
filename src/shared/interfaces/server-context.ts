@@ -1,6 +1,7 @@
+import { InterceptorMapping } from './interceptor';
+
 export interface ServerContext {
-    interceptors: any[];
+    interceptorMappings?: InterceptorMapping[];
     controllers?: any[];
-    components?: any[];
     middlewares?: any[];
 }

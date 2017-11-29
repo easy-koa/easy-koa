@@ -40,7 +40,7 @@ zoneKapp
             .application
             .getPlugin(Logger);
 
-        logger.info('Server run successfully on port 9999');
+        console.log('Server run successfully on port http://0.0.0.0:9999');
     })
     .catch(e => {
         console.log(e);

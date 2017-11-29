@@ -13,6 +13,7 @@ export class MicroServices extends Plugin {
     @Injection(Logger)
     private logger: Logger;
     private client: any;
+    private services: any;
     
     name() {
         return 'rpc';
@@ -30,9 +31,6 @@ export class MicroServices extends Plugin {
         this.$options = options;
     }
 
-    public services() {
-        return this.services;
-    }
     
     async init() {
         const interfaces = this.$options.interfaces;

@@ -5,3 +5,4 @@ export * from './message';
 export * from './services';
 export * from './server-context';
 export * from './module-context';
+export * from './interceptor';

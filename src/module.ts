@@ -3,35 +3,74 @@ import { Application } from "./core/index";
 import { ModuleContext } from "./shared/interfaces";
 import { Server } from "./components/server/index";
 import { isNumber } from "./shared/utils/index";
-import { moduleMeta } from './shared/constants';
+import { moduleMeta, methodTypes } from './shared/constants';
+import { InterceptorMapping, Interceptor, InterceptorItem } from './shared/interfaces/interceptor';
+import { ModuleOptions } from './shared/index';
+
+import pathToRegexp = require('path-to-regexp')
 
 export class Kapp {
     readonly application: Application = new Application();
     private moduleContext: ModuleContext;
-    private injectSet = new Set();
+    private registerCache = new Set();
 
-    constructor(moduleContext: ModuleContext) {
-        this.moduleContext = moduleContext;
-        this.configure();
+    constructor(moduleOptions: ModuleOptions) {
+        this.configure(moduleOptions);
+        this.cacheResgiterModule();
+        this.install();
     }
 
-    public static create(): Kapp {
-        const moduleContext: ModuleContext = <ModuleContext> Reflect.getMetadata(moduleMeta, this);
-
-        return new this( moduleContext );
-    }
-
-    private configure(): void {
+    private install() {
         const { application } = this;
-        const { interceptors = [], controllers = [], middlewares = [], components = [], plugins = [] }: ModuleContext = this.moduleContext;
-        
-        this.pushInjectSet();
+        let { 
+            interceptorMappings = [],
+            controllers = [],
+            middlewares = [],
+            plugins = []
+        }: ModuleContext = this.moduleContext;
 
         plugins.forEach(plugin => 
             application.use(plugin)
         );
 
-        application.use(new Server({ controllers, interceptors, components, middlewares }));
+        application.use(new Server({ controllers, interceptorMappings, middlewares }));
+    }
+
+    public static create(): Kapp {
+        const moduleOptions: ModuleOptions = <ModuleOptions> Reflect.getMetadata(moduleMeta, this);
+        return new this( moduleOptions );
+    }
+
+    private configure(moduleOptions: ModuleOptions): void {
+        let { 
+            interceptors = [],
+            controllers = [],
+            middlewares = [],
+            plugins = []
+        }: ModuleOptions = moduleOptions;
+
+        const interceptorMappings = <InterceptorMapping[]> interceptors.map((interceptorItem: InterceptorItem) => {
+            let interceptorMapping;
+
+            if ('preHandle' in interceptorItem || 'postHandle' in interceptorItem) {
+                interceptorMapping = {
+                    path: '*',
+                    methods: [
+                        methodTypes.GET,
+                        methodTypes.POST
+                    ],
+                    interceptor: <Interceptor> interceptorItem
+                }
+            } else {
+                interceptorMapping = <InterceptorMapping> interceptorItem
+            }
+
+            interceptorMapping.path = pathToRegexp(interceptorMapping.path);
+
+            return interceptorMapping;
+        });
+
+        this.moduleContext = { interceptorMappings, controllers, middlewares, plugins }
     }
 
     public run(port: number) {
@@ -43,35 +82,29 @@ export class Kapp {
         
         return application.start()
             .then(() => {
-                this.inject();
-            })
-            .then(() => {
-                this.start(port)
+                this.registerModule();
+                this.start(port);
             });
     }
 
-    private pushInjectSet() {
-        const { injectSet } = this;
-        const { controllers = [], interceptors = [], components = [] } = this.moduleContext;
+    private cacheResgiterModule() {
+        const { registerCache } = this;
+        const { controllers = [], interceptorMappings = []} = this.moduleContext;
 
         controllers.forEach(item => {
-            injectSet.add(item);
-        });
-
-        components.forEach(item => {
-            injectSet.add(item);
+            registerCache.add(item);
         });
         
-        interceptors.forEach(item => {
-            injectSet.add(item.interceptor ? item.interceptor: item);
+        interceptorMappings.forEach(item => { 
+            registerCache.add(item.interceptor);
         });
     }
 
-    private inject() {
-        const { injectSet } = this;
+    private registerModule() {
+        const { registerCache } = this;
         const { application } = this;
         
-        injectSet.forEach(function(item) {
+        registerCache.forEach(function(item) {
             application.inject(item);
         })
     }

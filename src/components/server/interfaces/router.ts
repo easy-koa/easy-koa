@@ -1,5 +1,3 @@
-/// <reference types="koa-router" />
-
 export interface IRouters {
     prefix: string;
     routers: IRouter[];
