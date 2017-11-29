@@ -29,7 +29,7 @@
     "typescript": "^2.6.1"
   },
   "dependencies": {
-    "@kaola/rpc": "^0.1.4",
+    "@kaola/rpc": "^0.1.5",
     "chalklog": "^1.1.2",
     "co": "^4.6.0",
     "dot-prop": "^4.1.1",
