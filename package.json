@@ -1,5 +1,5 @@
 {
-  "name": "kapp.js",
+  "name": "@kaola/kapp.js",
   "version": "0.0.0",
   "description": "A Microservices framework for node.js",
   "main": "dist/index.js",
