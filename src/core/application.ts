@@ -6,11 +6,11 @@ import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
 import { Registry } from './registry';
-const servicesKey = 'services';
+import { injection } from '../shared/constants';
 
 export class Application {
     readonly pluginRegistry: Registry = Registry.create();
-    readonly componentRegistry: Registry = Registry.create();
+    readonly serviceRegistry: Registry = Registry.create();
 
     public plugins() {
         return this.pluginRegistry.all();
@@ -28,8 +28,8 @@ export class Application {
         this.pluginRegistry.register(plugin.constructor, plugin);
     }
 
-    public registerComponent(constructor: any, component: any) {
-        this.componentRegistry.register(constructor, component);
+    public registerService(constructor: any, component: any) {
+        this.serviceRegistry.register(constructor, component);
     }
 
     private names() {
@@ -37,23 +37,48 @@ export class Application {
     }
 
     public getPlugin<T>(pluginConstuctor: T) {
-        const { pluginRegistry, componentRegistry } = this;
-        return pluginRegistry.lookup(pluginConstuctor) || componentRegistry.lookup(pluginConstuctor);
+        return this.pluginRegistry.lookup(pluginConstuctor);
     }
 
-    public inject(plugin: any) {
-        const dependencies = Reflect.getMetadata(servicesKey, plugin);
+    public getServce<T>(serviceConstuctor: T) {
+        return this.serviceRegistry.lookup(serviceConstuctor);
+    }
 
+    private injectInstance(plugin: any, key: string, getInstance: Function) {
+        const dependencies = Reflect.getMetadata(key, plugin);
+            
         if (dependencies) {
-            dependencies.forEach((dependencyPlugin: any, pluginName: string) => {
-                const dependency = this.getPlugin(dependencyPlugin);;
+            dependencies.forEach((constructor: any, pluginName: string) => {
+                const dependency = getInstance(constructor);
+
                 if (dependency) {
                     plugin[pluginName] = dependency;
                 } else {
-                    throw new Error(`inject dependency error, pleace check the service${dependencyPlugin.name}`)
+                    throw new Error(`inject dependency error, pleace check the ${key} ${constructor.name}`)
                 }
             });
         }
+    }
+
+    public injectPlugin(plugin: any) {
+        this.injectInstance(
+            plugin,
+            injection.plugin,
+            (constructor: any) => this.getPlugin(constructor)
+        );
+    }
+
+    public injectService(plugin: any) {
+        this.injectInstance(
+            plugin,
+            injection.service,
+            (constructor: any) => this.getServce(constructor)
+        );
+    }
+
+    public injectAll(plugin: any) {
+        this.injectPlugin(plugin);
+        this.injectService(plugin);
     }
 
     public start() {
@@ -61,8 +86,8 @@ export class Application {
 
         const spinner = ora();
 
-        const inject = this.inject.bind(this);
-        const registerComponent = this.registerComponent.bind(this);
+        const injectAll = this.injectAll.bind(this);
+        const registerService = this.registerService.bind(this);
         
         logger.newline();
 
@@ -86,8 +111,8 @@ export class Application {
 
                 try {
                     if (plugin.$options.enable) {
-                        inject(plugin);
-                        plugin.registerComponent = registerComponent;
+                        plugin.registerService = registerService;
+                        injectAll(plugin);
                         await plugin.init();
                     }
 

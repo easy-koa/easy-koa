@@ -1,7 +1,7 @@
 import { Plugin } from '../../core';
 import { InitOptions, BaseObject } from '../../shared/interfaces';
 import rpc = require('@kaola/rpc');
-import { Injection } from '../../shared/decorators/injection';
+import { InjectPlugin } from '../../shared/decorators/injection';
 import { Logger } from '../index';
 import { entries } from '../../shared/index';
 
@@ -10,7 +10,7 @@ interface Services {
 };
 
 export class MicroServices extends Plugin {
-    @Injection(Logger)
+    @InjectPlugin(Logger)
     private logger: Logger;
     private client: any;
     private services: any;
@@ -49,7 +49,7 @@ export class MicroServices extends Plugin {
                     });
                     if (apis.length > 0) {
                         const ServiceConstructor = apis[0].compose.constructor;
-                        this.registerComponent(ServiceConstructor, services[serviceName]);
+                        this.registerService(ServiceConstructor, services[serviceName]);
                     }
                 }
                 

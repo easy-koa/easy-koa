@@ -3,7 +3,7 @@ import 'reflect-metadata';
 import { Controller, RequestMapping } from '../../src/shared';
 import TopicService from '../services/topic';
 import { methodTypes } from '../../src/shared/constants';
-import { Injection } from '../../src/shared/decorators/injection';
+// import { InjectPlugin } from '../../src/shared/decorators/injection';
 
 
 @Controller('/hello')

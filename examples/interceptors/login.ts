@@ -1,10 +1,10 @@
 import {  Interceptor } from  '../../src/shared';
 import { LoginService } from '../services/login';
-import { Injection } from '../../src/shared/decorators/injection';
+import { InjectService } from '../../src/shared/decorators/injection';
 
 @Interceptor()
 export default class LoginInterceptor {
-    @Injection(LoginService)
+    @InjectService(LoginService)
     loginService: LoginService;
 
     async preHandle(ctx: any) {

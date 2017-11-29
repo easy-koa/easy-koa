@@ -16,3 +16,8 @@ export enum methodTypes {
     GET = 'GET',
     POST = 'POST'
 }
+
+export enum injection {
+    service = 'services',
+    plugin = 'plugins',
+}

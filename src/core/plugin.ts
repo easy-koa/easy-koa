@@ -14,7 +14,9 @@ export abstract class Plugin {
     
     abstract name(): string;
 
-    registerComponent(constructor: any, component: any) {}
+    registerService(constructor: any, component: any) {
+        throw Error('registerService has not been rewrite');
+    }
 
     init(options: InitOptions) {};
 

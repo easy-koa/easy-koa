@@ -105,7 +105,7 @@ export class Kapp {
         const { application } = this;
         
         registerCache.forEach(function(item) {
-            application.inject(item);
+            application.injectAll(item);
         })
     }
 
