@@ -5,7 +5,7 @@ import TopicController from './controllers/topic';
 import { Logger, MicroServices } from '../src/plugins';
 import { Module } from '../src/shared';
 import { LoginService } from './services/login';
-import * as KappConfig from './kapp-config';
+import KappConfig from './kapp-config';
 
 @Module(KappConfig)
 class ZoneKapp extends Kapp {}

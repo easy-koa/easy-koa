@@ -11,7 +11,7 @@ export default {
             application: 'haitao-wap',
             version: '3.0.3.3',
             register: '10.165.124.205:2181',
-            interfaces: {
+            providers: {
                 login: {
                     interface: 'com.netease.haitao.account.service.AccountLoginServiceFacade',
                     version: '1.0',

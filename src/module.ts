@@ -48,8 +48,9 @@ export class Kapp {
             middlewares = [],
             plugins = [],
             services = []
-        }: ModuleOptions = moduleOptions;
-
+        } = moduleOptions;
+        
+        
         const interceptorMappings = <InterceptorMapping[]> interceptors.map((interceptorItem: InterceptorItem) => {
             let interceptorMapping;
 
