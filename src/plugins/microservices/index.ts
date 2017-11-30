@@ -14,6 +14,7 @@ export class MicroServices extends Plugin {
     private logger: Logger;
     private client: any;
     public services: any;
+    private microServices: any;
     
     name() {
         return 'rpc';
@@ -21,19 +22,21 @@ export class MicroServices extends Plugin {
 
     constructor(options: any) {
         super();
-        const { interfaces = {} } = options;
+        const { providers = {} } = options;
 
-        options.services = interfaces;
+        options.services = providers;
         this.$options = options;
+        this.microServices = rpc.createClient(this.$options);
     }
 
     
-    async init() {
-        const interfaces = this.$options.interfaces;
-        
-        await rpc.createClient(this.$options).connect()
+    async init() {      
+        await this.microServices
+            .connect()
             .then(({
                 services, client
+            }: {
+                services: any, client: any
             }) => {
                 this.client = client;
                 this.services = services;

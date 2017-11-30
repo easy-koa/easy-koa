@@ -25,7 +25,11 @@ export class Application {
     }
 
     private register(plugin: Plugin) {
-        this.pluginRegistry.register(plugin.constructor, plugin);
+        const constructor = plugin.constructor;
+        if (this.getPlugin(constructor)) {
+            throw new Error(`failed to register the duplicated plugin - ${constructor.name}`)
+        }
+        this.pluginRegistry.register(constructor.name, plugin);
     }
 
     public registerService(constructor: any, service: any) {
@@ -36,11 +40,11 @@ export class Application {
         return this.pluginRegistry.keys();
     }
 
-    public getPlugin<T>(pluginConstuctor: T) {
-        return this.pluginRegistry.lookup(pluginConstuctor);
+    public getPlugin<T>(constructor: any): T {
+        return this.pluginRegistry.lookup(constructor.name);
     }
 
-    public getServce<T>(serviceConstuctor: T) {
+    public getServce<T>(serviceConstuctor: T): T {
         return this.serviceRegistry.lookup(serviceConstuctor);
     }
 
@@ -50,11 +54,10 @@ export class Application {
         if (dependencies) {
             dependencies.forEach((constructor: any, pluginName: string) => {
                 const dependency = getInstance(constructor);
-
                 if (dependency) {
                     plugin[pluginName] = dependency;
                 } else {
-                    throw new Error(`inject dependency error, pleace check the ${key} ${constructor.name}`)
+                    throw new Error(`failed to inject the ${key} - ${constructor.name}`)
                 }
             });
         }
