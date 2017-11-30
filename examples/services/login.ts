@@ -27,6 +27,15 @@ const types = {
 };
 
 
+export const loginProvider = {
+    login: {
+        interface: 'com.netease.haitao.account.service.AccountLoginServiceFacade',
+        version: '1.0',
+        timeout: 6000,
+        group: 'stable_master'
+    }
+}
+
 export class LoginService {
     @InjectPlugin(MicroServices)
     microServices: MicroServices;
