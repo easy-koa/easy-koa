@@ -25,7 +25,7 @@ export class Application {
     }
 
     private register(plugin: Plugin) {
-        this.pluginRegistry.register(plugin.constructor, plugin);
+        this.pluginRegistry.register(plugin.constructor.name, plugin);
     }
 
     public registerService(constructor: any, service: any) {
@@ -36,11 +36,11 @@ export class Application {
         return this.pluginRegistry.keys();
     }
 
-    public getPlugin<T>(pluginConstuctor: T) {
-        return this.pluginRegistry.lookup(pluginConstuctor);
+    public getPlugin<T>(pluginConstuctor: any): T {
+        return this.pluginRegistry.lookup(pluginConstuctor.name);
     }
 
-    public getServce<T>(serviceConstuctor: T) {
+    public getServce<T>(serviceConstuctor: T): T {
         return this.serviceRegistry.lookup(serviceConstuctor);
     }
 
