@@ -97,10 +97,10 @@ export class Application {
 
         const injectAll = this.injectAll.bind(this);
         const registerService = this.registerService.bind(this);
-        
+
         logger.newline();
 
-        async function start(): Promise<void> {
+        async function start0(): Promise<void> {
             spinner.start();
 
             let counter = 0;
@@ -135,11 +135,47 @@ export class Application {
             return Promise.resolve();
         }
 
+        async function start(): Promise<any> {
+            spinner.start();
+
+            let counter = 0;
+            const plugins = pluginRegistry.values();
+            const pluginNum = pluginRegistry.size();
+
+            let rejected: boolean = false;
+            return new Promise((resolve, reject) => {
+                Array.from(pluginRegistry.values()).forEach(async (plugin) => {
+                    if (rejected) {
+                        return
+                    }
+                    spinner.text = `[${counter}/${pluginNum}] Loading ${plugin.name()}`;
+                    try {
+                        if (plugin.$options.enable) {
+                            plugin.registerService = registerService;
+                            injectAll(plugin);
+                            await plugin.init();
+                            counter++;
+                        }
+
+                        spinner.succeed(`Plugin ${plugin.name()} loaded`);
+                        if (counter === pluginNum) {
+                            resolve()
+                        }
+                    } catch (e) {
+                        spinner.fail(`Failed to load plugin "${plugin.name()}"`);
+                        rejected = true
+                        reject(e)
+                    }
+                })
+            })
+        }
+
+
         return start()
             .then(() => {
                 let iterator;
                 const plugins = pluginRegistry.values();
-                
+
                 while (iterator = plugins.next()) {
                     if (iterator.done) {
                         break;
