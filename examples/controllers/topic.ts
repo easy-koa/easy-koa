@@ -3,16 +3,15 @@ import 'reflect-metadata';
 import { Controller, RequestMapping } from '../../src/shared';
 import TopicService from '../services/topic';
 import { methodTypes } from '../../src/shared/constants';
-// import { InjectPlugin } from '../../src/shared/decorators/injection';
 
 
-@Controller('/hello')
+@Controller('/test')
 export default class TopicController {
 
     @RequestMapping({
-        path: '/world'
+        path: '/account'
     })
-    async helloworld(ctx: any) {
+    async getYourName(ctx: any) {
         ctx.body = `Your name is ${ctx.kaolaContext.accountId}`;
     }
 

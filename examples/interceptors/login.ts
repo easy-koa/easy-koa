@@ -8,7 +8,7 @@ export default class LoginInterceptor {
 
     async preHandle(ctx: any) {
         let cookie = ctx.cookies.get('NTES_YD_SESS') || ctx.cookies.get('NTES_SESS') || ctx.cookies.get('NTES_OSESS');
-        const cookieMock = 'AoufPGXrKt_fwJ1EwFKESWlj9b_bZHs6UJaTVY9KSpZG6H1js6r1gX7m8_VcR9srrWKvOjcPb0xnmPiGjhx0uRAi4Mt5tlrsB3.v7Cq3QLRNDRUhH_m98T_a0mwFn13y79h17l2C4mfcC';
+        const cookieMock = '1yJLFPkpsjLQpOJm5z3kLaUq2CjjaIEKgdxk4BwFzq5Unx2OnJy7pcfNN8XULG64QVl.pBhJEbPDKumeWacKsMfyWI.mt53EoWropIuhwW6zeU2WYFr3SLj.WuZHWON6K6Nk86gAcwRc0OBQrRfMZlBmgi4xG4dTpW3D.q4mky5xQ6lfPMei.kQEU5XeVpS.8';
         // MOCK
         cookie = cookie || cookieMock;
 

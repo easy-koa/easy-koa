@@ -15,10 +15,13 @@ const zoneKapp = ZoneKapp.create();
 zoneKapp
     .run(9999)
     .then(function() {
+        
         const logger = zoneKapp
             .application
-            .getPlugin(Logger);
-
+            .registry
+            .components
+            .getInstance(Logger);
+            
         logger.info('Server run successfully on port http://0.0.0.0:9999');
     })
     .catch(e => {

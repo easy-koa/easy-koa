@@ -5,112 +5,33 @@ import { Component, Components } from './component';
 import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
-import { Registry } from './registry';
+import { Registry } from './registrys';
 import { injection } from '../shared/constants';
 
 export class Application {
-    readonly componentRegistry: Registry = Registry.create();
-    readonly serviceRegistry: Registry = Registry.create();
-
-    public components() {
-        return this.componentRegistry.all();
-    }
-
+    readonly registry = new Registry();
     public use(component: Component) {
         if (!(component instanceof Component)) {
             return;
         }
         component.afterCreated();
-        this.register(component);
-    }
-
-    private register(component: Component) {
-        const constructor = component.constructor;
-        if (this.getPlugin(constructor)) {
-            throw new Error(`failed to register the duplicated component - ${constructor.name}`)
-        }
-        this.componentRegistry.register(constructor.name, component);
-    }
-
-    public registerService(constructor: any, service: any) {
-        this.serviceRegistry.register(constructor, service);
-    }
-
-    private names() {
-        return this.componentRegistry.keys();
-    }
-
-    public getPlugin<T>(constructor: any) {
-        return this.componentRegistry.lookup(constructor.name);
-    }
-
-    public getServce<T>(serviceConstuctor: T) {
-        return this.serviceRegistry.lookup(serviceConstuctor);
-    }
-
-    private injectInstance(component: any, key: string, getInstance: Function) {
-        const dependencies = Reflect.getMetadata(key, component);
-        
-        if (dependencies) {
-            dependencies.forEach((constructor: any, pluginName: string) => {
-                const dependency = getInstance(constructor);
-                if (dependency) {
-                    component[pluginName] = dependency;
-                } else {
-                    throw new Error(`failed to inject the ${key.slice(0, -1)} - ${constructor.name}`)
-                }
-            });
-        }
-    }
-
-    public injectPlugin(component: any) {
-        this.injectInstance(
-            component,
-            injection.component,
-            (constructor: any) => this.getPlugin(constructor)
-        );
-    }
-
-    public injectService(component: any) {
-        this.injectInstance(
-            component,
-            injection.service,
-            (constructor: any) => {
-                let instance = this.getServce(constructor);
-
-                if (!instance) {
-                    instance = new constructor();
-                    this.injectAll(instance);
-                }
-                
-                return instance
-            }
-        );
-    }
-
-    public injectAll(component: any) {
-        this.injectPlugin(component);
-        this.injectService(component);
+        this.registry.components.register(component);
     }
 
     public start() {
-        const componentRegistry = this.componentRegistry;
-
+        const componentRegistry = this.registry.components;
         const spinner = ora();
-
-        const injectAll = this.injectAll.bind(this);
-        const registerService = this.registerService.bind(this);
-
+        const ctx = this;
+        
         logger.newline();
 
-        async function start0(): Promise<void> {
+        async function start(): Promise<void> {
             spinner.start();
 
             let counter = 0;
             let iterator;
             const components = componentRegistry.values();
             const pluginNum = componentRegistry.size();
-
             while (iterator = components.next()) {
                 if (iterator.done) {
                     break;
@@ -123,54 +44,22 @@ export class Application {
 
                 try {
                     if (component.$options.enable) {
-                        injectAll(component);
-                        await component.init();
+                        ctx.registry.mount(component);
+                        
+                        if (component.init) {
+                            await component.init()
+                        }
                     }
-
-                    spinner.succeed(`Component ${component.name()} starts successfully`);
+                    
+                    spinner.succeed(`Started successfully - ${component.name()}`);
                 } catch (e) {
-                    spinner.fail(`Failed to start component "${component.name()}"`);
+                    spinner.fail(`Started failed - "${component.name()}"`);
                     return Promise.reject(e);
                 }
             }
 
             return Promise.resolve();
         }
-
-        async function start(): Promise<any> {
-            spinner.start();
-
-            let counter = 0;
-            const plugins = componentRegistry.values();
-            const pluginNum = componentRegistry.size();
-
-            let rejected: boolean = false;
-            return new Promise((resolve, reject) => {
-                Array.from(componentRegistry.values()).forEach(async (component) => {
-                    if (rejected) {
-                        return
-                    }
-                    spinner.text = `[${counter}/${pluginNum}] Loading ${component.name()}`;
-                    try {
-                        if (component.$options.enable) {
-                            injectAll(component);
-                            await component.init();
-                            counter++;
-                        }
-
-                        spinner.succeed(`Component ${component.name()} starts successfully`);
-                        if (counter === pluginNum) {
-                            resolve()
-                        }
-                    } catch (e) {
-                        spinner.fail(`Failed to start component "${component.name()}"`);
-                        rejected = true
-                        reject(e)
-                    }
-                })
-            })
-        }
-
 
         return start()
             .then(() => {
@@ -185,7 +74,7 @@ export class Application {
                     const component = iterator.value;
                     component.ready();
                 }
-
+                
                 return Promise.resolve();
             }).catch((error) => {
                 return this.stop(error);
@@ -193,7 +82,7 @@ export class Application {
     }
 
     public async stop(error?: any) {
-        const componentRegistry = this.componentRegistry;
+        const componentRegistry = this.registry.components;
         let iterator;
         
         const components = componentRegistry.values();

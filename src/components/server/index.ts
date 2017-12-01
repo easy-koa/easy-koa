@@ -13,6 +13,7 @@ import { InjectPlugin } from '../../shared/decorators/injection';
 import { Logger } from '../logger';
 
 export class Server extends Component {
+    id = 1;
     readonly application: Koa = new Koa();
     $options: ServerContext;
 
@@ -40,7 +41,7 @@ export class Server extends Component {
 
         rawRouters.forEach(({prefix, routers}) =>
             routers.forEach(({methods, path}) => 
-                this.logger.info(`Router registered: path - ${prefix}${path}, methods - ${methods.join(',')} `)
+                this.logger.info(`Registered: path - ${prefix}${path}, methods - ${methods.join(',')} `)
             )
         )
         

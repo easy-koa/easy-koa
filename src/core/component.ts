@@ -8,6 +8,8 @@ interface Options extends BaseObject{
 }
 
 export abstract class Component {
+    new?(): this;
+    
     id = pid();
     
     $options: any = { enable: true };
@@ -18,7 +20,7 @@ export abstract class Component {
         throw Error('registerService has not been rewrite');
     }
 
-    init(options: InitOptions) {};
+    init(options: InitOptions) {}
 
     ready() {}
 

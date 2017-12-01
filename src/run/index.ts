@@ -61,7 +61,7 @@ export class Kapp {
         return application.start()
             .then(() => {
                 this.registerModule();
-                this.start(port);
+                return this.start(port);
             });
     }
 
@@ -83,16 +83,18 @@ export class Kapp {
         const { application } = this;
         
         registerCache.forEach(function(item) {
-            application.injectAll(item);
+            application.registry.mount(item);
         })
     }
 
     private start(port: number) {
         const { application } = this;
         return new Promise(function(resolve, reject) {
-            application
-                .getPlugin(Server)
-                .listen(port, (error: Error) => {
+            const server = application
+                .registry.components
+                .getInstance(Server);
+                
+            server.listen(port, (error: Error) => {
                     if (error) {
                         return reject(error );
                     }
