@@ -123,7 +123,6 @@ export class Application {
 
                 try {
                     if (component.$options.enable) {
-                        component.registerService = registerService;
                         injectAll(component);
                         await component.init();
                     }
