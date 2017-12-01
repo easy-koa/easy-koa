@@ -153,7 +153,6 @@ export class Application {
                     spinner.text = `[${counter}/${pluginNum}] Loading ${component.name()}`;
                     try {
                         if (component.$options.enable) {
-                            component.registerService = registerService;
                             injectAll(component);
                             await component.init();
                             counter++;
