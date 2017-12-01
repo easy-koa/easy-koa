@@ -7,7 +7,7 @@ interface Options extends BaseObject{
     enable: boolean;
 }
 
-export abstract class Plugin {
+export abstract class Component {
     id = pid();
     
     $options: any = { enable: true };
@@ -29,8 +29,12 @@ export abstract class Plugin {
             this.$options.enable = true;
         }
     }
+    
+    static configure(options: BaseObject): BaseObject {
+        return options || {};
+    }
 }
 
-export interface Plugins {
-    [propName: string]: Plugin;
+export interface Components {
+    [propName: string]: Component;
 }

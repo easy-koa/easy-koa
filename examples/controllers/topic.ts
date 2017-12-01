@@ -15,4 +15,11 @@ export default class TopicController {
     async helloworld(ctx: any) {
         ctx.body = `Your name is ${ctx.kaolaContext.accountId}`;
     }
+
+    @RequestMapping({
+        path: '/topic'
+    })
+    topic(ctx: any) {
+        ctx.body = 'topic';
+    }
 }

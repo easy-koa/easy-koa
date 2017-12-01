@@ -1,7 +1,9 @@
 import logger = require('log4js');
-import { Plugin } from '../../core';
+import { Component } from '../../core';
+import { LoggerOptions } from './interfaces/logger-options';
+import { isUndefined } from '../../shared/index';
 
-export class Logger extends Plugin{
+export class Logger extends Component{
     private _logger: any;
     
     constructor(name: string, cfg: any) {
@@ -39,5 +41,25 @@ export class Logger extends Plugin{
             const logger = this._logger;
             logger.fatal(error);
         }
+    }
+
+    static configure({ application, options} : LoggerOptions): LoggerOptions {
+        if (isUndefined(application)) {
+            application = 'kapp-application';
+        }
+        if (isUndefined(options)) {
+            options = {
+                appenders: [{
+                    type: 'console'
+                }, {
+                    type: 'dateFile',
+                    filename: './logs/runtime.log',
+                    pattern: '.yyyy-MM-dd-hh',
+                    compress: false,
+                }],
+                levels:{'[all]': 'ALL'}
+            };
+        }
+        return { application, options } ;
     }
 }

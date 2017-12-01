@@ -1,6 +1,6 @@
 import Koa = require('koa');
-import { InterceptorMapping } from '../../../shared/interfaces/interceptor';
 import { isUndefined } from '../../../shared/index';
+import { InterceptorMapping } from '../interfaces/interceptor';
 
 
 export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {

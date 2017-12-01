@@ -17,5 +17,5 @@ function inject(key: string) {
     }
 }
 
-export const InjectPlugin = inject(injection.plugin);
+export const InjectPlugin = inject(injection.component);
 export const InjectService = inject(injection.service);

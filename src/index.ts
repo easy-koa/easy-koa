@@ -1,3 +1,3 @@
-import { Kapp } from "./module";
+import { Kapp } from "./run";
 
 export default Kapp;

@@ -1,4 +1,4 @@
-import { Plugin } from './plugin';
+import { Component } from './component';
 import { BaseObject } from '../shared/interfaces/index';
 
 export class Registry {

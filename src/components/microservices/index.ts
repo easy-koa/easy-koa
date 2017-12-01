@@ -1,4 +1,4 @@
-import { Plugin } from '../../core';
+import { Component } from '../../core';
 import { InitOptions, BaseObject } from '../../shared/interfaces';
 import rpc = require('@kaola/rpc');
 import { InjectPlugin } from '../../shared/decorators/injection';
@@ -9,7 +9,7 @@ interface Services {
     [propName: string]: BaseObject;
 };
 
-export class MicroServices extends Plugin {
+export class MicroServices extends Component {
     @InjectPlugin(Logger)
     private logger: Logger;
     private client: any;

@@ -1,13 +1,26 @@
-import { Logger, MicroServices } from "../src/plugins/index";
 import LoginInterceptor from "./interceptors/login";
 import TopicController from "./controllers/topic";
 import { loginProvider } from "./services/login";
+import { MicroServices } from "../src/components/index";
 
 export default {
-    plugins: [
-        new Logger(
-            'xxx', {}
-        ),
+    logger: {
+        application: 'kapp-example',
+        config: {}
+    },
+    monitor: {
+        disabled: false,  
+    },
+    server: {
+        middlewares: [], // koa middlewares, async function first
+        interceptors: [
+            LoginInterceptor
+        ],
+        controllers: [
+            TopicController
+        ]
+    },
+    components: [
         new MicroServices({
             application: 'haitao-wap',
             version: '3.0.3.3',
@@ -16,12 +29,5 @@ export default {
                 ...loginProvider
             }
         })
-    ],
-    middlewares: [], // koa middlewares, async function first
-    interceptors: [
-        LoginInterceptor
-    ],
-    controllers: [
-        TopicController
     ]
 }

@@ -19,5 +19,5 @@ export enum methodTypes {
 
 export enum injection {
     service = 'services',
-    plugin = 'plugins',
+    component = 'components',
 }

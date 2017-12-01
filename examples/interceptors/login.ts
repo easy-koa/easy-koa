@@ -1,4 +1,3 @@
-import {  Interceptor } from  '../../src/shared';
 import { LoginService } from '../services/login';
 import { InjectService } from '../../src/shared/decorators/injection';
 import TopicService from '../services/topic';

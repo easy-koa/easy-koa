@@ -1,6 +1,6 @@
 import { Service } from  '../../src/shared';
 import { InjectPlugin, InjectService } from '../../src/shared/decorators/injection';
-import { MicroServices } from '../../src/plugins/index';
+import { MicroServices } from '../../src/components/index';
 
 function createType(className: string, value: any) {
     return {

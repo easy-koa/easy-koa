@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import * as dotProp from 'dot-prop';
 import * as ora from 'ora';
-import { Plugin, Plugins } from './plugin';
+import { Component, Components } from './component';
 import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
@@ -9,27 +9,27 @@ import { Registry } from './registry';
 import { injection } from '../shared/constants';
 
 export class Application {
-    readonly pluginRegistry: Registry = Registry.create();
+    readonly componentRegistry: Registry = Registry.create();
     readonly serviceRegistry: Registry = Registry.create();
 
-    public plugins() {
-        return this.pluginRegistry.all();
+    public components() {
+        return this.componentRegistry.all();
     }
 
-    public use(plugin: Plugin) {
-        if (!(plugin instanceof Plugin)) {
+    public use(component: Component) {
+        if (!(component instanceof Component)) {
             return;
         }
-        plugin.afterCreated();
-        this.register(plugin);
+        component.afterCreated();
+        this.register(component);
     }
 
-    private register(plugin: Plugin) {
-        const constructor = plugin.constructor;
+    private register(component: Component) {
+        const constructor = component.constructor;
         if (this.getPlugin(constructor)) {
-            throw new Error(`failed to register the duplicated plugin - ${constructor.name}`)
+            throw new Error(`failed to register the duplicated component - ${constructor.name}`)
         }
-        this.pluginRegistry.register(constructor.name, plugin);
+        this.componentRegistry.register(constructor.name, component);
     }
 
     public registerService(constructor: any, service: any) {
@@ -37,43 +37,43 @@ export class Application {
     }
 
     private names() {
-        return this.pluginRegistry.keys();
+        return this.componentRegistry.keys();
     }
 
-    public getPlugin<T>(constructor: any): T {
-        return this.pluginRegistry.lookup(constructor.name);
+    public getPlugin<T>(constructor: any) {
+        return this.componentRegistry.lookup(constructor.name);
     }
 
-    public getServce<T>(serviceConstuctor: T): T {
+    public getServce<T>(serviceConstuctor: T) {
         return this.serviceRegistry.lookup(serviceConstuctor);
     }
 
-    private injectInstance(plugin: any, key: string, getInstance: Function) {
-        const dependencies = Reflect.getMetadata(key, plugin);
-            
+    private injectInstance(component: any, key: string, getInstance: Function) {
+        const dependencies = Reflect.getMetadata(key, component);
+        
         if (dependencies) {
             dependencies.forEach((constructor: any, pluginName: string) => {
                 const dependency = getInstance(constructor);
                 if (dependency) {
-                    plugin[pluginName] = dependency;
+                    component[pluginName] = dependency;
                 } else {
-                    throw new Error(`failed to inject the ${key} - ${constructor.name}`)
+                    throw new Error(`failed to inject the ${key.slice(0, -1)} - ${constructor.name}`)
                 }
             });
         }
     }
 
-    public injectPlugin(plugin: any) {
+    public injectPlugin(component: any) {
         this.injectInstance(
-            plugin,
-            injection.plugin,
+            component,
+            injection.component,
             (constructor: any) => this.getPlugin(constructor)
         );
     }
 
-    public injectService(plugin: any) {
+    public injectService(component: any) {
         this.injectInstance(
-            plugin,
+            component,
             injection.service,
             (constructor: any) => {
                 let instance = this.getServce(constructor);
@@ -88,13 +88,13 @@ export class Application {
         );
     }
 
-    public injectAll(plugin: any) {
-        this.injectPlugin(plugin);
-        this.injectService(plugin);
+    public injectAll(component: any) {
+        this.injectPlugin(component);
+        this.injectService(component);
     }
 
     public start() {
-        const pluginRegistry = this.pluginRegistry;
+        const componentRegistry = this.componentRegistry;
 
         const spinner = ora();
 
@@ -108,29 +108,29 @@ export class Application {
 
             let counter = 0;
             let iterator;
-            const plugins = pluginRegistry.values();
-            const pluginNum = pluginRegistry.size();
+            const components = componentRegistry.values();
+            const pluginNum = componentRegistry.size();
 
-            while (iterator = plugins.next()) {
+            while (iterator = components.next()) {
                 if (iterator.done) {
                     break;
                 }
 
-                const plugin = iterator.value;
+                const component = iterator.value;
                 
                 counter++;
-                spinner.text = `[${counter}/${pluginNum}] Loading ${plugin.name()}`;
+                spinner.text = `[${counter}/${pluginNum}] Starting ${component.name()}`;
 
                 try {
-                    if (plugin.$options.enable) {
-                        plugin.registerService = registerService;
-                        injectAll(plugin);
-                        await plugin.init();
+                    if (component.$options.enable) {
+                        component.registerService = registerService;
+                        injectAll(component);
+                        await component.init();
                     }
 
-                    spinner.succeed(`Plugin ${plugin.name()} loaded`);
+                    spinner.succeed(`Component ${component.name()} starts successfully`);
                 } catch (e) {
-                    spinner.fail(`Failed to load plugin "${plugin.name()}"`);
+                    spinner.fail(`Failed to start component "${component.name()}"`);
                     return Promise.reject(e);
                 }
             }
@@ -141,15 +141,15 @@ export class Application {
         return start()
             .then(() => {
                 let iterator;
-                const plugins = pluginRegistry.values();
+                const components = componentRegistry.values();
                 
-                while (iterator = plugins.next()) {
+                while (iterator = components.next()) {
                     if (iterator.done) {
                         break;
                     }
 
-                    const plugin = iterator.value;
-                    plugin.ready();
+                    const component = iterator.value;
+                    component.ready();
                 }
 
                 return Promise.resolve();
@@ -159,19 +159,19 @@ export class Application {
     }
 
     public async stop(error?: any) {
-        const pluginRegistry = this.pluginRegistry;
+        const componentRegistry = this.componentRegistry;
         let iterator;
         
-        const plugins = pluginRegistry.values();
+        const components = componentRegistry.values();
         
-        while (iterator = plugins.next()) {
+        while (iterator = components.next()) {
             if (iterator.done) {
                 break;   
             }
-            const plugin = iterator.value;
-            if (plugin.$options.enable) {
+            const component = iterator.value;
+            if (component.$options.enable) {
                 try {
-                    await plugin.destroy(error);
+                    await component.destroy(error);
                 } catch(e) {
                     return Promise.reject(e);
                 }

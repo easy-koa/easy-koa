@@ -52,13 +52,10 @@ export class RouterExplorer {
 
         routers.forEach(({ path, handle, methods }: IRouter) => {
             this.router.register(path, methods, handle);
-        })
-
-        console.log(`register routes: prefix - ${prefix}, routers - ${JSON.stringify(routers)}`);
+        });
         
-        return { prefix, router: this.router }
+        return { prefix, router: this.router, raw: routers }
     }
-
     static create(controller: any) {
         return new RouterExplorer(controller).create();
     }
@@ -68,19 +65,26 @@ export class RouterExplorer {
 export class RoutersExplorer{
     static createRouters(Controllers: any) {
         const compose = new Router();
+        const rawRouters: IRouters[] = [];
         Controllers.forEach((controller: any) => {
             if (isNil(controller)) {
                 return;
             }
+            const { prefix, router, raw } = RouterExplorer.create(controller);
 
-            const { prefix, router } = RouterExplorer.create(controller)
-            
+            rawRouters.push({
+                prefix, routers: raw
+            });
+
             compose.use(
                 prefix,
                 router.routes(),
                 router.allowedMethods()
             )
         });
-        return compose;
+        return {
+            router: compose,
+            rawRouters
+        };
     }
 }
