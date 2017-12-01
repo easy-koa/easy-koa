@@ -100,10 +100,10 @@ export class Application {
 
         const injectAll = this.injectAll.bind(this);
         const registerService = this.registerService.bind(this);
-        
+
         logger.newline();
 
-        async function start(): Promise<void> {
+        async function start0(): Promise<void> {
             spinner.start();
 
             let counter = 0;
@@ -137,6 +137,42 @@ export class Application {
 
             return Promise.resolve();
         }
+
+        async function start(): Promise<any> {
+            spinner.start();
+
+            let counter = 0;
+            const plugins = componentRegistry.values();
+            const pluginNum = componentRegistry.size();
+
+            let rejected: boolean = false;
+            return new Promise((resolve, reject) => {
+                Array.from(componentRegistry.values()).forEach(async (component) => {
+                    if (rejected) {
+                        return
+                    }
+                    spinner.text = `[${counter}/${pluginNum}] Loading ${component.name()}`;
+                    try {
+                        if (component.$options.enable) {
+                            component.registerService = registerService;
+                            injectAll(component);
+                            await component.init();
+                            counter++;
+                        }
+
+                        spinner.succeed(`Component ${component.name()} starts successfully`);
+                        if (counter === pluginNum) {
+                            resolve()
+                        }
+                    } catch (e) {
+                        spinner.fail(`Failed to start component "${component.name()}"`);
+                        rejected = true
+                        reject(e)
+                    }
+                })
+            })
+        }
+
 
         return start()
             .then(() => {
