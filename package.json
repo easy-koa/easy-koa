@@ -7,7 +7,8 @@
   "scripts": {
     "test": "npm run build",
     "build": "tsc",
-    "start": "ts-node ./examples"
+    "dev": "npm run build -- -w",
+    "start": "ts-node ./dist/examples/bootstrap"
   },
   "repository": {
     "type": "git",
@@ -31,7 +32,6 @@
   "dependencies": {
     "@kaola/rpc": "^0.1.5",
     "chalklog": "^1.1.2",
-    "co": "^4.6.0",
     "dot-prop": "^4.1.1",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
