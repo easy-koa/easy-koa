@@ -6,10 +6,7 @@ declare module "log4js"{
         warn(msg: any): void;
     }
 
-    namespace logger {
-        function configure(cfg: any): any;
-        function getLogger(name: string): Logger;
-    }
+    export function configure(cfg: any): any;
 
-    export = logger
+    export function getLogger(name: string): Logger;
 }

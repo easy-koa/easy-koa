@@ -1,12 +1,7 @@
 import 'reflect-metadata';
-import * as dotProp from 'dot-prop';
-import * as ora from 'ora';
-import { Component, Components } from './component';
-import { logger } from '../shared/utils';
-import { Services } from '../shared/interfaces';
-import { entries } from '../shared/utils';
 import { Registry } from './registry';
-import { registry } from '../shared/constants';
+import { Component } from './index';
+import { logger } from '../shared/index';
 
 export class Application {
     readonly registry = new Registry();
@@ -20,18 +15,13 @@ export class Application {
     }
 
     public async start() {
-        const spinner = ora();
         const components = Array.from(this.registry.components);
 
         let index = 0;
         const total = components.length;
-        
-        spinner.start();
 
         for (let [name, component] of components) {
             index++;
-            spinner.text = `[${index}/${total}] Starting ${name}`;
-
             try {
                 if (component.$options.enable) {
                     this.registry.install(component);
@@ -40,16 +30,14 @@ export class Application {
                         await component.init()
                     }
                 }
-                
-                spinner.text = `121`;
-            
+                logger.info(`Componnet started successfully - ${name}`);
             } catch (e) {
-                spinner.fail(`Started ${name} failed, because '${e}'`);
+                logger.error(`Started ${name} failed, because '${e}'`);
                 return Promise.reject(e);
             }
         }
 
-        spinner.succeed('Kapp.js started successfully');
+        logger.info('Application started successfully');
     }
 
     async ready() {

@@ -14,7 +14,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
 
         const done = await interceptor.preHandle(ctx);
 
-        if (isUndefined(done) || done === true) {
+        if (done !== false) {
             await next(ctx);
             await interceptor.postHandle(ctx)
         }

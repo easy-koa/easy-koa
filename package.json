@@ -31,14 +31,9 @@
   },
   "dependencies": {
     "@kaola/rpc": "^0.1.5",
-    "chalklog": "^1.1.2",
-    "dot-prop": "^4.1.1",
     "koa": "^2.4.1",
     "koa-router": "^7.3.0",
     "log4js": "^1.1.1",
-    "mkdirp": "^0.5.1",
-    "ora": "^1.2.0",
-    "parrotsay-api": "^0.1.1",
     "reflect-metadata": "^0.1.10"
   }
 }
