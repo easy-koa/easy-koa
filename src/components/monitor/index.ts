@@ -5,16 +5,15 @@ import { MonitorOptions } from "./interfaces/index";
 import * as Koa from 'koa'; 
 import { BaseObject } from "../../shared/index";
 import { setInterval } from "timers";
+import { Cron } from "../cron";
 
-declare module 'koa' {
-    interface Context {
-        collect: Function;
-    }
-}
 
 export class Monitor extends Component {
+    @InjectPlugin(Cron)
+    private cron: Cron;
+
     @InjectPlugin(Logger)
-    private server: Logger;
+    private logger: Logger;
 
     private traceMap = new Map()
 
@@ -24,33 +23,18 @@ export class Monitor extends Component {
 
     constructor(...args: any[]) {
         super();
-        this.write();
     }
 
-    collect(ctx: Koa.Context, info: BaseObject) {
-        let traces = this.traceMap.get(ctx);
-        
-        if (!traces) {
-            traces = [];
-            this.traceMap.set(ctx, traces);
-        }
-
-        traces.push(info);
+    collect(message: any): void {
+        this.logger.info(this.createCollection(message));
     }
 
-    write() {
-        // process.nextTick(() => {
-        //     this.traceMap
+    collectError(message: any): void {
+        this.logger.error(this.createCollection(message));
+    }
 
-        //     this.write();
-        // })
-    } 
-
-    async init() {
-        // const {
-        //     controllers,
-        //     interceptorMappings
-        // } = this.server.$options;
+    createCollection(payload: any) {
+        return 'kapp monitor - ' + JSON.stringify(payload)
     }
 
     static configure(options: MonitorOptions) {

@@ -1,3 +1,5 @@
+import 'reflect-metadata';
+
 export abstract class Registry {
     private map = new Map();
     public registryCenter: any;
@@ -17,10 +19,11 @@ export abstract class Registry {
         const dependencies = Reflect.getMetadata(`${this.key()}s`, component);
         
         if (dependencies) {
-            dependencies.forEach((constructor: any, pluginName: string) => {
+            
+            dependencies.forEach((constructor: any, componentName: string) => {
                 const dependency = this.getInstance(constructor);
                 if (dependency) {
-                    component[pluginName] = dependency;
+                    component[componentName] = dependency;
                 } else {
                     throw new Error(`failed to inject the ${this.key()} - ${constructor.name}`)
                 }
