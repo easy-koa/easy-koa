@@ -7,15 +7,17 @@ export class ComponentsRegistry extends Registry {
     }
 
     public register(component: any) {
+        const componentName = component.name();
         const constructor = component.constructor;
         if (this.get(constructor)) {
-            throw new Error(`failed to register the duplicated ${this.key()} - ${constructor.name}`)
+            throw new Error(`failed to register the duplicated ${this.key()} - ${componentName}`)
         }
-        this.set(constructor.name, component);
+        this.set(componentName, component);
     }
 
     public getInstance(component: any) {
-        return this.get(component.name);
+        const componentName = component.prototype.name();
+        return this.get(componentName);
     }
 
 }

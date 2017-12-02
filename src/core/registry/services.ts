@@ -16,7 +16,7 @@ export class ServicesRegistry extends Registry {
         if (!instance) {
             instance = new Service();
             this.registry(Service, instance);
-            this.registryCenter.mount(instance);
+            this.registryCenter.install(instance);
         }
         
         return instance

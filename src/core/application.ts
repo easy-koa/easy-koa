@@ -5,7 +5,7 @@ import { Component, Components } from './component';
 import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
-import { Registry } from './registry';
+import { Registry } from './registry/index';
 import { injection } from '../shared/constants';
 
 export class Application {
@@ -15,6 +15,7 @@ export class Application {
             return;
         }
         component.afterCreated();
+
         this.registry.components.register(component);
     }
 

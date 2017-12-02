@@ -15,4 +15,12 @@ export class Registry {
         this.components.install(component);
         this.services.install(component);
     }
+
+    public getComponent(component: any) {
+        return this.components.getInstance(component);
+    }
+
+    public getService(service: any) {
+        return this.services.getInstance(service);
+    }
 }

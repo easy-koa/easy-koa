@@ -12,7 +12,7 @@ export abstract class Registry {
         this.registryCenter = registryCenter;
     }
     
-    abstract getInstance(constructor: any): any;
+    abstract getInstance<T>(constructor: T): T;
 
     public install(component: any) {
         
@@ -31,7 +31,7 @@ export abstract class Registry {
         }
     }
     
-    protected get(item: any) {
+    protected get<T> (item: T): T {
         return this.map.get(item);
     }
 
