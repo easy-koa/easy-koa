@@ -20,13 +20,12 @@ export class Application {
     }
 
     public async start() {
+        const spinner = ora();
         const components = Array.from(this.registry.components);
 
         let index = 0;
         const total = components.length;
         
-        const spinner = ora();
-        logger.newline();
         spinner.start();
 
         for (let [name, component] of components) {
@@ -42,12 +41,15 @@ export class Application {
                     }
                 }
                 
-                spinner.succeed(`Started successfully - ${name}`);
+                spinner.text = `121`;
+            
             } catch (e) {
-                spinner.fail(`Started failed - "${name}"`);
+                spinner.fail(`Started ${name} failed, because '${e}'`);
                 return Promise.reject(e);
             }
         }
+
+        spinner.succeed('Kapp.js started successfully');
     }
 
     async ready() {
