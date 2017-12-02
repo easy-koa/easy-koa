@@ -4,7 +4,7 @@ import { isNumber } from '../shared/index';
 import { moduleMeta, methodTypes } from '../shared/constants';
 import { ModuleContext, ModuleOptions } from './interfaces'
 import { ServerOptions } from '../components/server/interfaces/index';
-import { Logger, Monitor, Server } from '../components/index';
+import { Logger, Monitor, Server, Cron } from '../components/index';
 
 export class Kapp {
     readonly application: Application = new Application();
@@ -22,6 +22,8 @@ export class Kapp {
         let { 
             logger, server, monitor, components
         }: ModuleContext = this.moduleContext;
+
+        application.use(new Cron());
 
         application.use(new Logger(logger.application, logger.options));
         
