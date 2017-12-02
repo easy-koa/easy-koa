@@ -5,7 +5,7 @@ import { Component, Components } from './component';
 import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
-import { Registry } from './registrys';
+import { Registry } from './registry';
 import { injection } from '../shared/constants';
 
 export class Application {
@@ -44,7 +44,7 @@ export class Application {
 
                 try {
                     if (component.$options.enable) {
-                        ctx.registry.mount(component);
+                        ctx.registry.install(component);
                         
                         if (component.init) {
                             await component.init()

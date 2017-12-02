@@ -11,8 +11,8 @@ export class Registry {
         this.services = new ServicesRegistry(this);
     }
 
-    public mount(component: any) {
-        this.components.mount(component);
-        this.services.mount(component);
+    public install(component: any) {
+        this.components.install(component);
+        this.services.install(component);
     }
 }

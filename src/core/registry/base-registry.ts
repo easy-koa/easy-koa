@@ -14,7 +14,7 @@ export abstract class Registry {
     
     abstract getInstance(constructor: any): any;
 
-    public mount(component: any) {
+    public install(component: any) {
         
         const dependencies = Reflect.getMetadata(`${this.key()}s`, component);
         

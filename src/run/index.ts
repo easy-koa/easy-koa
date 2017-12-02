@@ -85,7 +85,7 @@ export class Kapp {
         const { application } = this;
         
         registerCache.forEach(function(item) {
-            application.registry.mount(item);
+            application.registry.install(item);
         })
     }
 
