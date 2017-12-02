@@ -1,8 +1,9 @@
 import 'reflect-metadata';
-import { BaseObject, isUndefined, isNil } from "../../shared/index";
-import { pathMeta, methodsMeta } from "../../shared/constants";
-import { IRouter, IRouters } from "./interfaces/index";
+import { BaseObject, isUndefined, isNil } from "../../../shared/index";
+import { pathMeta, methodsMeta } from "../../../shared/constants";
+import { IRouter, IRouters } from "../interfaces/index";
 import Router = require('koa-router');
+import { Context } from 'koa';
 
 export class RouterExplorer {
     private controller: any;
@@ -34,8 +35,10 @@ export class RouterExplorer {
                 routers.push({
                     methods: methodTypes,
                     path,
-                    handle: handle.bind(controller),
-                    controller: `${name}.${method}`
+                    async handle(ctx: Context, next: Function) {
+                        ctx.controller = `${name}.${method}`;
+                        return handle.call(controller, ctx, next);
+                    }
                 });
             }
 

@@ -10,6 +10,14 @@ export function errorHandleMiddleware() {
                 error: e,
                 status: ctx.status
             }));
+            
+            ctx.body = 500 + e.message;
         }
+
+        const status = ctx.status;
+        if (/4.*$/.test(String(ctx.status))) {
+            ctx.body = 'not found';
+        }
+        ctx.status = status;
     }
 }

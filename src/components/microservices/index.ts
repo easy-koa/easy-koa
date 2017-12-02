@@ -2,7 +2,9 @@ import { Component } from '../../core';
 import { InitOptions, BaseObject } from '../../shared/interfaces';
 import * as rpc from '@kaola/rpc';
 import { InjectPlugin } from '../../shared/decorators/injection';
-import { Logger } from '../index';
+import { Logger } from '../logger';
+import { Monitor } from '../monitor';
+import { Cron } from '../cron';
 
 interface Services {
     [propName: string]: BaseObject;
@@ -11,6 +13,13 @@ interface Services {
 export class MicroServices extends Component {
     @InjectPlugin(Logger)
     private logger: Logger;
+
+    @InjectPlugin(Monitor)
+    monitor: Monitor;
+
+    @InjectPlugin(Cron)
+    cron: Cron;
+
     private client: any;
     public services: any;
     private microServices: any;

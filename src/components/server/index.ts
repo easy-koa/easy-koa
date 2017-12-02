@@ -5,6 +5,7 @@ declare module 'koa' {
 
     interface Context {
         monitor: Monitor;
+        controller: string;
     }
 }
 
@@ -15,7 +16,7 @@ import * as pathToRegexp from 'path-to-regexp';
 import { InitOptions } from '../../shared/interfaces';
 import { classTypes, classType, pathMeta, methodTypes } from '../../shared/constants';
 import { isUndefined, BaseObject, Controller } from '../../shared/index';
-import { RoutersExplorer } from './routers-explorer';
+import { RoutersExplorer } from './utils/routers-explorer';
 import { errorHandleMiddleware, interceptorMiddleware, controllerMonitorMiddleware} from './middlewares';
 import { ServerOptions, ServerContext } from './interfaces';
 import { InterceptorConstructor, Interceptor, InterceptorMapping } from './interfaces/interceptor';
@@ -63,7 +64,6 @@ export class Server extends Component {
 
         const { router, rawRouters } = RoutersExplorer.createRouters(controllers);
 
-        const cMap = getControllerMap(rawRouters);
 
         logController(logger, rawRouters);
 
@@ -73,7 +73,7 @@ export class Server extends Component {
 
         middlewares.forEach(middleware => application.use(middleware));
 
-        application.use(controllerMonitorMiddleware(cMap));
+        application.use(controllerMonitorMiddleware());
 
         application.use(router.routes());
     }
