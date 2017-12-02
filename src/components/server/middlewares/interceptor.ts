@@ -11,20 +11,20 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
     const pathReg = <RegExp> path;
     
     return async function (ctx: Context, next: Function) {
-        let pre = time.start(), post;
+        let end = time.start(), post;
 
         if (!pathReg.test(ctx.path)) {
             return await next(ctx);
         }
 
         const done = await interceptor.preHandle(ctx);
-        let preHandleTime = pre(), postHandleTime;
+        let preHandleTime = end(), postHandleTime;
 
         if (done !== false) {
             await next(ctx);
-            let post = time.start();
+            end = time.start();
             await interceptor.postHandle(ctx)
-            postHandleTime = post();
+            postHandleTime = end();
         } 
         
         ctx.monitor.collect(createMonitorPlainObject.interceptor(action, { preHandleTime, postHandleTime }));

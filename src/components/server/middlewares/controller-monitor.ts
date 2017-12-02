@@ -4,7 +4,7 @@ import * as createMonitorPlainObject from '../utils/create-monitor-plain-object'
 
 export function controllerMonitorMiddleware () {
     return async function (ctx: Context, next: Function) {
-        const controllerTime = time.start();
+        const end = time.start();
         await next(ctx);
 
         if (!ctx.controller) {
@@ -12,7 +12,7 @@ export function controllerMonitorMiddleware () {
         }
         
         ctx.monitor.collect(createMonitorPlainObject.controller(ctx.controller, {
-            time: controllerTime(),
+            time: end(),
             method: ctx.method
         }));
     }

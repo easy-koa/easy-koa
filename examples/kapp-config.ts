@@ -1,3 +1,9 @@
+declare module 'koa' {
+    interface Context {
+        kaolaContext: any;
+    }
+}
+
 import LoginInterceptor from "./interceptors/login";
 import TopicController from "./controllers/topic";
 import { loginProvider } from "./services/login";
