@@ -1,5 +1,3 @@
-import Koa = require('koa');
-
 export interface InterceptorConstructor {
     new(): this;
     preHandle: Function;

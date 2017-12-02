@@ -1,7 +1,7 @@
-import Koa = require('koa');
+import { Context } from 'koa';
 
 export function errorHandleMiddleware() {
-    return async function(ctx: Koa.Context, next: Function) {
+    return async function(ctx: Context, next: Function) {
         try {
             await next(ctx);
         } catch(e) {

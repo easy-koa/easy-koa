@@ -1,7 +1,7 @@
 import 'reflect-metadata';
 import { Component } from '../../core/component';
-import Koa = require('koa');
-import pathToRegexp = require('path-to-regexp');
+import * as Koa from 'koa';
+import * as pathToRegexp from 'path-to-regexp';
 import { InitOptions } from '../../shared/interfaces';
 import { classTypes, classType, pathMeta, methodTypes } from '../../shared/constants';
 import { isUndefined, BaseObject, Controller } from '../../shared/index';
@@ -13,7 +13,6 @@ import { InjectPlugin } from '../../shared/decorators/injection';
 import { Logger } from '../logger';
 
 export class Server extends Component {
-    id = 1;
     readonly application: Koa = new Koa();
     $options: ServerContext;
 

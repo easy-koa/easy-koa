@@ -1,4 +1,4 @@
-import logger = require('log4js');
+import * as logger from 'log4js';
 import { Component } from '../../core';
 import { LoggerOptions } from './interfaces/logger-options';
 import { isUndefined } from '../../shared/index';

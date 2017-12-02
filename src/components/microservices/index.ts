@@ -1,6 +1,6 @@
 import { Component } from '../../core';
 import { InitOptions, BaseObject } from '../../shared/interfaces';
-import rpc = require('@kaola/rpc');
+import * as rpc from '@kaola/rpc';
 import { InjectPlugin } from '../../shared/decorators/injection';
 import { Logger } from '../index';
 import { entries } from '../../shared/index';
