@@ -15,18 +15,18 @@ export class RouterExplorer {
     public expore(): IRouters {
         const { controller } = this;
         const Controller = controller.constructor;
-        const path = Reflect.getMetadata(pathMeta, Controller);
-        const ctx = controller;
-    
-        const instancePrototype = Object.getPrototypeOf(ctx);
+        const prefix = Reflect.getMetadata(pathMeta, Controller);
+        const prototype = Object.getPrototypeOf(controller);
+        const name = Controller.name;
 
         const routers: IRouter[] = Object.getOwnPropertyNames(
-            instancePrototype
+            prototype
         ).filter(item =>
             item !== 'constructor'
-        ).map(item =>
-            instancePrototype[item]
-        ).reduce((routers: any, handle: Function) => {
+        ).map(item => [
+                item, prototype[item]
+            ]
+        ).reduce((routers: any, [ method, handle ]) => {
             const path = Reflect.getMetadata(pathMeta, handle);
             const methodTypes = Reflect.getMetadata(methodsMeta, handle);
         
@@ -34,7 +34,8 @@ export class RouterExplorer {
                 routers.push({
                     methods: methodTypes,
                     path,
-                    handle: handle.bind(ctx)
+                    handle: handle.bind(controller),
+                    controller: `${name}.${method}`
                 });
             }
 
@@ -42,7 +43,7 @@ export class RouterExplorer {
         }, []);
 
         return {
-            prefix: path,
+            prefix: prefix,
             routers: routers
         };
     }
@@ -50,7 +51,7 @@ export class RouterExplorer {
     private create() {
         const { prefix, routers }: IRouters = this.expore();
 
-        routers.forEach(({ path, handle, methods }: IRouter) => {
+        routers.forEach(({ path, handle, methods, controller }: IRouter) => {
             this.router.register(path, methods, handle);
         });
         

@@ -3,7 +3,6 @@ import { InitOptions, BaseObject } from '../../shared/interfaces';
 import * as rpc from '@kaola/rpc';
 import { InjectPlugin } from '../../shared/decorators/injection';
 import { Logger } from '../index';
-import { entries } from '../../shared/index';
 
 interface Services {
     [propName: string]: BaseObject;
