@@ -5,8 +5,8 @@ import { Component, Components } from './component';
 import { logger } from '../shared/utils';
 import { Services } from '../shared/interfaces';
 import { entries } from '../shared/utils';
-import { Registry } from './registry/index';
-import { injection } from '../shared/constants';
+import { Registry } from './registry';
+import { registry } from '../shared/constants';
 
 export class Application {
     readonly registry = new Registry();
@@ -16,83 +16,52 @@ export class Application {
         }
         component.afterCreated();
 
-        this.registry.components.register(component);
+        this.registry.registerComponnet(component);
     }
 
-    public start() {
-        const componentRegistry = this.registry.components;
-        const spinner = ora();
-        const ctx = this;
+    public async start() {
+        const components = Array.from(this.registry.components);
+
+        let index = 0;
+        const total = components.length;
         
+        const spinner = ora();
         logger.newline();
+        spinner.start();
 
-        async function start(): Promise<void> {
-            spinner.start();
+        for (let [name, component] of components) {
+            index++;
+            spinner.text = `[${index}/${total}] Starting ${name}`;
 
-            let counter = 0;
-            let iterator;
-            const components = componentRegistry.values();
-            const pluginNum = componentRegistry.size();
-            while (iterator = components.next()) {
-                if (iterator.done) {
-                    break;
-                }
-
-                const component = iterator.value;
-                
-                counter++;
-                spinner.text = `[${counter}/${pluginNum}] Starting ${component.name()}`;
-
-                try {
-                    if (component.$options.enable) {
-                        ctx.registry.install(component);
-                        
-                        if (component.init) {
-                            await component.init()
-                        }
-                    }
+            try {
+                if (component.$options.enable) {
+                    this.registry.install(component);
                     
-                    spinner.succeed(`Started successfully - ${component.name()}`);
-                } catch (e) {
-                    spinner.fail(`Started failed - "${component.name()}"`);
-                    return Promise.reject(e);
-                }
-            }
-
-            return Promise.resolve();
-        }
-
-        return start()
-            .then(() => {
-                let iterator;
-                const components = componentRegistry.values();
-                
-                while (iterator = components.next()) {
-                    if (iterator.done) {
-                        break;
+                    if (component.init) {
+                        await component.init()
                     }
-
-                    const component = iterator.value;
-                    component.ready();
                 }
                 
-                return Promise.resolve();
-            }).catch((error) => {
-                return this.stop(error);
-            });
+                spinner.succeed(`Started successfully - ${name}`);
+            } catch (e) {
+                spinner.fail(`Started failed - "${name}"`);
+                return Promise.reject(e);
+            }
+        }
+    }
+
+    async ready() {
+        const components = Array.from(this.registry.components);
+        
+        for (let [, component] of components) {
+            await component.ready();
+        }
     }
 
     public async stop(error?: any) {
-        const componentRegistry = this.registry.components;
-        let iterator;
-        
-        const components = componentRegistry.values();
-        
-        while (iterator = components.next()) {
-            if (iterator.done) {
-                break;   
-            }
-            const component = iterator.value;
+        const components = Array.from(this.registry.components);
+
+        for (let [, component] of components) {
             if (component.$options.enable) {
                 try {
                     await component.destroy(error);

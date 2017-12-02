@@ -18,7 +18,8 @@ export default {
         ],
         controllers: [
             TopicController
-        ]
+        ],
+        port: 9999
     },
     components: [
         new MicroServices({

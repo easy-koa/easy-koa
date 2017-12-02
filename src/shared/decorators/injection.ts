@@ -1,11 +1,11 @@
 import 'reflect-metadata';
-import { classType, classTypes, pathMeta, injection } from '../constants';
+import { classType, classTypes, pathMeta, registry } from '../constants';
 import { isUndefined, isString, isNil } from '../index';
 
 
 function inject(key: string) {
-    return function (service: any) {
-        if (isNil(service)) {
+    return function (constructor: any) {
+        if (isNil(constructor)) {
             throw new Error('请确保注入操作传入和非空的类');
         }
 
@@ -17,10 +17,10 @@ function inject(key: string) {
                 Reflect.defineMetadata(key, services, target);
             }
             
-            services.set(propertyKey, service);
+            services.set(propertyKey, constructor);
         }
     }
 }
 
-export const InjectPlugin = inject(injection.component);
-export const InjectService = inject(injection.service);
+export const InjectPlugin = inject(registry.component);
+export const InjectService = inject(registry.service);

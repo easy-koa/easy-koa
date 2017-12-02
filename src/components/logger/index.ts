@@ -3,13 +3,13 @@ import { Component } from '../../core';
 import { LoggerOptions } from './interfaces/logger-options';
 import { isUndefined } from '../../shared/index';
 
-export class Logger extends Component{
-    private _logger: any;
+export class Logger extends Component {
+    private logger: any;
     
     constructor(name: string, cfg: any) {
         super();
         logger.configure(cfg);
-        this._logger = logger.getLogger(name);
+        this.logger = logger.getLogger(name);
     }
 
     name() {
@@ -17,28 +17,28 @@ export class Logger extends Component{
     }
 
     public fatal(message: any) {
-        const logger = this._logger;
+        const logger = this.logger;
         return logger.fatal(message);
     }
 
     public info(message: any) {
-        const logger = this._logger;
+        const logger = this.logger;
         return logger.info(message);
     }
 
     public error(message: any) {
-        const logger = this._logger;
+        const logger = this.logger;
         return logger.error(message);
     }
 
     public warn(message: any) {
-        const logger = this._logger;
+        const logger = this.logger;
         return logger.warn(message);
     }
 
     destroy(error: any) {
         if (error) {
-            const logger = this._logger;
+            const logger = this.logger;
             logger.fatal(error);
         }
     }

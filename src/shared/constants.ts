@@ -17,7 +17,7 @@ export enum methodTypes {
     POST = 'POST'
 }
 
-export enum injection {
-    service = 'services',
-    component = 'components',
+export enum registry {
+    service = 'service',
+    component = 'component',
 }

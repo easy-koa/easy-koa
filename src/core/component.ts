@@ -8,8 +8,7 @@ interface Options extends BaseObject{
 }
 
 export abstract class Component {
-    new?(): this;
-    
+    constructor(...args: any[]) {}
     id = pid();
     
     $options: any = { enable: true };

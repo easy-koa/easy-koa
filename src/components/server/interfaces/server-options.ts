@@ -4,4 +4,5 @@ export interface ServerOptions {
     interceptors?: Interceptor[];
     controllers?: any[];
     middlewares?: any[];
+    port?: number;
 }

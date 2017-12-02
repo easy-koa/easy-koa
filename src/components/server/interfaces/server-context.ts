@@ -4,4 +4,5 @@ export interface ServerContext {
     interceptorMappings: InterceptorMapping[];
     controllers: any[];
     middlewares: any[];
+    port: number;
 }

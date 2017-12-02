@@ -32,6 +32,12 @@ export class Server extends Component {
         this.install();
     }
 
+    async ready() {
+        this.application.listen(this.$options.port, () => {
+            this.logger.info('Server run successfully on port http://0.0.0.0:9999');
+        });
+    }
+
     private install() {
         const { application, $options } = this;
         const { middlewares, controllers, interceptorMappings } = $options;
@@ -53,16 +59,12 @@ export class Server extends Component {
         application.use(router.routes());
     }
 
-    public listen(...args: any[]) {
-        this.application.listen(...args);
-    }
-
     destroy() {
         
     }
 
     static configure(options: ServerOptions): ServerContext {
-        let { interceptors, controllers, middlewares } = options;
+        let { interceptors, controllers, middlewares = [], port = 3000 } = options;
 
         controllers = controllers.map(Item => new Item());
         const interceptorMappings = <InterceptorMapping[]> interceptors.map((interceptor: Interceptor): InterceptorMapping => {
@@ -86,6 +88,6 @@ export class Server extends Component {
             return interceptorMapping;
         });
 
-        return { controllers, interceptorMappings, middlewares };
+        return { controllers, interceptorMappings, middlewares, port };
     }
 }
