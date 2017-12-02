@@ -62,19 +62,19 @@ export class Server extends Component {
         this.application.context.monitor = monitor;
 
         const { router, rawRouters } = RoutersExplorer.createRouters(controllers);
-        
+
         const cMap = getControllerMap(rawRouters);
 
         logController(logger, rawRouters);
-        
+
         application.use(errorHandleMiddleware());
 
         interceptorMappings.forEach(item => application.use(interceptorMiddleware(item)));
-        
+
         middlewares.forEach(middleware => application.use(middleware));
 
         application.use(controllerMonitorMiddleware(cMap));
-        
+
         application.use(router.routes());
     }
 
@@ -99,6 +99,7 @@ export class Server extends Component {
             } else {
                 interceptorMapping = <InterceptorMapping> interceptor;
             }
+
             interceptorMapping.path = pathToRegexp(interceptorMapping.path);
             interceptorMapping.interceptor = new interceptorMapping.interceptor();
 

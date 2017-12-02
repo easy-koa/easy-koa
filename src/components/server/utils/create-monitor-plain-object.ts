@@ -37,7 +37,9 @@ export function error(action: string, { error, status }: { error: Error, status:
         type: 'error',
         action,
         payload: {
-            status, error
+            status,
+            stack: error && error.stack,
+            message: error && error.message
         }
     }
 }

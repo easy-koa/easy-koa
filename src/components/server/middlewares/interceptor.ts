@@ -1,7 +1,7 @@
 import { Context } from 'koa';
 import { isUndefined } from '../../../shared/index';
 import { InterceptorMapping } from '../interfaces/interceptor';
-import * as createMonitorParams from '../utils/create-monitor-params';
+import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 import * as time from '../utils/time';
 
 
@@ -27,6 +27,6 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
             postHandleTime = post();
         } 
         
-        ctx.monitor.collect(createMonitorParams.interceptor(action, { preHandleTime, postHandleTime }));
+        ctx.monitor.collect(createMonitorPlainObject.interceptor(action, { preHandleTime, postHandleTime }));
     }
 }
