@@ -7,7 +7,7 @@ declare module 'koa' {
 import LoginInterceptor from "./interceptors/login";
 import TopicController from "./controllers/topic";
 import { loginProvider } from "./services/login";
-import { MicroServices } from "../src/components/index";
+// import { MicroServices } from "@kapp//index";
 
 export default {
     logger: {
@@ -20,7 +20,7 @@ export default {
     server: {
         middlewares: [], // koa middlewares, async function first
         interceptors: [
-            LoginInterceptor
+            // LoginInterceptor
         ],
         controllers: [
             TopicController
@@ -28,13 +28,13 @@ export default {
         port: 3000
     },
     components: [
-        new MicroServices({
-            application: 'haitao-wap',
-            version: '3.0.3.3',
-            register: '10.165.124.205:2181',
-            providers: {
-                ...loginProvider
-            }
-        })
+        // new MicroServices({
+        //     application: 'haitao-wap',
+        //     version: '3.0.3.3',
+        //     register: '10.165.124.205:2181',
+        //     providers: {
+        //         ...loginProvider
+        //     }
+        // })
     ]
 }

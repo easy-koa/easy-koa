@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { BaseObject, isUndefined, isNil } from "@kapp/shared/index";
 import { pathMeta, methodsMeta } from "@kapp/shared/constants";
 import { IRouter, IRouters } from "../interfaces/index";

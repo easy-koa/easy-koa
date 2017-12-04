@@ -1,5 +1,5 @@
 import { LoginService } from '../services/login';
-import { InjectService } from '../../src/shared/decorators/injection';
+import { InjectService } from '@kapp/shared';
 import TopicService from '../services/topic';
 import { Context } from 'koa';
 

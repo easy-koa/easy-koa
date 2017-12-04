@@ -1,8 +1,8 @@
 {
-    "name": "@kapp/logger",
-    "version": "0.1.0",
-    "dependencies": {
-        "@kapp/core": "0.1.0",
-        "@kapp/shared": "0.1.0"
-    }
+  "name": "@kapp/logger",
+  "version": "0.1.0",
+  "dependencies": {
+    "@kapp/core": "0.1.0",
+    "@kapp/shared": "0.1.0"
+  }
 }

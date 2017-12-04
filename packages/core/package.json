@@ -1,8 +1,9 @@
 {
-    "name": "@kapp/core",
-    "version": "0.1.0",
-    "dependencies": {
-        "@kapp/core": "0.1.0",
-        "@kapp/shared": "0.1.0"
-    }
+  "name": "@kapp/core",
+  "version": "0.1.0",
+  "dependencies": {
+    "@kapp/core": "0.1.0",
+    "@kapp/shared": "0.1.0",
+    "reflect-metadata": "^0.1.10"
+  }
 }

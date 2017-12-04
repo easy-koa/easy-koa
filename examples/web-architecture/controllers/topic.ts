@@ -1,8 +1,6 @@
-import 'reflect-metadata';
-
-import { Controller, RequestMapping } from '../../src/shared';
+import { Controller, RequestMapping } from '@kapp/server/decorators';
 import TopicService from '../services/topic';
-import { methodTypes } from '../../src/shared/constants';
+import { methodTypes } from '@kapp/shared/constants';
 
 
 @Controller('/test')

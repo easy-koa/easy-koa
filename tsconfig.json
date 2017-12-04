@@ -15,7 +15,7 @@
             "parrotsay-api",
             "@kaola/microservices",
             "log4js",
-            "http-proxy"
+            "koa"
         ],
         "lib": [
             "es2015",
@@ -23,7 +23,8 @@
             "dom"
         ],
         "experimentalDecorators": true,
-        "declaration": true
+        "declaration": true,
+        "outDir": "./dist"
     },
     "files": [
         "packages/run/index.ts"

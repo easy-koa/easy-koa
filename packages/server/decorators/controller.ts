@@ -1,6 +1,5 @@
-import 'reflect-metadata';
-import { classType, classTypes, pathMeta } from '../constants';
-import { isUndefined, isString } from '../index';
+import { classType, classTypes, pathMeta } from '@kapp/shared/constants';
+import { isUndefined, isString } from '@kapp/shared/index';
 
 export function Controller (prefix?: string) {
     const path = (isUndefined(prefix) || (isString(prefix) && prefix.trim() === '/') ) ? '' : prefix;

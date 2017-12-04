@@ -1,13 +1,14 @@
 {
-  "name": "@kapp/server",
+  "name": "web-architecture",
   "version": "0.1.0",
   "dependencies": {
     "@kapp/core": "0.1.0",
+    "@kapp/cron": "0.1.0",
     "@kapp/logger": "0.1.0",
     "@kapp/monitor": "0.1.0",
+    "@kapp/server": "0.1.0",
     "@kapp/shared": "0.1.0",
-    "koa": "^2.4.1",
-    "koa-router": "^7.3.0",
-    "path-to-regexp": "^2.1.0"
+    "kapp": "0.1.0",
+    "koa": "^2.4.1"
   }
 }

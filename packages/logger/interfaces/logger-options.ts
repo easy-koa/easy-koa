@@ -1,4 +1,4 @@
-import { BaseObject } from "../../../shared/index";
+import { BaseObject } from "@kapp/shared";
 
 export interface LoggerOptions {
     application?: string;

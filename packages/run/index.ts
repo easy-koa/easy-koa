@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Application } from '@kapp/core/index';
 import { isNumber } from '@kapp/shared/index';
 import { moduleMeta, methodTypes } from '@kapp/shared/constants';
@@ -10,7 +9,7 @@ import { Server } from '@kapp/server';
 import { Cron } from '@kapp/cron';
 
 
-export class Kapp {
+export default class Kapp {
     readonly application: Application = new Application();
     private moduleContext: ModuleContext;
     private registerCache = new Set();

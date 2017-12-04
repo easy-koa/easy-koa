@@ -1,7 +1,7 @@
 import * as logger from 'log4js';
 import { Component } from '@kapp/core';
 import { LoggerOptions } from './interfaces/logger-options';
-import { isUndefined } from '@kapp/shared';
+import { loggerFactory, isUndefined } from '@kapp/shared';
 
 export class Logger extends Component {
     private logger: any;

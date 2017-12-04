@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { Registry } from './registry';
 import { Component } from './index';
 import { logger } from '@kapp/shared/index';

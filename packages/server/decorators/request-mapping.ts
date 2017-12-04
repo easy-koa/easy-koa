@@ -1,5 +1,4 @@
-import 'reflect-metadata';
-import { pathMeta, methodsMeta, methodTypes } from '../constants';
+import { pathMeta, methodsMeta, methodTypes } from '@kapp/shared/constants';
 
 export function RequestMapping ({
     path = '/', methods = [

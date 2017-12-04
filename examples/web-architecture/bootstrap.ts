@@ -1,11 +1,11 @@
-import Kapp from '../src';
+import Kapp from 'kapp';
 import TopicService from './services/topic';
 import LoginInterceptor from './interceptors/login';
 import TopicController from './controllers/topic';
-import { Module } from '../src/shared';
+import { Module } from '@kapp/shared';
 import { LoginService } from './services/login';
 import KappConfig from './kapp-config';
-import { Logger } from '../src/components/logger';
+import { Logger } from '@kapp/logger';
 
 @Module(KappConfig)
 class ZoneKapp extends Kapp {}

@@ -9,13 +9,13 @@ declare module 'koa' {
     }
 }
 
-import 'reflect-metadata';
 import { Component } from '@kapp/core/component';
 import * as Koa from 'koa';
 import * as pathToRegexp from 'path-to-regexp';
 import { InitOptions } from '@kapp/shared/interfaces';
 import { classTypes, classType, pathMeta, methodTypes } from '@kapp/shared/constants';
-import { isUndefined, BaseObject, Controller } from '@kapp/shared/index';
+import { isUndefined, BaseObject } from '@kapp/shared/index';
+import { Controller } from './decorators';
 import { RoutersExplorer } from './utils/routers-explorer';
 import { errorHandleMiddleware, interceptorMiddleware, controllerMonitorMiddleware} from './middlewares';
 import { ServerOptions, ServerContext } from './interfaces';
