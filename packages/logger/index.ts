@@ -1,4 +1,3 @@
-import * as logger from 'log4js';
 import { Component } from '@kapp/core';
 import { LoggerOptions } from './interfaces/logger-options';
 import { loggerFactory, isUndefined } from '@kapp/shared';
@@ -9,8 +8,8 @@ export class Logger extends Component {
     
     constructor(name: string, cfg: any) {
         super();
-        logger.configure(cfg);
-        this.loggerFactory = logger;
+        loggerFactory.configure(cfg);
+        this.loggerFactory = loggerFactory;
         this.logger = this.create(name);
     }
 
@@ -55,15 +54,25 @@ export class Logger extends Component {
         }
         if (isUndefined(options)) {
             options = {
-                appenders: [{
-                    type: 'console'
-                }, {
-                    type: 'dateFile',
-                    filename: './logs/runtime.log',
-                    pattern: '.yyyy-MM-dd-hh',
-                    compress: false,
-                }],
-                levels:{'[all]': 'ALL'}
+                appenders: {
+                    dateFile: {
+                        type: 'dateFile',
+                        filename: './logs/runtime.log',
+                        pattern: '.yyyy-MM-dd-hh',
+                        compress: false,
+                    },
+                    console: {
+                        type: 'console'
+                    }
+                },
+                categories: {
+                    default: {
+                        appenders: [
+                            'dateFile', 'console'
+                        ],
+                        level: 'all'
+                    }
+                }
             };
         }
         return { application, options } ;

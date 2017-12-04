@@ -10,8 +10,7 @@ export default class TopicController {
         path: '/account'
     })
     async getYourName(ctx: any) {
-        ctx.body = `Your name is ${ctx.kaolaContext.accountId}`;
-        throw new Error('1')
+        ctx.body = `Your name is 123`; //${ctx.kaolaContext.accountId}`;
     }
 
     @RequestMapping({
