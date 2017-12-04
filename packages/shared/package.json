@@ -1,6 +1,4 @@
 {
     "name": "@kapp/shared",
-    "dependencies": {
-        "@kapp/core": "^undefined"
-    }
+    "version": "0.1.0"
 }

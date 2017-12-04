@@ -1,0 +1,7 @@
+{
+    "name": "@kapp/cron",
+    "version": "0.1.0",
+    "dependencies": {
+        "@kapp/core": "0.1.0"
+    }
+}
