@@ -15,10 +15,6 @@ export abstract class Component {
     
     abstract name(): string;
 
-    registerService(constructor: any, component: any) {
-        throw Error('registerService has not been rewrite');
-    }
-
     init(options: InitOptions) {}
 
     ready() {}

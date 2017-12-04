@@ -1,3 +1,5 @@
+import { isUndefined } from "../../../shared/index";
+
 export function interceptor(action: string, {
     preHandleTime, postHandleTime
 }: {
@@ -10,9 +12,9 @@ export function interceptor(action: string, {
             preHandle: {
                 time: preHandleTime
             },
-            postHandle: postHandleTime? {
+            postHandle: isUndefined(postHandleTime) ? undefined: {
                 time: Date.now() - postHandleTime
-            }: undefined,
+            },
         }
     }
 }
