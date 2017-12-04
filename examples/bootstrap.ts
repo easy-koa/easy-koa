@@ -13,7 +13,7 @@ class ZoneKapp extends Kapp {}
 const zoneKapp = ZoneKapp.create();
     
 zoneKapp
-    .run(9999)
+    .run()
     .then(function() {
         // do something in completed
     })

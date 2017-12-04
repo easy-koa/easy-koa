@@ -10,12 +10,12 @@
             "./node_modules/@types/"
         ],
         "target": "es5",
-        "outDir": "dist",
         "types": [
             "chalklog",
             "parrotsay-api",
             "@kaola/microservices",
-            "log4js"
+            "log4js",
+            "http-proxy"
         ],
         "lib": [
             "es2015",
@@ -26,10 +26,10 @@
         "declaration": true
     },
     "files": [
-        "src/index.ts"
+        "packages/run/index.ts"
     ],
     "include": [
-        "src/**/*",
+        "packages/**/*",
         "examples/**/*"
     ],
     "exclude": [

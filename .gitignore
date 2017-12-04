@@ -63,3 +63,8 @@ src/**/*.js
 package-lock.json
 
 .vscode/
+
+packages/**/*.js
+packages/**/*.map
+examples/**/*.js
+examples/**/*.js.map

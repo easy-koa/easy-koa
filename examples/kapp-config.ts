@@ -25,7 +25,7 @@ export default {
         controllers: [
             TopicController
         ],
-        port: 9999
+        port: 3000
     },
     components: [
         new MicroServices({
