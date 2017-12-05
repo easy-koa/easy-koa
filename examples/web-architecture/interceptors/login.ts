@@ -2,7 +2,7 @@ import { LoginService } from '../services/login';
 import { InjectService, Koa } from '@kapp/shared';
 import TopicService from '../services/topic';
 
-export default class LoginInterceptor {
+export class LoginInterceptor {
     @InjectService(LoginService)
     loginService: LoginService;
 

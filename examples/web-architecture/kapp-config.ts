@@ -1,13 +1,7 @@
-declare module 'koa' {
-    interface Context {
-        kaolaContext: any;
-    }
-}
+declare module 'koa' { interface Context { kaolaContext: any; } }
 
-import LoginInterceptor from "./interceptors/login";
-import { ForwardAPIInterceptor } from "./interceptors/forward-api";
-import { ForwardPageInterceptor } from "./interceptors/forward-page";
-
+import { LoginInterceptor } from "./interceptors/login";
+import { ForwardAPIInterceptor, ForwardPageInterceptor } from "./interceptors/forward";
 import TopicController from "./controllers/topic";
 import HomeController from "./controllers/home";
 import { loginProvider } from "./services/login";
@@ -44,14 +38,6 @@ export default {
         port: 3000
     },
     components: [
-        new MicroServices({
-            application: 'haitao-wap',
-            version: '3.0.3.3',
-            register: '10.165.124.205:2181',
-            providers: {
-                ...loginProvider
-            }
-        }),
         new Forward({
             secure: false,
             proxyTimeout: 3000,
@@ -61,6 +47,14 @@ export default {
             },
             xfwd: true,
             target: 'https://m.kaola.com'
+        }),
+        new MicroServices({
+            application: 'haitao-wap',
+            version: '3.0.3.3',
+            register: '10.165.124.205:2181',
+            providers: {
+                ...loginProvider
+            }
         })
     ]
 }
