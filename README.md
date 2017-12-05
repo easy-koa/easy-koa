@@ -69,6 +69,7 @@ Kapp.js is based on koa, so it supports all koa middleware. But we want you to u
 
 - [Application](./docs/components.md)
 - [Components](./docs/components.md)
+- [Contribute](./docs/contribute.md)
 
 ## Examples
 
