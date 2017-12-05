@@ -1,12 +1,13 @@
 declare module 'koa' {
     interface BaseContext {
         monitor: Monitor;
+        render: Function;
     }
 
     interface Context {
         monitor: Monitor;
         controller: string;
-        render: any;
+        render: Function;
     }
 }
 
@@ -103,7 +104,7 @@ export class Server extends Component {
             }
 
             if (isNil(methods)) {
-                methods = [ 
+                methods = [
                     methodTypes.GET, methodTypes.POST
                 ];
             }
@@ -111,7 +112,7 @@ export class Server extends Component {
             if (!Array.isArray(path)) {
                 path = [ path ];
             }
-            
+
             path = path.map(path => pathToRegexp(path));
             interceptor = new InterceptorConstructor();
 
