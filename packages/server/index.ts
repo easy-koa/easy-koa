@@ -10,19 +10,19 @@ declare module 'koa' {
     }
 }
 
-import { Component } from '@kapp/core/component';
+import { Component } from '@kapp/core';
 import { Koa, isNil } from '@kapp/shared';
 import * as pathToRegexp from 'path-to-regexp';
-import { InitOptions } from '@kapp/shared/interfaces';
+import { InitOptions } from '@kapp/shared';
 import { classTypes, classType, pathMeta, methodTypes } from '@kapp/shared/constants';
-import { isUndefined, BaseObject } from '@kapp/shared/index';
+import { isUndefined, BaseObject } from '@kapp/shared';
 import { Controller } from './decorators';
 import { RoutersExplorer } from './utils/routers-explorer';
 import { defaultRender } from './utils/render';
 import { errorHandleMiddleware, interceptorMiddleware, controllerMonitorMiddleware} from './middlewares';
 import { ServerOptions, ServerContext } from './interfaces';
 import { InterceptorConstructor, Interceptor, InterceptorMapping } from './interfaces/interceptor';
-import { InjectPlugin } from '@kapp/shared/decorators/injection';
+import { InjectPlugin } from '@kapp/shared';
 import { Logger } from '@kapp/logger';
 import { Monitor } from '@kapp/monitor';
 import { getControllerMap } from './utils/get-controller-map';

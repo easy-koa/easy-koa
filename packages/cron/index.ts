@@ -1,4 +1,4 @@
-import { Component } from "@kapp/core/index";
+import { Component } from "@kapp/core";
 
 export class Cron extends Component{
     name() {

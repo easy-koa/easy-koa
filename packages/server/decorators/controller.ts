@@ -1,5 +1,5 @@
 import { classType, classTypes, pathMeta } from '@kapp/shared/constants';
-import { isUndefined, isString } from '@kapp/shared/index';
+import { isUndefined, isString } from '@kapp/shared';
 
 export function Controller (prefix?: string) {
     const path = (isUndefined(prefix) || (isString(prefix) && prefix.trim() === '/') ) ? '' : prefix;

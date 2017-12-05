@@ -1,7 +1,7 @@
 import { Component } from '@kapp/core';
-import { InitOptions, BaseObject } from '@kapp/shared/interfaces';
+import { InitOptions, BaseObject } from '@kapp/shared';
 import * as rpc from '@kaola/rpc';
-import { InjectPlugin } from '@kapp/shared/decorators/injection';
+import { InjectPlugin } from '@kapp/shared';
 import { Logger } from '@kapp/logger';
 import { Monitor } from '@kapp/monitor';
 import { Cron } from '@kapp/cron';

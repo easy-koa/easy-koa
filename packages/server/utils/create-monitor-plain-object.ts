@@ -1,4 +1,4 @@
-import { isUndefined } from "@kapp/shared/index";
+import { isUndefined } from "@kapp/shared";
 
 export function interceptor(action: string, {
     preHandleTime, postHandleTime

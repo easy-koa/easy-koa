@@ -1,5 +1,5 @@
-import { createSystemId } from "@kapp/shared/utils/create-systemid";
-import { BaseObject, Services, InitOptions } from "@kapp/shared/interfaces/index";
+import { createSystemId } from "@kapp/shared";
+import { BaseObject, Services, InitOptions } from "@kapp/shared";
 
 const pid = createSystemId();
 

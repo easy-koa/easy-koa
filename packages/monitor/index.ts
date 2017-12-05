@@ -1,5 +1,5 @@
 import { Component } from "@kapp/core";
-import { InjectPlugin } from "@kapp/shared/decorators/injection";
+import { InjectPlugin } from "@kapp/shared";
 import { Logger } from "@kapp/logger";
 import { MonitorOptions } from "./interfaces/index";
 import * as Koa from 'koa'; 

@@ -1,6 +1,6 @@
 import { Registry } from './registry';
-import { Component } from './index';
-import { logger } from '@kapp/shared/index';
+import { Component } from './component';
+import { logger } from '@kapp/shared';
 
 export class Application {
     readonly registry = new Registry();

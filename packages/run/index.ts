@@ -1,7 +1,6 @@
-import { Application } from '@kapp/core/index';
-import { isNumber } from '@kapp/shared/index';
+import { Application } from '@kapp/core';
+import { isNumber } from '@kapp/shared';
 import { ModuleContext, ModuleOptions } from './interfaces'
-import { ServerOptions } from '@kapp/server/interfaces/index';
 import { Logger } from '@kapp/logger';
 import { Monitor } from '@kapp/monitor';
 import { Server } from '@kapp/server';
