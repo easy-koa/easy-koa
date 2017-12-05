@@ -25,9 +25,7 @@
         "baseUrl": "./",
         "paths": {
             "kapp": ["packages/run"],
-            "@kapp/*": ["packages/*"],
-            "path-to-regexp":["dist/packages/server/node_modules/path-to-regexp"],
-            "reflect-metadata":["dist/packages/shared/node_modules/reflect-metadata"]
+            "@kapp/*": ["packages/*"]
         },
         "outDir": "./dist",
         "experimentalDecorators": true,

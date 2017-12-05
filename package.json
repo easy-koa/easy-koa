@@ -10,7 +10,7 @@
     "dev": "npm run build -- -w",
     "start": "ts-node ./examples/web-architecture/bootstrap",
     "boot": "gulp cp && lerna bootstrap --registry http://rnpm.hz.netease.com/",
-    "clear": "lerna clean"
+    "clear": "rm -rf dist && lerna clean"
   },
   "repository": {
     "type": "git",
