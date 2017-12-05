@@ -1,5 +1,5 @@
 import { Controller, RequestMapping } from '@kapp/server/decorators';
-import { Koa } from '@kapp/server';
+import { Koa } from '@kapp/shared';
 import TopicService from '../services/topic';
 import { methodTypes } from '@kapp/shared/constants';
 

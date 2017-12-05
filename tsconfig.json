@@ -14,7 +14,8 @@
             "@kaola/microservices",
             "log4js",
             "koa",
-            "http-proxy"
+            "http-proxy",
+            "art-template"
         ],
         "lib": [
             "es2015",

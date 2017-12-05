@@ -1,5 +1,9 @@
 {
-    "compilerOptions": {
-        "experimentalDecorators": true
-    }
+    "extends": "../../tsconfig.json",
+    "files": [
+        "bootstrap.ts"
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }

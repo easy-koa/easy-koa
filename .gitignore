@@ -68,4 +68,8 @@ packages/**/*.d.ts
 packages/**/*.js
 packages/**/*.js.map
 
+examples/**/*.d.ts
+examples/**/*.js
+examples/**/*.js.map
+
 **.DS_Store**

@@ -4,8 +4,10 @@ export interface InterceptorConstructor {
     postHandle: Function;
 }
 
+export type mapping = string | RegExp;
+
 export interface InterceptorMapping {
-    path: string | RegExp;
+    path: mapping[];
     methods: string[];
     interceptor: InterceptorConstructor
 }

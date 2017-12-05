@@ -1,9 +1,9 @@
-import { Context } from 'koa';
+import { Koa } from '@kapp/shared';
 import * as time from '../utils/time';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function controllerMonitorMiddleware () {
-    return async function (ctx: Context, next: Function) {
+    return async function (ctx: Koa.Context, next: Function) {
         const end = time.start();
         await next(ctx);
 

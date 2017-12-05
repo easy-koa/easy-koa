@@ -1,8 +1,8 @@
-import { Context } from 'koa';
+import { Koa } from '@kapp/shared';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function errorHandleMiddleware() {
-    return async function(ctx: Context, next: Function) {
+    return async function(ctx: Koa.Context, next: Function) {
         try {
             await next(ctx);
         } catch(e) {

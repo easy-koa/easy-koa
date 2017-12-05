@@ -1,15 +1,22 @@
 import httpProxy = require('http-proxy');
 import { ServerRequest, ServerResponse, Agent, IncomingMessage, OutgoingHttpHeaders } from 'http';
 import { Component } from '@kapp/core';
+import { Koa } from '@kapp/shared';
 
+declare module 'http' {
+    interface ServerResponse {
+        _headers: any[]
+    }
+}
 
 export interface ProxyServerConfig {
     secure: boolean;
-    agent: Agent;
+    agent?: Agent;
     proxyTimeout: number;
     host: string;
-    headers: any;
+    headers?: any;
     xfwd: boolean;
+    target: string;
 }
 
 export interface Options extends ProxyServerConfig {
@@ -31,20 +38,25 @@ class ProxyServer {
 
     configiure(options: Options) {
 
-        let { headers, secure, proxyTimeout, host, xfwd, agent } = options;
+        let { headers, secure, proxyTimeout, host, xfwd, agent, target } = options;
         
         if (!headers) {
             headers = {};
         }
 
         headers = Object.assign({}, headers, {
-            Host: '',
+            Host: host,
             'X-Special-Proxy-Header': 'foxman',
             'accept-encoding': ''
         });
 
+
+        if (!target) {
+            target = 'http://' + host;
+        }
+
         this.proxyServerConfig = {
-            headers, secure, proxyTimeout, host, xfwd, agent
+            headers, secure, proxyTimeout, host, xfwd, agent, target
         }
     }
 
@@ -73,7 +85,7 @@ class ProxyServer {
     }
 
     web(...args: any[]) {
-        this.proxyServer.web(args);
+        this.proxyServer.web(...args);
     }
 }
 
@@ -91,31 +103,37 @@ export class Forward extends Component {
 
     async init() {
         const { host, specialHeader, secure = false, agent = false, proxyTimeout = 3000 } = this.$options;
-        
-        this.proxyServer = ProxyServer.create({ host, specialHeader, secure, agent, proxyTimeout });
+        this.proxyServer = ProxyServer.create({
+            host,
+            specialHeader,
+            secure,
+            agent,
+            proxyTimeout
+        });
     }
 
-    async forward (req: any, target: any) {
-        const res = new ServerResponse(req);
-
-        this.proxyServer.web(req, res, {
-            target: target
-        });
+    async forward (ctx: Koa.Context ) {
+        const { target } = this.$options;
 
         const responseBody: any[] = [];
 
+        const req = ctx.req;
+        const res = new ServerResponse(req);
+        
         res.write = function (chunk: Buffer) {
             responseBody.push(chunk);
             return true;
         };
+
+        this.proxyServer.web(req, res, { target });
 
         await new Promise((resolve) => {
             res.once('proxyed', () => resolve());
         });
 
         return {
-            body: responseBody,
-            header: res.getHeaders()
+            body: Buffer.concat(responseBody),
+            header: res._headers
         };
     }
 }

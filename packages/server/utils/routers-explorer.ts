@@ -2,7 +2,7 @@ import { BaseObject, isUndefined, isNil } from "@kapp/shared/index";
 import { pathMeta, methodsMeta } from "@kapp/shared/constants";
 import { IRouter, IRouters } from "../interfaces/index";
 import Router = require('koa-router');
-import { Context } from 'koa';
+import { Koa } from '@kapp/shared';
 
 export class RouterExplorer {
     private controller: any;
@@ -34,7 +34,7 @@ export class RouterExplorer {
                 routers.push({
                     methods: methodTypes,
                     path,
-                    async handle(ctx: Context, next: Function) {
+                    async handle(ctx: Koa.Context, next: Function) {
                         ctx.controller = `${name}.${method}`;
                         return handle.call(controller, ctx, next);
                     }

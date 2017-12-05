@@ -6,7 +6,7 @@
     "@kapp/logger": "0.1.0",
     "@kapp/monitor": "0.1.0",
     "@kapp/shared": "0.1.0",
-    "koa": "^2.4.1",
+    "art-template": "^4.12.2",
     "koa-router": "^7.3.0",
     "path-to-regexp": "^2.1.0"
   }
