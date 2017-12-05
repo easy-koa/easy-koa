@@ -1,5 +1,3 @@
-import 'reflect-metadata';
-
 import { BaseObject } from "@kapp/shared";
 import { registry } from "@kapp/shared/constants";
 import { Component } from "./component";

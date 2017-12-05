@@ -1,4 +1,3 @@
-import 'reflect-metadata';
 import { classType, classTypes, pathMeta, registry } from '../constants';
 import { isUndefined, isString, isNil } from '../index';
 
@@ -6,7 +5,7 @@ import { isUndefined, isString, isNil } from '../index';
 function inject(key: string) {
     return function (constructor: any) {
         if (isNil(constructor)) {
-            throw new Error('请确保注入操作传入和非空的类');
+            throw new Error('请确保注入操作传入非空的类');
         }
 
         return function(target: any, propertyKey?: string | symbol) {

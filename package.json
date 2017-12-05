@@ -6,10 +6,10 @@
   "types": "./index.d.ts",
   "scripts": {
     "test": "npm run build",
-    "build": "tsc && gulp cp",
+    "build": "tsc",
     "dev": "npm run build -- -w",
     "start": "ts-node ./examples/web-architecture/bootstrap",
-    "boot": "lerna bootstrap --registry http://rnpm.hz.netease.com/",
+    "boot": "gulp cp && lerna bootstrap --registry http://rnpm.hz.netease.com/",
     "clear": "lerna clean"
   },
   "repository": {

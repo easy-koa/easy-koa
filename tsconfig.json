@@ -24,7 +24,10 @@
         ],
         "baseUrl": "./",
         "paths": {
-            "@kapp/*": ["packages/*"]
+            "kapp": ["packages/run"],
+            "@kapp/*": ["packages/*"],
+            "path-to-regexp":["dist/packages/server/node_modules/path-to-regexp"],
+            "reflect-metadata":["dist/packages/shared/node_modules/reflect-metadata"]
         },
         "outDir": "./dist",
         "experimentalDecorators": true,
@@ -34,7 +37,8 @@
         "packages/run/index.ts"
     ],
     "include": [
-        "packages/**/*"
+        "packages/**/*",
+        "examples/**/*"
     ],
     "exclude": [
         "node_modules"
