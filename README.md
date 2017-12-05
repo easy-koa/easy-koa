@@ -23,7 +23,11 @@ $ npm install kapp.js --save
 
 #### Core
 
-Kapp.js provides a lightweight dependency injection container with strict process control. If any one component failed to load, Application will also fail to start.  This measure can expose the problem as much as possible, and reducing the impact on the production environment. And the components will achieve specific functions.
+Kapp.js provides a lightweight dependency injection container with strict process control.
+
+If any one component failed to load, Application will also fail to start.  This measure can expose the problem as much as possible, and reducing the impact on the production environment.
+
+And the components will achieve specific functions.
 
 #### Components
 
