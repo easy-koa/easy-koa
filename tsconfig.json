@@ -24,14 +24,13 @@
         ],
         "experimentalDecorators": true,
         "declaration": true,
-        "outDir": "./dist"
+        "outDir": "./lib"
     },
     "files": [
         "packages/run/index.ts"
     ],
     "include": [
-        "packages/**/*",
-        "examples/**/*"
+        "packages/**/*"
     ],
     "exclude": [
         "node_modules"

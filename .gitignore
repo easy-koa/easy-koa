@@ -64,9 +64,8 @@ package-lock.json
 
 .vscode/
 
-packages/**/*.js
-packages/**/*.map
-examples/**/*.js
-examples/**/*.js.map
+lib/**/*.d.ts
+lib/**/*.js
+lib/**/*.js.map
 
 **.DS_Store**

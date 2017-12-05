@@ -1,6 +1,6 @@
 <h1 align="center">Kapp.js</h1>
 
-A lightweight dependency injection container, also an enterprise solution for node.js project. It is written in typescript.
+A lightweight dependency injection container, also an enterprise solution for node.js project, and written in typescript.
 
 ## Installation
 

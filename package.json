@@ -9,7 +9,7 @@
     "build": "tsc",
     "dev": "npm run build -- -w",
     "start": "ts-node ./dist/examples/bootstrap",
-    "bootstrap": "lerna bootstrap --registry=https://registry.npm.taobao.org"
+    "boot": "lerna bootstrap --registry=https://registry.npm.taobao.org"
   },
   "repository": {
     "type": "git",
