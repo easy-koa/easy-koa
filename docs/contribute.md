@@ -1,6 +1,6 @@
 # How to contribute
 
-```js
+```bash
 
 $ cnpm i # install dev dependencies
 $ npm run boot # lerna bootstrap
