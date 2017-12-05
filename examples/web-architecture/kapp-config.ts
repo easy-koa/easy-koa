@@ -1,12 +1,11 @@
 declare module 'koa' { interface Context { kaolaContext: any; } }
 
 import { LoginInterceptor } from "./interceptors/login";
-import { ForwardAPIInterceptor, ForwardPageInterceptor } from "./interceptors/forward";
+import { RawForwardInterceptor, APIForwardInterceptor, PageForwardInterceptor } from "./interceptors/forwarder";
 import TopicController from "./controllers/topic";
-import HomeController from "./controllers/home";
 import { loginProvider } from "./services/login";
 import { MicroServices } from "@kapp/microservice";
-import { Forward } from "@kapp/forward";
+import { Forwarder } from "@kapp/forwarder";
 import { Agent } from "http";
 import path = require('path');
 
@@ -22,11 +21,18 @@ export default {
         middlewares: [], // koa middlewares, async function first
         interceptors: [
             LoginInterceptor, {
-                path: [ '/h5/hotKey.html' ],
-                interceptor: ForwardAPIInterceptor
+                path: [
+                    '/h5/hotKey.html'
+                ],
+                interceptor: APIForwardInterceptor
             }, {
                 path: [ '/user/ajax/getUserProfile.html' ],
-                interceptor: ForwardPageInterceptor
+                interceptor: PageForwardInterceptor
+            }, {
+                path: [ 
+                    '/'
+                ],
+                interceptor: RawForwardInterceptor
             }
         ],
         controllers: [
@@ -38,7 +44,7 @@ export default {
         port: 3000
     },
     components: [
-        new Forward({
+        new Forwarder({
             secure: false,
             proxyTimeout: 3000,
             host: 'm.kaola.com',

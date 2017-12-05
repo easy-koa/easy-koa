@@ -19,9 +19,7 @@ export interface ProxyServerConfig {
     target: string;
 }
 
-export interface Options extends ProxyServerConfig {
-
-}
+export interface Options extends ProxyServerConfig {}
 
 class ProxyServer {
     private proxyServer: any;
@@ -89,7 +87,7 @@ class ProxyServer {
     }
 }
 
-export class Forward extends Component {
+export class Forwarder extends Component {
     private proxyServer: ProxyServer;
 
     name() {
