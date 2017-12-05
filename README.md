@@ -23,19 +23,13 @@ $ npm install kapp.js --save
 
 #### Core
 
-Kapp.js provides a lightweight dependency injection container with strict process control.
-
-And the components will achieve specific functions. Of course, if any one component failed to load, Application will also fail to start.
-
-Because this measure can expose the problem as much as possible, and reducing the impact on the production environment.
+Kapp.js provides a lightweight dependency injection container with strict process control. If any one component failed to load, Application will also fail to start.  This measure can expose the problem as much as possible, and reducing the impact on the production environment. And the components will achieve specific functions.
 
 #### Components
 
 Just mentioned, Components are units that implement specific functions.
 
-You can indicate the dependencies of a component via the `@InjectPlugin` annotation.
-
-Kapp.js can help you to manage component dependencies. If a component's dependencies are not initialized, Kapp.js will give priority to initializing that component. But remember, do not appear circular dependencies.
+You can indicate the dependencies of a component via the `@InjectPlugin` annotation. Kapp.js will help you to manage component dependencies. If a component's dependencies are not initialized, Kapp.js will give priority to initializing that component. But remember, do not appear circular dependencies.
 
 Kapp.js has some built-in components, including `Cron`, `Logger`, `Monitor`, `Server`.
 
@@ -51,7 +45,7 @@ You can indicate the dependencies of in the following three via the `@InjectPlug
 
 Request will enter the interceptor logic before entering others.
 
-When configuring an interceptor, you need to specify the address that the interceptor matches and which interceptor to execute.
+When configuring an interceptor, you need to specify the path that the interceptor matches and which interceptor to execute.
 
 The interceptor needs the `preHandle` and `postHandle` methods. `preHandle` generally used to determine whether the request continues, or to write the required fields to the context. `postHandle` generally used to respond to changes in information, such as writing cross-domain head.
 
@@ -65,7 +59,7 @@ Service is the role used to fulfill a specific requirement. Including the packag
 
 #### Middlewares
 
-Kapp.js is based on koa, so it supports all koa middleware. But we want you to use async function whenever possible. Because this is also koa hope.
+Kapp.js is based on koa, so it supports all koa middleware. But we want you to use async function whenever possible. This is also koa's hope.
 
 ## Docs
 
