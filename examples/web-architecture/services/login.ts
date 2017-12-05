@@ -1,5 +1,5 @@
-import { InjectPlugin, InjectService } from '@kapp/shared/decorators/injection';
-// import { MicroServices } from '@kapp/components/index';
+import { InjectPlugin, InjectService } from '@kapp/server/decorators/injection';
+import { MicroServices } from '@kapp/microservice';
 
 function createType(className: string, value: any) {
     return {
@@ -36,10 +36,10 @@ export const loginProvider = {
 }
 
 export class LoginService {
-    // @InjectPlugin(MicroServices)
-    // microServices: MicroServices;
+    @InjectPlugin(MicroServices)
+    microServices: MicroServices;
 
     async getLoginAccount(cookie: string) {
-        // return await this.microServices.services.login.getLoginAccount(types.string(cookie));
+        return await this.microServices.services.login.getLoginAccount(types.string(cookie));
     }
 }

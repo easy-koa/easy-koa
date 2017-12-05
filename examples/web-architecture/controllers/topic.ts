@@ -1,4 +1,5 @@
 import { Controller, RequestMapping } from '@kapp/server/decorators';
+import { Koa } from '@kapp/server';
 import TopicService from '../services/topic';
 import { methodTypes } from '@kapp/shared/constants';
 
@@ -10,7 +11,7 @@ export default class TopicController {
         path: '/account'
     })
     async getYourName(ctx: any) {
-        ctx.body = `Your name is 123`; //${ctx.kaolaContext.accountId}`;
+        ctx.body = `您的账号是：${ctx.kaolaContext.accountId}`;
     }
 
     @RequestMapping({

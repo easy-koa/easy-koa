@@ -1,12 +1,12 @@
 import { Application } from '@kapp/core/index';
 import { isNumber } from '@kapp/shared/index';
-import { moduleMeta, methodTypes } from '@kapp/shared/constants';
 import { ModuleContext, ModuleOptions } from './interfaces'
 import { ServerOptions } from '@kapp/server/interfaces/index';
 import { Logger } from '@kapp/logger';
 import { Monitor } from '@kapp/monitor';
 import { Server } from '@kapp/server';
 import { Cron } from '@kapp/cron';
+import { moduleMeta } from '@kapp/shared/constants';
 
 
 export default class Kapp {

@@ -9,14 +9,13 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
     const { path, methods, interceptor } = interceptorMapping;
     const action = interceptor.constructor.name;
     const pathReg = <RegExp> path;
-    
-    return async function (ctx: Context, next: Function) {
-        let end = time.start(), post;
 
+    return async function (ctx: Context, next: Function) {
+        let end = time.start();
         if (!pathReg.test(ctx.path)) {
             return await next(ctx);
         }
-
+        
         const done = await interceptor.preHandle(ctx);
         let preHandleTime = end(), postHandleTime;
 

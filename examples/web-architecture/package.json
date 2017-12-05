@@ -8,6 +8,8 @@
     "@kapp/monitor": "0.1.0",
     "@kapp/server": "0.1.0",
     "@kapp/shared": "0.1.0",
+    "@kapp/microservice": "0.1.0",
+    "@kapp/forward": "0.1.0",
     "kapp": "0.1.0",
     "koa": "^2.4.1"
   }

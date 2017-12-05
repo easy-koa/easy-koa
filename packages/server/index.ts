@@ -64,7 +64,6 @@ export class Server extends Component {
 
         const { router, rawRouters } = RoutersExplorer.createRouters(controllers);
 
-
         logController(logger, rawRouters);
 
         application.use(errorHandleMiddleware());
@@ -89,7 +88,7 @@ export class Server extends Component {
 
             if (!('interceptor' in interceptor)) {
                 interceptorMapping = {
-                    path: '*',
+                    path: /.*/,
                     methods: [
                         methodTypes.GET,
                         methodTypes.POST
@@ -105,7 +104,10 @@ export class Server extends Component {
 
             return interceptorMapping;
         });
-
         return { controllers, interceptorMappings, middlewares, port };
     }
+}
+
+export {
+    Koa
 }

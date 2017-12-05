@@ -11,11 +11,10 @@
         ],
         "target": "es5",
         "types": [
-            "chalklog",
-            "parrotsay-api",
             "@kaola/microservices",
             "log4js",
-            "koa"
+            "koa",
+            "http-proxy"
         ],
         "lib": [
             "es2015",
@@ -23,8 +22,7 @@
             "dom"
         ],
         "experimentalDecorators": true,
-        "declaration": true,
-        "outDir": "./lib"
+        "declaration": true
     },
     "files": [
         "packages/run/index.ts"
