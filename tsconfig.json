@@ -22,6 +22,11 @@
             "es2017",
             "dom"
         ],
+        "baseUrl": "./",
+        "paths": {
+            "@kapp/*": ["packages/*"]
+        },
+        "outDir": "./dist",
         "experimentalDecorators": true,
         "declaration": true
     },
