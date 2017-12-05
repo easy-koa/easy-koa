@@ -8,7 +8,7 @@
     "test": "npm run build",
     "build": "tsc",
     "dev": "npm run build -- -w",
-    "start": "ts-node ./dist/examples/bootstrap",
+    "start": "ts-node ./examples/web-architecture/bootstrap",
     "boot": "lerna bootstrap --registry http://rnpm.hz.netease.com/",
     "clear": "lerna clean"
   },
