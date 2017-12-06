@@ -6,7 +6,8 @@ export function errorHandleMiddleware() {
         try {
             await next(ctx);
         } catch(e) {
-            ctx.collectError(createMonitorPlainObject.error(ctx.path, {
+            ctx.collectError(createMonitorPlainObject.error({
+                action: ctx.path,
                 error: e,
                 status: ctx.status
             }));

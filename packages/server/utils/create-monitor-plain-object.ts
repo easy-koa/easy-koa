@@ -7,41 +7,49 @@ export function interceptor(action: string, {
 }) {
     return {
         type: 'interceptor',
-        action: action,
         payload: {
+            action,
             preHandle: {
                 time: preHandleTime
             },
             postHandle: isUndefined(postHandleTime) ? undefined: {
-                time: Date.now() - postHandleTime
+                time: postHandleTime
             },
         }
     }
 }
 
-export function controller(action: string, {
-    time, method
-}: {
-    time: number, method: string
+export function controller(payload: {
+    action: string, time: number, method: string, status: number
 }) {
     return {
         type: 'controller',
-        action,
-        payload: {
-            time, method
-        }
+        payload
     }
 }
 
 
-export function error(action: string, { error, status }: { error: Error, status: number }) {
+export function error( {
+    error, status, action
+}: { 
+    error: Error, status: number, action: string 
+}) {
     return {
         type: 'error',
-        action,
         payload: {
+            action,
             status,
             stack: error && error.stack,
             message: error && error.message
         }
+    }
+}
+
+export function render (payload: {
+    action: string, time: number, template: string
+}) {
+    return {
+        type: 'render',
+        payload
     }
 }

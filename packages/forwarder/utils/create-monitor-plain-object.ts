@@ -1,15 +1,13 @@
 import { isUndefined } from "@kapp/shared";
 
-export function forward(url: string, {
-    time
-}: {
-    time: number
+export function forward(payload: {
+    time: number,
+    status: number,
+    action: string
 }) {
     return {
         type: 'forwarder',
-        action: url,
-        payload: {
-            time
-        }
+        
+        payload
     }
 }

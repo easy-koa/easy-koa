@@ -15,7 +15,7 @@ declare module 'koa' {
 import { Component } from '@kapp/core';
 import { Koa, isNil } from '@kapp/shared';
 import * as pathToRegexp from 'path-to-regexp';
-import { InitOptions } from '@kapp/shared';
+import { InitOptions, startTime } from '@kapp/shared';
 import { classTypes, classType, pathMeta, methodTypes } from '@kapp/shared/constants';
 import { isUndefined, BaseObject } from '@kapp/shared';
 import { Controller } from './decorators';
@@ -29,6 +29,8 @@ import { Logger } from '@kapp/logger';
 import { Monitor } from '@kapp/monitor';
 import { getControllerMap } from './utils/get-controller-map';
 import { logController } from './utils/log-controller';
+import * as createMonitorPlainObject from './utils/create-monitor-plain-object';
+import { wrapRenderMonitor } from './utils/wrap-render-monitor';
 
 export class Server extends Component {
     readonly application: Koa = new Koa();
@@ -61,7 +63,7 @@ export class Server extends Component {
 
     private install() {
         const { application, $options, monitor, logger } = this;
-        const { middlewares, controllers, interceptorMappings, render, renderOptions = {} } = $options;
+        let { middlewares, controllers, interceptorMappings, render, renderOptions = {} } = $options;
 
         this.application.context.collect = function(message: any) {
             monitor.collect(message, this);
@@ -71,7 +73,9 @@ export class Server extends Component {
             monitor.collect(message, this);
         }
 
-        application.context.render = render || (defaultRender)(renderOptions);
+        render = render || (defaultRender)(renderOptions);
+
+        application.context.render = wrapRenderMonitor(render);
 
         const { router, rawRouters } = RoutersExplorer.createRouters(controllers);
 

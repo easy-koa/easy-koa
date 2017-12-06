@@ -59,7 +59,11 @@ export class Forwarder extends Component {
             res.once('proxyed', () => resolve());
         });
 
-        this.monitor.collect( createMonitorPlainObject.forward(ctx.path, { time: end() }) )
+        this.monitor.collect( createMonitorPlainObject.forward({
+            action: ctx.path,
+            time: end(),
+            status: res.statusCode
+        }) )
 
         return {
             body: Buffer.concat(responseBody),

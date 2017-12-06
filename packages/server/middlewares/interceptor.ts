@@ -9,6 +9,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
 
     return async function (ctx: Koa.Context, next: Function) {
         let end = startTime();
+        let preHandleTime, postHandleTime;
 
         for (let reg of <RegExp[]>pathReg) {
             if (reg.test(ctx.path)) {
@@ -18,7 +19,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
                     isContinue = await interceptor.preHandle(ctx);
                 }
 
-                let preHandleTime = end(), postHandleTime;
+                let preHandleTime = end();
                 
                 if (isContinue !== false) {
                     await next(ctx);

@@ -9,15 +9,17 @@ export function wrapServiceMonitor(services: BaseObject, monitor: Monitor) {
             plaignServicesObject[providerKey][serviceKey] = async function(...args: any[]) {
                 const action = providerKey + '.' + serviceKey;
                 const end = startTime()
-                const result = await service(...args);
+                const response = await service(...args);
+
                 monitor.collect({
-                    type: 'microservices',
-                    action,
+                    type: 'microservice',
                     payload: {
+                        action,
                         time: end()
                     }
                 });
-                return result;
+
+                return response;
             }
         }
     }
