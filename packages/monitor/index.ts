@@ -34,11 +34,15 @@ export class Monitor extends Component {
     }
 
     collect(message: any): void {
-        this.monitor.info(this.createCollection(message));
+        if (message) {
+            this.monitor.info(this.createCollection(message));
+        }
     }
 
     collectError(message: any): void {
-        this.monitor.error(this.createCollection(message));
+        if (message) {
+            this.monitor.error(this.createCollection(message));
+        }
     }
 
     createCollection(payload: any) {

@@ -1,7 +1,6 @@
-import { isUndefined, Koa } from '@kapp/shared';
+import { isUndefined, Koa, startTime } from '@kapp/shared';
 import { InterceptorMapping } from '../interfaces/interceptor';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
-import * as time from '../utils/time';
 
 
 export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
@@ -9,7 +8,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
     const action = interceptor.constructor.name;
 
     return async function (ctx: Koa.Context, next: Function) {
-        let end = time.start();
+        let end = startTime();
 
         for (let reg of <RegExp[]>pathReg) {
             if (reg.test(ctx.path)) {
@@ -23,7 +22,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
                 
                 if (isContinue !== false) {
                     await next(ctx);
-                    end = time.start();
+                    end = startTime();
 
                     if (!isUndefined(interceptor.postHandle)) {
                         await interceptor.postHandle(ctx)

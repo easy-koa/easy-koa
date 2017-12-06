@@ -1,7 +1,11 @@
-import httpProxy = require('http-proxy');
 import { ServerRequest, ServerResponse, Agent, IncomingMessage, OutgoingHttpHeaders } from 'http';
 import { Component } from '@kapp/core';
-import { Koa } from '@kapp/shared';
+import { Koa, startTime } from '@kapp/shared';
+import { InjectPlugin } from '@kapp/shared';
+import { Monitor } from '@kapp/monitor';
+import { ProxyServer } from './proxy-server';
+import { ProxyServerConfig } from './interfaces';
+import * as createMonitorPlainObject from './utils/create-monitor-plain-object';
 
 declare module 'http' {
     interface ServerResponse {
@@ -9,86 +13,11 @@ declare module 'http' {
     }
 }
 
-export interface ProxyServerConfig {
-    secure: boolean;
-    agent?: Agent;
-    proxyTimeout: number;
-    host: string;
-    headers?: any;
-    xfwd: boolean;
-    target: string;
-}
-
-export interface Options extends ProxyServerConfig {}
-
-class ProxyServer {
-    private proxyServer: any;
-    private proxyServerConfig: ProxyServerConfig;
-
-    constructor(options: Options) {
-
-        this.configiure(options);
-        
-        this.startProxyServer();
-
-        this.bindProxyServerEvents();
-    }
-
-    configiure(options: Options) {
-
-        let { headers, secure, proxyTimeout, host, xfwd, agent, target } = options;
-        
-        if (!headers) {
-            headers = {};
-        }
-
-        headers = Object.assign({}, headers, {
-            Host: host,
-            'X-Special-Proxy-Header': 'foxman',
-            'accept-encoding': ''
-        });
-
-
-        if (!target) {
-            target = 'http://' + host;
-        }
-
-        this.proxyServerConfig = {
-            headers, secure, proxyTimeout, host, xfwd, agent, target
-        }
-    }
-
-    startProxyServer() {
-        this.proxyServer = httpProxy.createProxyServer(this.proxyServerConfig);
-    }
-
-    static create(options: any) {
-        return new this(options);
-    }
-
-    bindProxyServerEvents() {
-        const { proxyServer, proxyServerConfig } = this;
-
-        proxyServer.on('proxyReq', (req: IncomingMessage) => {});
-    
-        proxyServer.on('end', (req: any, res: any, proxyRes: any) => {
-            res.emit('proxyed', req, res, proxyRes);
-        });
-    
-        return proxyServer;
-    }
-
-    on(...args: any[]) {
-        this.proxyServer.on(...args);
-    }
-
-    web(...args: any[]) {
-        this.proxyServer.web(...args);
-    }
-}
-
 export class Forwarder extends Component {
     private proxyServer: ProxyServer;
+
+    @InjectPlugin(Monitor)
+    private monitor: Monitor;
 
     name() {
         return 'forward';
@@ -111,6 +40,7 @@ export class Forwarder extends Component {
     }
 
     async forward (ctx: Koa.Context ) {
+        let end = startTime();
         const { target } = this.$options;
 
         const responseBody: any[] = [];
@@ -128,6 +58,8 @@ export class Forwarder extends Component {
         await new Promise((resolve) => {
             res.once('proxyed', () => resolve());
         });
+
+        this.monitor.collect(createMonitorPlainObject.forward(ctx.path, { time: end() }))
 
         return {
             body: Buffer.concat(responseBody),

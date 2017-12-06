@@ -1,10 +1,9 @@
-import { Koa } from '@kapp/shared';
-import * as time from '../utils/time';
+import { Koa, startTime } from '@kapp/shared';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function controllerMonitorMiddleware () {
     return async function (ctx: Koa.Context, next: Function) {
-        const end = time.start();
+        const end = startTime();
         await next(ctx);
 
         if (!ctx.controller) {
