@@ -1,8 +1,7 @@
 import { Component } from "@kapp/core";
-import { InjectPlugin } from "@kapp/shared";
+import { InjectPlugin, Koa } from "@kapp/shared";
 import { Logger } from "@kapp/logger";
 import { MonitorOptions } from "./interfaces/index";
-import * as Koa from 'koa'; 
 import { BaseObject } from "@kapp/shared";
 import { setInterval } from "timers";
 import { Cron } from "@kapp/cron";
@@ -33,20 +32,22 @@ export class Monitor extends Component {
         this.monitor = this.logger.create(`kapp-${this.name()}`);
     }
 
-    collect(message: any): void {
+    collect(message: any, ctx?: Koa.Context): void {
         if (message) {
-            this.monitor.info(this.createCollection(message));
+            this.monitor.info(this.createCollection(message, ctx));
         }
     }
 
-    collectError(message: any): void {
+    collectError(message: any, ctx?: Koa.Context): void {
         if (message) {
-            this.monitor.error(this.createCollection(message));
+            this.monitor.error(this.createCollection(message, ctx));
         }
     }
 
-    createCollection(payload: any) {
-        return JSON.stringify(payload);
+    createCollection(payload: any, ctx: Koa.Context) {
+        if ( payload ) {
+            return JSON.stringify(payload);
+        }
     }
 
     static configure(options: MonitorOptions) {

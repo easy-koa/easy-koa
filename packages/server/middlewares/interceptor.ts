@@ -31,7 +31,7 @@ export function interceptorMiddleware(interceptorMapping: InterceptorMapping) {
                     postHandleTime = end();
                 } 
                 
-                ctx.monitor.collect(createMonitorPlainObject.interceptor(action, { preHandleTime, postHandleTime }));
+                ctx.collect(createMonitorPlainObject.interceptor(action, { preHandleTime, postHandleTime }));
                 return;
             }
         }

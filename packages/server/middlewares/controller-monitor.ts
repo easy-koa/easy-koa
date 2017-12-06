@@ -10,7 +10,7 @@ export function controllerMonitorMiddleware () {
             return;
         }
         
-        ctx.monitor.collect(createMonitorPlainObject.controller(ctx.controller, {
+        ctx.collect(createMonitorPlainObject.controller(ctx.controller, {
             time: end(),
             method: ctx.method
         }));

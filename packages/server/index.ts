@@ -1,12 +1,13 @@
 declare module 'koa' {
     interface BaseContext {
-        monitor: Monitor;
+        collect: any;
+        collectError: any;
         render: Function;
     }
 
     interface Context {
-        monitor: Monitor;
-        controller: string;
+        collect: any;
+        collectError: any;
         render: Function;
     }
 }
@@ -62,7 +63,13 @@ export class Server extends Component {
         const { application, $options, monitor, logger } = this;
         const { middlewares, controllers, interceptorMappings, render, renderOptions = {} } = $options;
 
-        this.application.context.monitor = monitor;
+        this.application.context.collect = function(message: any) {
+            monitor.collect(message, this);
+        }
+
+        this.application.context.collectError = function(message: any) {
+            monitor.collect(message, this);
+        }
 
         application.context.render = render || (defaultRender)(renderOptions);
 
