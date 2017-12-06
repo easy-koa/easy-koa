@@ -1,10 +1,11 @@
 import { Component } from '@kapp/core';
-import { InitOptions, BaseObject } from '@kapp/shared';
+import { InitOptions, BaseObject, startTime } from '@kapp/shared';
 import * as rpc from '@kaola/rpc';
-import { InjectPlugin } from '@kapp/shared';
+import { InjectPlugin, entries } from '@kapp/shared';
 import { Logger } from '@kapp/logger';
 import { Monitor } from '@kapp/monitor';
 import { Cron } from '@kapp/cron';
+import { wrapServiceMonitor } from './utils/wrap-service-monitor';
 
 interface Services {
     [propName: string]: BaseObject;
@@ -20,9 +21,9 @@ export class MicroServices extends Component {
     @InjectPlugin(Cron)
     cron: Cron;
 
-    private client: any;
     public services: any;
-    private microServices: any;
+    private Client: any;
+    private client: any;
     
     name() {
         return 'rpc';
@@ -34,21 +35,20 @@ export class MicroServices extends Component {
 
         options.services = providers;
         this.$options = options;
-        this.microServices = rpc.createClient(this.$options);
+        this.Client = rpc.createClient(this.$options);
     }
 
     
     async init() {      
-        await this.microServices
-            .connect()
-            .then(({
-                services, client
-            }: {
-                services: any, client: any
-            }) => {
-                this.client = client;
-                this.services = services;
-            })
+        const { services, client }: { services: any, client: any } = await this.Client.connect();
+        
+        this.client = client;
+
+        this.services = wrapServiceMonitor(services, this.monitor);
+
+        // this.cron.setJob(function() {
+
+        // }, 3000);
     }
 
     destroy() {
