@@ -9,7 +9,8 @@
     "build": "tsc",
     "dev": "npm run build -- -w",
     "start": "ts-node ./examples/web-architecture/bootstrap",
-    "boot": "gulp cp && lerna bootstrap --registry http://rnpm.hz.netease.com/",
+    "boot": "npm run bootstrap && gulp cp && cd ./dist/ && npm run bootstrap",
+    "bootstrap": "lerna bootstrap --registry http://rnpm.hz.netease.com/",
     "clear": "rm -rf dist && lerna clean"
   },
   "repository": {
