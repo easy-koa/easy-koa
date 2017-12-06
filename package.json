@@ -28,8 +28,10 @@
     "@types/koa": "^2.0.41",
     "@types/koa-router": "^7.0.26",
     "@types/node": "^8.0.47",
+    "gulp": "^3.9.1",
     "lerna": "^2.5.1",
-    "typescript": "^2.6.1",
-    "gulp": "^3.9.1"
+    "tslint": "^5.8.0",
+    "tslint-eslint-rules": "^4.1.1",
+    "typescript": "^2.6.1"
   }
 }
