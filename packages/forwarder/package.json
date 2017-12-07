@@ -1,10 +1,10 @@
 {
   "name": "@kapp/forwarder",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "dependencies": {
-    "@kapp/core": "0.1.0",
-    "@kapp/monitor": "0.1.0",
-    "@kapp/shared": "0.1.0",
+    "@kapp/core": "0.0.0",
+    "@kapp/monitor": "0.0.0",
+    "@kapp/shared": "0.0.0",
     "http-proxy": "^1.16.2"
   },
   "devDependencies": {

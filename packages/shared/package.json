@@ -1,6 +1,6 @@
 {
   "name": "@kapp/shared",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "dependencies": {
     "koa": "^2.4.1",
     "log4js": "^2.3.12",

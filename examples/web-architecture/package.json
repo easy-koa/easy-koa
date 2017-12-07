@@ -1,16 +1,15 @@
 {
   "name": "web-architecture",
-  "version": "0.1.0",
+  "version": "0.0.0",
   "dependencies": {
-    "@kapp/core": "0.1.0",
-    "@kapp/cron": "0.1.0",
-    "@kapp/logger": "0.1.0",
-    "@kapp/monitor": "0.1.0",
-    "@kapp/server": "0.1.0",
-    "@kapp/shared": "0.1.0",
-    "@kapp/microservice": "0.1.0",
-    "@kapp/forwarder": "0.1.0",
-    "kapp": "0.1.0",
-    "koa": "^2.4.1"
+    "@kapp/core": "0.0.0",
+    "@kapp/cron": "0.0.0",
+    "@kapp/logger": "0.0.0",
+    "@kapp/monitor": "0.0.0",
+    "@kapp/server": "0.0.0",
+    "@kapp/shared": "0.0.0",
+    "@kapp/microservice": "0.0.0",
+    "@kapp/forwarder": "0.0.0",
+    "@kapp/kapp": "0.0.0"
   }
 }

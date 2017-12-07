@@ -1,10 +1,10 @@
 {
     "name": "@kapp/monitor",
-    "version": "0.1.0",
+    "version": "0.0.0",
     "dependencies": {
-        "@kapp/core": "0.1.0",
-        "@kapp/shared": "0.1.0",
-        "@kapp/cron": "0.1.0",
-        "@kapp/logger": "0.1.0"
+        "@kapp/core": "0.0.0",
+        "@kapp/shared": "0.0.0",
+        "@kapp/cron": "0.0.0",
+        "@kapp/logger": "0.0.0"
     }
 }
