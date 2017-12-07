@@ -1,11 +1,11 @@
 {
-  "name": "@kapp/server",
-  "version": "0.0.0",
+  "name": "@kaola/kapp-server",
+  "version": "0.1.0",
   "dependencies": {
-    "@kapp/core": "0.0.0",
-    "@kapp/logger": "0.0.0",
-    "@kapp/monitor": "0.0.0",
-    "@kapp/shared": "0.0.0",
+    "@kaola/kapp-core": "^0.1.0",
+    "@kaola/kapp-logger": "^0.1.0",
+    "@kaola/kapp-monitor": "^0.1.0",
+    "@kaola/kapp-shared": "^0.1.0",
     "art-template": "^4.12.2",
     "koa-router": "^7.3.0",
     "path-to-regexp": "^2.1.0"

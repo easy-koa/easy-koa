@@ -1,12 +1,12 @@
 {
-  "name": "@kapp/microservice",
-  "version": "0.0.0",
+  "name": "@kaola/kapp-microservice",
+  "version": "0.1.0",
   "dependencies": {
     "@kaola/rpc": "^0.1.5",
-    "@kapp/core": "0.0.0",
-    "@kapp/cron": "0.0.0",
-    "@kapp/logger": "0.0.0",
-    "@kapp/monitor": "0.0.0",
-    "@kapp/shared": "0.0.0"
+    "@kaola/kapp-core": "^0.1.0",
+    "@kaola/kapp-cron": "^0.1.0",
+    "@kaola/kapp-logger": "^0.1.0",
+    "@kaola/kapp-monitor": "^0.1.0",
+    "@kaola/kapp-shared": "^0.1.0"
   }
 }

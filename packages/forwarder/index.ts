@@ -1,8 +1,8 @@
 import { ServerRequest, ServerResponse, Agent, IncomingMessage, OutgoingHttpHeaders } from 'http';
-import { Component } from '@kapp/core';
-import { Koa, startTime } from '@kapp/shared';
-import { InjectPlugin } from '@kapp/shared';
-import { Monitor } from '@kapp/monitor';
+import { Component } from '@kaola/kapp-core';
+import { Koa, startTime } from '@kaola/kapp-shared';
+import { InjectPlugin } from '@kaola/kapp-shared';
+import { Monitor } from '@kaola/kapp-monitor';
 import { ProxyServer } from './proxy-server';
 import { ProxyServerConfig } from './interfaces';
 import * as createMonitorPlainObject from './utils/create-monitor-plain-object';

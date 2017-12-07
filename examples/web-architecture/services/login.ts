@@ -1,5 +1,5 @@
-import { InjectPlugin, InjectService } from '@kapp/server/decorators/injection';
-import { MicroServices } from '@kapp/microservice';
+import { InjectPlugin, InjectService } from '@kaola/kapp-server/decorators/injection';
+import { MicroServices } from '@kaola/kapp-microservice';
 
 function createType(className: string, value: any) {
     return {

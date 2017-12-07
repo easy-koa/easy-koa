@@ -1,4 +1,4 @@
-import { isUndefined, Koa, startTime } from '@kapp/shared';
+import { isUndefined, Koa, startTime } from '@kaola/kapp-shared';
 import { InterceptorMapping } from '../interfaces/interceptor';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 

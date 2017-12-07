@@ -1,6 +1,6 @@
-import { Component } from '@kapp/core';
+import { Component } from '@kaola/kapp-core';
 import { LoggerOptions } from './interfaces/logger-options';
-import { loggerFactory, isUndefined } from '@kapp/shared';
+import { loggerFactory, isUndefined } from '@kaola/kapp-shared';
 
 export class Logger extends Component {
     private logger: any;

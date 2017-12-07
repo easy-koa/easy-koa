@@ -1,7 +1,7 @@
-import { Controller, RequestMapping } from '@kapp/server/decorators';
-import { Koa } from '@kapp/shared';
+import { Controller, RequestMapping } from '@kaola/kapp-server/decorators';
+import { Koa } from '@kaola/kapp-shared';
 import TopicService from '../services/topic';
-import { methodTypes } from '@kapp/shared/constants';
+import { methodTypes } from '@kaola/kapp-shared/constants';
 
 
 @Controller('/test')

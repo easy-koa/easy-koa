@@ -1,4 +1,4 @@
-import { pathMeta, methodsMeta, methodTypes } from '@kapp/shared/constants';
+import { pathMeta, methodsMeta, methodTypes } from '@kaola/kapp-shared/constants';
 
 export function RequestMapping ({
     path = '/', methods = [

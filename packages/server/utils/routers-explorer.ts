@@ -1,8 +1,8 @@
-import { BaseObject, isUndefined, isNil } from "@kapp/shared/index";
-import { pathMeta, methodsMeta } from "@kapp/shared/constants";
+import { BaseObject, isUndefined, isNil } from "@kaola/kapp-shared/index";
+import { pathMeta, methodsMeta } from "@kaola/kapp-shared/constants";
 import { IRouter, IRouters } from "../interfaces/index";
 import Router = require('koa-router');
-import { Koa } from '@kapp/shared';
+import { Koa } from '@kaola/kapp-shared';
 
 export class RouterExplorer {
     private controller: any;

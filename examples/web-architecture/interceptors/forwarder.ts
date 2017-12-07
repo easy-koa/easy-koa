@@ -1,5 +1,5 @@
-import { Koa, InjectPlugin } from '@kapp/shared';
-import { Forwarder } from '@kapp/forwarder';
+import { Koa, InjectPlugin } from '@kaola/kapp-shared';
+import { Forwarder } from '@kaola/kapp-forwarder';
 
 
 export class RawForwardInterceptor {

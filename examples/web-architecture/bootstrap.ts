@@ -1,5 +1,5 @@
 import Kapp from 'kapp';
-import { Module } from '@kapp/shared';
+import { Module } from '@kaola/kapp-shared';
 import KappConfig from './kapp-config';
 
 @Module(KappConfig)

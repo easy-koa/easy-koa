@@ -1,5 +1,5 @@
-import { BaseObject } from "@kapp/shared";
-import { registry } from "@kapp/shared/constants";
+import { BaseObject } from "@kaola/kapp-shared";
+import { registry } from "@kaola/kapp-shared/constants";
 import { Component } from "./component";
 
 

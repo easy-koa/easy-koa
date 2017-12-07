@@ -1,10 +1,10 @@
-import { Component } from "@kapp/core";
-import { InjectPlugin, Koa } from "@kapp/shared";
-import { Logger } from "@kapp/logger";
+import { Component } from "@kaola/kapp-core";
+import { InjectPlugin, Koa } from "@kaola/kapp-shared";
+import { Logger } from "@kaola/kapp-logger";
 import { MonitorOptions } from "./interfaces/index";
-import { BaseObject } from "@kapp/shared";
+import { BaseObject } from "@kaola/kapp-shared";
 import { setInterval } from "timers";
-import { Cron } from "@kapp/cron";
+import { Cron } from "@kaola/kapp-cron";
 import { MonitorLogger } from "./interfaces/monitor-logger";
 
 

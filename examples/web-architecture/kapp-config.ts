@@ -4,8 +4,8 @@ import { LoginInterceptor } from "./interceptors/login";
 import { RawForwardInterceptor, APIForwardInterceptor, PageForwardInterceptor } from "./interceptors/forwarder";
 import TopicController from "./controllers/topic";
 import { loginProvider } from "./services/login";
-import { MicroServices } from "@kapp/microservice";
-import { Forwarder } from "@kapp/forwarder";
+import { MicroServices } from "@kaola/kapp-microservice";
+import { Forwarder } from "@kaola/kapp-forwarder";
 import { Agent } from "http";
 import path = require('path');
 

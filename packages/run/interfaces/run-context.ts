@@ -1,7 +1,7 @@
-import { ServerOptions, ServerContext } from "@kapp/server/interfaces";
+import { ServerOptions, ServerContext } from "@kaola/kapp-server/interfaces";
 
-import { LoggerOptions } from "@kapp/logger/interfaces/logger-options";
-import { MonitorOptions } from "@kapp/monitor/interfaces/index";
+import { LoggerOptions } from "@kaola/kapp-logger/interfaces/logger-options";
+import { MonitorOptions } from "@kaola/kapp-monitor/interfaces/index";
 import { Component } from "../../core/index";
 
 export interface ModuleContext {
