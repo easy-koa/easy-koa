@@ -11,7 +11,9 @@
     "start": "ts-node ./examples/web-architecture/bootstrap",
     "boot": "lerna bootstrap && gulp cp && cd ./dist/ && lerna init && lerna bootstrap",
     "clear": "rm -rf dist && lerna clean",
-    "publish": "cd ./dist/ && lerna publish --scope @kaola/** -f --registry http://rnpm.hz.netease.com/"
+    "prerelease": "npm run build",
+    "afterrelease": "gulp clear",
+    "publish": "npm run prerelease && lerna publish --scope @kaola/** -f --registry http://rnpm.hz.netease.com/ && npm run afterrelease"
   },
   "repository": {
     "type": "git",
@@ -30,6 +32,7 @@
     "@types/koa-router": "^7.0.26",
     "@types/node": "^8.0.47",
     "gulp": "^3.9.1",
+    "gulp-rm": "^1.0.4",
     "lerna": "^2.5.1",
     "tslint": "^5.8.0",
     "tslint-eslint-rules": "^4.1.1",

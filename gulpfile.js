@@ -1,7 +1,13 @@
-const gulp = require('gulp')
-gulp.task('cp', function () {
-    gulp.src('./lerna.json').pipe(gulp.dest('./dist'));
-    gulp.src('./.npmrc').pipe(gulp.dest('./dist'));
-    gulp.src('./packages/*/package.json').pipe(gulp.dest('./dist/packages'))
-    gulp.src('./examples/*/package.json').pipe(gulp.dest('./dist/examples'))
+const gulp = require('gulp');
+const rm = require( 'gulp-rm' );
+
+
+gulp.task('clear', function () {
+    return gulp.src( [
+        'examples/**/*.js',
+        'examples/**/*.js.map',
+        'examples/**/*.d.ts',
+        '!examples/**/node_modules/**'
+    ], { read: false })
+        .pipe( rm({ async: false }) )
 })

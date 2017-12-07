@@ -28,7 +28,6 @@
             "kapp": ["packages/run"],
             "@kapp/*": ["packages/*"]
         },
-        "outDir": "./dist",
         "experimentalDecorators": true,
         "declaration": true
     },
