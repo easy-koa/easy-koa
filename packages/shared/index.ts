@@ -1,6 +1,6 @@
-import 'reflect-metadata';
+import 'reflect-metadata'
 
-export * from './decorators';
-export * from './interfaces';
-export * from './utils';
-export * from './libs';
+export * from './decorators'
+export * from './interfaces'
+export * from './utils'
+export * from './libs'

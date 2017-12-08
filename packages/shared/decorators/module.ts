@@ -1,9 +1,8 @@
-import 'reflect-metadata';
-import { moduleMeta } from '../constants';
+import 'reflect-metadata'
+import { moduleMeta } from '../constants'
 
-
-export function Module (options: any) {
-    return function(target: any) {
-        Reflect.defineMetadata(moduleMeta, options, target);
+export function Module(appConfig: any): Function {
+    return function(target: any): void {
+        Reflect.defineMetadata(moduleMeta, appConfig, target)
     }
 }

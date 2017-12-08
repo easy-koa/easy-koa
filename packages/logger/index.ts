@@ -1,56 +1,56 @@
-import { Component } from '@kaola/kapp-core';
-import { LoggerOptions } from './interfaces/logger-options';
-import { loggerFactory, isUndefined } from '@kaola/kapp-shared';
+import { Component } from '@kaola/kapp-core'
+import { LoggerOptions } from './interfaces/logger-options'
+import { loggerFactory, isUndefined } from '@kaola/kapp-shared'
 
 export class Logger extends Component {
-    private logger: any;
-    private loggerFactory: any;
-    
+    private logger: any
+    private loggerFactory: any
+
     constructor(name: string, cfg: any) {
-        super();
-        loggerFactory.configure(cfg);
-        this.loggerFactory = loggerFactory;
-        this.logger = this.create(name);
+        super()
+        loggerFactory.configure(cfg)
+        this.loggerFactory = loggerFactory
+        this.logger = this.create(name)
     }
 
-    create(name: string) {
-        return this.loggerFactory.getLogger(name);
+    create(name: string): any {
+        return this.loggerFactory.getLogger(name)
     }
 
-    name() {
-        return 'logger';
+    name(): any {
+        return 'logger'
     }
 
-    public fatal(message: any) {
-        const logger = this.logger;
-        return logger.fatal(message);
+    public fatal(message: any): any {
+        const logger: any = this.logger
+        return logger.fatal(message)
     }
 
-    public info(message: any) {
-        const logger = this.logger;
-        return logger.info(message);
+    public info(message: any): any {
+        const logger: any = this.logger
+        return logger.info(message)
     }
 
-    public error(message: any) {
-        const logger = this.logger;
-        return logger.error(message);
+    public error(message: any): any {
+        const logger: any = this.logger
+        return logger.error(message)
     }
 
-    public warn(message: any) {
-        const logger = this.logger;
-        return logger.warn(message);
+    public warn(message: any): any {
+        const logger: any = this.logger
+        return logger.warn(message)
     }
 
-    destroy(error: any) {
+    destroy(error: any): void {
         if (error) {
-            const logger = this.logger;
-            logger.fatal(error);
+            const logger: any = this.logger
+            logger.fatal(error)
         }
     }
 
-    static configure({ application, options} : LoggerOptions): LoggerOptions {
+    static configure({ application, options }: LoggerOptions): LoggerOptions {
         if (isUndefined(application)) {
-            application = 'kapp-application';
+            application = 'kapp-application'
         }
         if (isUndefined(options)) {
             options = {
@@ -62,19 +62,19 @@ export class Logger extends Component {
                         compress: false,
                     },
                     console: {
-                        type: 'console'
-                    }
+                        type: 'console',
+                    },
                 },
                 categories: {
                     default: {
                         appenders: [
-                            'dateFile', 'console'
+                            'dateFile', 'console',
                         ],
-                        level: 'all'
-                    }
-                }
-            };
+                        level: 'all',
+                    },
+                },
+            }
         }
-        return { application, options } ;
+        return { application, options }
     }
 }

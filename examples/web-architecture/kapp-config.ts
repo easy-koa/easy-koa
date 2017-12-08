@@ -1,7 +1,7 @@
 declare module 'koa' {
     interface Context {
         kaolaContext: any
-        render: (path: string, data?: any) => void
+        render(path: string, data?: any): void
     }
 }
 

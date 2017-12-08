@@ -1,6 +1,6 @@
-export function startTime() {
-    const time = Date.now();
-    return function end() {
-        return Date.now() - time;
+export function startTime(): Function {
+    const time: number = Date.now()
+    return function end(): number {
+        return Date.now() - time
     }
 }

@@ -4,17 +4,17 @@ export enum classTypes {
     interceptor = 'interceptor',
 }
 
-export const classType = 'type';
+export const classType: string = 'type'
 
-export const pathMeta = 'path';
+export const pathMeta: string = 'path'
 
-export const methodsMeta = 'methods';
+export const methodsMeta: string = 'methods'
 
-export const moduleMeta = 'module';
+export const moduleMeta: string = 'module'
 
 export enum methodTypes {
     GET = 'GET',
-    POST = 'POST'
+    POST = 'POST',
 }
 
 export enum registry {

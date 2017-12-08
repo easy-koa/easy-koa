@@ -1,7 +1,7 @@
-export function createSystemId() {
+export function createSystemId(): Function {
     // uid
-    let currentId = 0;
-    return function getNext() {
-        return currentId++;
-    };
+    let currentId: number = 0
+    return function getNext(): number {
+        return currentId++
+    }
 }

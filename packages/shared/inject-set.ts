@@ -1,1 +1,1 @@
-export const injectSet = new Set();
+export const injectSet: Set<any> = new Set()
