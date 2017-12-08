@@ -17,7 +17,10 @@
     "publish": "npm run prerelease && lerna publish --scope @kaola/** -f --registry http://rnpm.hz.netease.com/ && npm run afterrelease"
   },
   "lint-staged": {
-    "*.ts": ["tslint -c tslint.json 'packages/**/*.ts'", "git add"]
+    "packages/**/*.ts": [
+      "tslint -c tslint.json --fix",
+      "git add"
+    ]
   },
   "repository": {
     "type": "git",
@@ -37,7 +40,9 @@
     "@types/node": "^8.0.47",
     "gulp": "^3.9.1",
     "gulp-rm": "^1.0.4",
+    "husky": "^0.14.3",
     "lerna": "^2.5.1",
+    "lint-staged": "^6.0.0",
     "tslint": "^5.8.0",
     "tslint-eslint-rules": "^4.1.1",
     "typescript": "^2.6.1"
