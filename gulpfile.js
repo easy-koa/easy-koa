@@ -7,7 +7,12 @@ gulp.task('clear', function () {
         'examples/**/*.js',
         'examples/**/*.js.map',
         'examples/**/*.d.ts',
-        '!examples/**/node_modules/**'
+        '!examples/**/node_modules/**',
+
+        'packages/**/*.js',
+        'packages/**/*.js.map',
+        'packages/**/*.d.ts',
+        '!packages/**/node_modules/**'
     ], { read: false })
         .pipe( rm({ async: false }) )
 })
