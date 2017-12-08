@@ -15,6 +15,7 @@
             "log4js",
             "koa",
             "http-proxy",
+            "pify",
             "art-template"
         ],
         "lib": [
