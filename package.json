@@ -5,6 +5,7 @@
   "main": "dist/index.js",
   "types": "./index.d.ts",
   "scripts": {
+    "precommit": "lint-staged",
     "test": "npm run build",
     "build": "tsc",
     "dev": "npm run build -- -w",
@@ -14,6 +15,9 @@
     "prerelease": "npm run build",
     "afterrelease": "gulp clear",
     "publish": "npm run prerelease && lerna publish --scope @kaola/** -f --registry http://rnpm.hz.netease.com/ && npm run afterrelease"
+  },
+  "lint-staged": {
+    "*.ts": ["tslint -c tslint.json 'packages/**/*.ts'", "git add"]
   },
   "repository": {
     "type": "git",

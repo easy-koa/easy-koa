@@ -1,6 +1,6 @@
-import { BaseObject } from "@kaola/kapp-shared";
+import { BaseObject } from "@kaola/kapp-shared"
 
 export interface LoggerOptions {
-    application?: string;
-    options?: BaseObject;
+    application?: string
+    options?: BaseObject
 }
