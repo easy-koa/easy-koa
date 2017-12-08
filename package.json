@@ -14,7 +14,7 @@
     "clear": "rm -rf dist && lerna clean",
     "prerelease": "npm run build",
     "afterrelease": "gulp clear",
-    "publish": "npm run prerelease && lerna publish --scope @kaola/** -f --registry http://rnpm.hz.netease.com/ && npm run afterrelease"
+    "release": "npm run prerelease && lerna publish --scope @kaola/** -f && npm run afterrelease"
   },
   "lint-staged": {
     "packages/**/*.ts": [
