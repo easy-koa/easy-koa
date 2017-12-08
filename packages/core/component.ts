@@ -1,37 +1,37 @@
-import { createSystemId } from "@kaola/kapp-shared";
-import { BaseObject, Services, InitOptions } from "@kaola/kapp-shared";
+import { createSystemId } from "@kaola/kapp-shared"
+import { BaseObject, Services, InitOptions } from "@kaola/kapp-shared"
 
-const pid = createSystemId();
+const pid: Function = createSystemId()
 
-interface Options extends BaseObject{
-    enable: boolean;
+interface Options extends BaseObject {
+    enable: boolean
 }
 
 export abstract class Component {
     constructor(...args: any[]) {}
-    id = pid();
-    
-    $options: any = { enable: true };
-    
-    abstract name(): string;
+    id: string = pid()
 
-    init(options: InitOptions) {}
+    $options: any = { enable: true }
 
-    ready() {}
+    abstract name(): string
 
-    destroy(options?: any) {}
+    init(options: InitOptions): any {}
 
-    afterCreated() {
+    ready(): any {}
+
+    destroy(options?: any): any {}
+
+    afterCreated(): any {
         if (typeof this.$options.enable === 'undefined') {
-            this.$options.enable = true;
+            this.$options.enable = true
         }
     }
-    
+
     static configure(options: BaseObject): BaseObject {
-        return options || {};
+        return options || {}
     }
 }
 
 export interface Components {
-    [propName: string]: Component;
+    [propName: string]: Component
 }
