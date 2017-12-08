@@ -1,4 +1,4 @@
-import Kapp from 'kapp';
+import Kapp from '@kaola/kapp';
 import { Module } from '@kaola/kapp-shared';
 import KappConfig from './kapp-config';
 
