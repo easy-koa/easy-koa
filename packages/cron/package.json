@@ -1,7 +1,7 @@
 {
     "name": "@kaola/kapp-cron",
-    "version": "0.1.7",
+    "version": "0.1.8",
     "dependencies": {
-        "@kaola/kapp-core": "^0.1.7"
+        "@kaola/kapp-core": "^0.1.8"
     }
 }
