@@ -14,7 +14,7 @@
     "clear": "rm -rf dist && lerna clean",
     "prerelease": "npm run build",
     "afterrelease": "gulp clear",
-    "release": "npm run prerelease && lerna publish --scope @kaola/** -f && npm run afterrelease"
+    "release": "npm run prerelease && lerna publish --registry http://rnpm.hz.netease.com/  --scope @kaola/** -f && npm run afterrelease"
   },
   "lint-staged": {
     "*.ts": ["tslint -c tslint.json 'packages/**/*.ts'", "git add"]
