@@ -9,9 +9,10 @@
     "test": "npm run build",
     "build": "tsc",
     "dev": "npm run build -- -w",
-    "start": "ts-node ./examples/web-architecture/bootstrap",
-    "boot": "lerna bootstrap && gulp cp && cd ./dist/ && lerna init && lerna bootstrap",
+    "start": "npm run reboot && ts-node ./examples/web-architecture/bootstrap",
+    "boot": "lerna bootstrap",
     "clear": "rm -rf dist && lerna clean",
+    "reboot": "npm run clear && npm run boot",
     "prerelease": "npm run build",
     "afterrelease": "gulp clear",
     "release": "npm run prerelease && lerna publish --registry http://rnpm.hz.netease.com/  --scope @kaola/** -f && npm run afterrelease"

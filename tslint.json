@@ -91,6 +91,7 @@
             "member-variable-declaration"
         ],
         "no-var-keyword": true,
-        "no-unused-variable": [true]
+        "no-unused-variable": [true],
+        "prefer-method-signature": true
     }
 }
