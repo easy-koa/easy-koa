@@ -47,7 +47,7 @@ export default class Kapp {
 
     private configure(moduleOptions: ModuleOptions): void {
         const {
-            logger = {}, monitor = {}, components = [], server = {}, config = {}
+            logger = {}, monitor = {}, components = [], server = {}, config = {},
         } = moduleOptions
 
         const loggerContext: any = Logger.configure(logger)

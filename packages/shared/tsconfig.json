@@ -13,8 +13,7 @@
         "types": [
             "log4js",
             "koa",
-            "pify",
-            "art-template"
+            "pify"
         ],
         "lib": [
             "es2015",
