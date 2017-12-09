@@ -5,19 +5,7 @@
         "removeComments": true,
         "preserveConstEnums": true,
         "sourceMap": true,
-        "typeRoots": [
-            "./@types/",
-            "./node_modules/@types/"
-        ],
         "target": "es5",
-        "types": [
-            "@kaola/microservices",
-            "log4js",
-            "koa",
-            "http-proxy",
-            "pify",
-            "art-template"
-        ],
         "lib": [
             "es2015",
             "es2017",

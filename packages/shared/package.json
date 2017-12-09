@@ -3,6 +3,8 @@
   "version": "0.1.11",
   "dependencies": {
     "koa": "^2.4.1",
+    "@types/koa": "^2.0.41",
+    "@types/pify": "^3.0.0",
     "log4js": "^2.3.12",
     "pify": "^3.0.0",
     "reflect-metadata": "^0.1.10"

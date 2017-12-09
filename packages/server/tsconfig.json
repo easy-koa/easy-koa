@@ -1,3 +1,33 @@
 {
-    "extends": "../../tsconfig.json"
+    "compilerOptions": {
+        "module": "commonjs",
+        "noImplicitAny": true,
+        "removeComments": true,
+        "preserveConstEnums": true,
+        "sourceMap": true,
+        "typeRoots": [
+            "./@types/",
+            "./node_modules/@types/"
+        ],
+        "target": "es5",
+        "types": [
+            "art-template",
+            "koa-router"
+        ],
+        "lib": [
+            "es2015",
+            "es2017",
+            "dom"
+        ],
+        "experimentalDecorators": true,
+        "declaration": true
+    },
+    "files": [
+        "./index.ts"
+    ],
+    "include": [
+    ],
+    "exclude": [
+        "node_modules"
+    ]
 }

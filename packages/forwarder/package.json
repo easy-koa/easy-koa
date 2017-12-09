@@ -5,9 +5,7 @@
     "@kaola/kapp-core": "^0.1.11",
     "@kaola/kapp-monitor": "^0.1.11",
     "@kaola/kapp-shared": "^0.1.11",
-    "http-proxy": "^1.16.2"
-  },
-  "devDependencies": {
+    "http-proxy": "^1.16.2",
     "@types/http-proxy": "^1.12.2"
   }
 }
