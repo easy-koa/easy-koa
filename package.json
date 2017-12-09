@@ -39,6 +39,7 @@
     "@types/koa": "^2.0.41",
     "@types/koa-router": "^7.0.26",
     "@types/node": "^8.0.47",
+    "@types/pify": "^3.0.0",
     "gulp": "^3.9.1",
     "gulp-rm": "^1.0.4",
     "husky": "^0.14.3",
