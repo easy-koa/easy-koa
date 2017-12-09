@@ -1,10 +1,10 @@
 {
   "name": "@kaola/kapp-shared",
-  "version": "0.1.8",
+  "version": "0.1.9",
   "dependencies": {
     "koa": "^2.4.1",
-    "pify": "^3.0.0",
     "log4js": "^2.3.12",
+    "pify": "^3.0.0",
     "reflect-metadata": "^0.1.10"
   }
 }
