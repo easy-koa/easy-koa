@@ -8,7 +8,11 @@ export class Logger extends Component {
 
     constructor(name: string, cfg: any) {
         super()
-        loggerFactory.configure(cfg)
+
+        if (!isUndefined(cfg)) {
+            loggerFactory.configure(cfg)
+        }
+
         this.loggerFactory = loggerFactory
         this.logger = this.create(name)
     }
@@ -52,29 +56,10 @@ export class Logger extends Component {
         if (isUndefined(application)) {
             application = 'kapp-application'
         }
-        if (isUndefined(options)) {
-            options = {
-                appenders: {
-                    dateFile: {
-                        type: 'dateFile',
-                        filename: './logs/runtime.log',
-                        pattern: '.yyyy-MM-dd-hh',
-                        compress: false,
-                    },
-                    console: {
-                        type: 'console',
-                    },
-                },
-                categories: {
-                    default: {
-                        appenders: [
-                            'dateFile', 'console',
-                        ],
-                        level: 'all',
-                    },
-                },
-            }
+        if (!isUndefined(options)) {
+            options.pm2 = true
         }
+
         return { application, options }
     }
 }
