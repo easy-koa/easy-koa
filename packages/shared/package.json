@@ -1,6 +1,6 @@
 {
   "name": "@kaola/kapp-shared",
-  "version": "0.1.9",
+  "version": "0.1.11",
   "dependencies": {
     "koa": "^2.4.1",
     "log4js": "^2.3.12",
