@@ -68,4 +68,8 @@ export default {
             },
         }),
     ],
+
+    config: {
+        x: 1,
+    },
 }

@@ -23,24 +23,6 @@
             "es2017",
             "dom"
         ],
-        "baseUrl": ".",
-        "paths": {
-            "@kaola/kapp": ["packages/run"],
-            "@kaola/kapp-core": ["packages/core"],
-            "@kaola/kapp-core/*": ["packages/core/*"],
-            "@kaola/kapp-logger": ["packages/logger"],
-            "@kaola/kapp-logger/*": ["packages/logger/*"],
-            "@kaola/kapp-cron": ["packages/cron"],
-            "@kaola/kapp-forwarder": ["packages/forwarder"],
-            "@kaola/kapp-shared": ["packages/shared"],
-            "@kaola/kapp-shared/*": ["packages/shared/*"],
-            "@kaola/kapp-microservice": ["packages/microservice"],
-            "@kaola/kapp-monitor": ["packages/monitor"],
-            "@kaola/kapp-monitor/*": ["packages/monitor/*"],
-
-            "@kaola/kapp-server": ["packages/server"],
-            "@kaola/kapp-server/*": ["packages/server/*"]
-        },
         "experimentalDecorators": true,
         "declaration": true
     },

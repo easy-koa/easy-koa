@@ -2,9 +2,14 @@ import { Controller, RequestMapping } from '@kaola/kapp-server/decorators'
 import { Koa } from '@kaola/kapp-shared'
 import TopicService from '../services/topic'
 import { methodTypes } from '@kaola/kapp-shared/constants'
+import { InjectPlugin } from '@kaola/kapp-server/decorators/injection'
+import { Config } from '@kaola/kapp-config/index'
 
 @Controller('/test')
 export default class TopicController {
+
+    @InjectPlugin(Config)
+    private config: Config
 
     @RequestMapping({
         path: '/account',
@@ -18,5 +23,12 @@ export default class TopicController {
     })
     topic(ctx: any): void {
         ctx.body = 'topic'
+    }
+
+    @RequestMapping({
+        path: '/config',
+    })
+    getConfig(ctx: any): void {
+        ctx.body = JSON.stringify(this.config.get('x'))
     }
 }

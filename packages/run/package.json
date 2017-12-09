@@ -7,6 +7,7 @@
         "@kaola/kapp-logger": "^0.1.8",
         "@kaola/kapp-monitor": "^0.1.8",
         "@kaola/kapp-server": "^0.1.8",
-        "@kaola/kapp-shared": "^0.1.8"
+        "@kaola/kapp-shared": "^0.1.8",
+        "@kaola/kapp-config": "^0.1.8"
     }
 }

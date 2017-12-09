@@ -6,6 +6,7 @@ import { Monitor } from '@kaola/kapp-monitor'
 import { Server } from '@kaola/kapp-server'
 import { Cron } from '@kaola/kapp-cron'
 import { moduleMeta } from '@kaola/kapp-shared/constants'
+import { Config } from '@kaola/kapp-config'
 
 export default class Kapp {
     readonly application: Application = new Application()
@@ -21,8 +22,10 @@ export default class Kapp {
     private install(): void {
         const { application } = this
         const {
-            logger, server, monitor, components,
+            logger, server, monitor, components, config,
         }: ModuleContext = this.moduleContext
+
+        application.use(new Config(config))
 
         application.use(new Cron())
 
@@ -44,14 +47,14 @@ export default class Kapp {
 
     private configure(moduleOptions: ModuleOptions): void {
         const {
-            logger = {}, monitor = {}, components = [], server = {},
+            logger = {}, monitor = {}, components = [], server = {}, config = {}
         } = moduleOptions
 
         const loggerContext: any = Logger.configure(logger)
         const monitorContext: any = Monitor.configure(monitor)
         const serverContext: any = Server.configure(server)
 
-        this.moduleContext = { logger: loggerContext, monitor: monitorContext, server: serverContext, components }
+        this.moduleContext = { logger: loggerContext, monitor: monitorContext, server: serverContext, components, config }
     }
 
     public run(): Promise<void> {

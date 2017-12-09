@@ -10,6 +10,7 @@
     "@kaola/kapp-microservice": "^0.1.0",
     "@kaola/kapp-monitor": "^0.1.0",
     "@kaola/kapp-server": "^0.1.0",
-    "@kaola/kapp-shared": "^0.1.0"
+    "@kaola/kapp-shared": "^0.1.0",
+    "@kaola/kapp-config": "^0.1.0"
   }
 }
