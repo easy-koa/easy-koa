@@ -1,8 +1,8 @@
 {
   "name": "@kaola/kapp-logger",
-  "version": "0.1.11",
+  "version": "0.1.12",
   "dependencies": {
-    "@kaola/kapp-core": "^0.1.11",
-    "@kaola/kapp-shared": "^0.1.11"
+    "@kaola/kapp-core": "^0.1.12",
+    "@kaola/kapp-shared": "^0.1.12"
   }
 }
