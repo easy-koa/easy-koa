@@ -12,6 +12,7 @@ gulp.task('clear', function () {
         'packages/**/*.js',
         'packages/**/*.js.map',
         'packages/**/*.d.ts',
+        '!packages/**/@types/**/index.d.ts',
         '!packages/**/node_modules/**'
     ], { read: false })
         .pipe( rm({ async: false }) )
