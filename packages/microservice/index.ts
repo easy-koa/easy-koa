@@ -11,7 +11,7 @@ interface Services {
     [propName: string]: BaseObject;
 };
 
-export class MicroServices extends Component {
+export class MicroService extends Component {
     @InjectPlugin(Logger)
     private logger: Logger;
 

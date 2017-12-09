@@ -1,5 +1,5 @@
 import { InjectPlugin, InjectService } from '@kaola/kapp-server/decorators/injection'
-import { MicroServices } from '@kaola/kapp-microservice'
+import { MicroService } from '@kaola/kapp-microservice'
 
 interface TypeInfo {
     $class: string
@@ -39,8 +39,8 @@ export const loginProvider: any = {
 }
 
 export class LoginService {
-    @InjectPlugin(MicroServices)
-    microServices: MicroServices
+    @InjectPlugin(MicroService)
+    microServices: MicroService
 
     async getLoginAccount(cookie: string): Promise<any> {
         return await this.microServices.services.login.getLoginAccount(types.string(cookie))

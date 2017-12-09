@@ -9,7 +9,7 @@ import { LoginInterceptor } from "./interceptors/login"
 import { RawForwardInterceptor, APIForwardInterceptor, PageForwardInterceptor } from "./interceptors/forwarder"
 import TopicController from "./controllers/topic"
 import { loginProvider } from "./services/login"
-import { MicroServices } from "@kaola/kapp-microservice"
+import { MicroService } from "@kaola/kapp-microservice"
 import { Forwarder } from "@kaola/kapp-forwarder"
 import { Agent } from "http"
 import path = require('path')
@@ -59,7 +59,7 @@ export default {
             xfwd: true,
             target: 'https://m.kaola.com',
         }),
-        new MicroServices({
+        new MicroService({
             application: 'haitao-wap',
             version: '3.0.3.3',
             register: '10.165.124.205:2181',
