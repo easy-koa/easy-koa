@@ -42,7 +42,7 @@ export class Registry {
         const key: any = component.name()
         const value: any = component
 
-        if (!(component instanceof Component)) {
+        if (!Component.isInstance(component)) {
             throw new Error(`failed to register the ${registry.component} - ${key}, beacause it's not a Component`)
         }
 
@@ -53,8 +53,8 @@ export class Registry {
         this.components.set(key, value)
     }
 
-    registerService(key: { new(): BaseObject }, value: BaseObject): void {
-        this.services.set(key, value)
+    registerService(s: { new(): BaseObject }, value: BaseObject): void {
+        this.services.set(s.name, value)
     }
 
     public getComponent < T extends Component > (c: new(...args: any[]) => T): T {
@@ -63,7 +63,7 @@ export class Registry {
     }
 
     public getService<T> (s: { new(): T }): T {
-        let instance: any = this.services.get(s)
+        let instance: any = this.services.get(s.name)
 
         if (!instance) {
             instance = new s()

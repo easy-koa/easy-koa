@@ -8,6 +8,10 @@ interface Options extends BaseObject {
 }
 
 export abstract class Component {
+    get isComponent(): boolean {
+        return true
+    }
+
     constructor(...args: any[]) {}
     id: string = pid()
 
@@ -29,6 +33,10 @@ export abstract class Component {
 
     static configure(options: BaseObject): BaseObject {
         return options || {}
+    }
+
+    static isInstance(component: any): boolean {
+        return component.isComponent === true
     }
 }
 

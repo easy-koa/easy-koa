@@ -5,7 +5,7 @@ import { logger } from '@kaola/kapp-shared'
 export class Application {
     readonly registry: Registry = new Registry()
     public use(component: Component): void {
-        if (!(component instanceof Component)) {
+        if (!(Component.isInstance(component))) {
             return
         }
         component.afterCreated()
