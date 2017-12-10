@@ -1,6 +1,6 @@
 {
     "name": "@kaola/kapp-monitor",
-    "version": "0.1.13",
+    "version": "0.1.14",
     "dependencies": {
         "@kaola/kapp-core": "^0.1.13",
         "@kaola/kapp-cron": "^0.1.13",
