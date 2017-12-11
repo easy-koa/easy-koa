@@ -1,6 +1,6 @@
 {
   "name": "@kaola/kapp-shared",
-  "version": "0.1.15",
+  "version": "0.1.16",
   "dependencies": {
     "@types/koa": "^2.0.41",
     "@types/pify": "^3.0.0",

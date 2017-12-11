@@ -1,8 +1,8 @@
 {
     "name": "@kaola/kapp-config",
-    "version": "0.1.15",
+    "version": "0.1.16",
     "dependencies": {
-        "@kaola/kapp-core": "^0.1.15",
-        "@kaola/kapp-shared": "^0.1.15"
+        "@kaola/kapp-core": "^0.1.16",
+        "@kaola/kapp-shared": "^0.1.16"
     }
 }
