@@ -8,3 +8,5 @@ export const validatePath = (path: any): string => (path.charAt(0) !== '/') ? '/
 export const isNil = (obj: any): boolean => isUndefined(obj) || obj === null
 export const isEmpty = (array: any): boolean => !(array && array.length > 0)
 export const isNumber = (n: any): boolean => typeof n === 'number'
+
+export const isEmptyObject = (object: any): boolean => Object.keys(object).length === 0
