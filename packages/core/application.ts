@@ -1,8 +1,9 @@
 import { Registry } from './registry'
 import { Component } from './component'
-import { logger } from '@kaola/kapp-shared'
+import { loggerFactory } from '@kaola/kapp-shared'
 
 export class Application {
+    readonly logger: any = loggerFactory.getLogger('kapp')
     readonly registry: Registry = new Registry()
     public use(component: Component): void {
         if (!(Component.isInstance(component))) {
@@ -15,6 +16,7 @@ export class Application {
 
     public async start(): Promise<any> {
         const components: any[] = Array.from(this.registry.components)
+        const logger: any = this.logger
 
         let index: number = 0
         const total: number = components.length

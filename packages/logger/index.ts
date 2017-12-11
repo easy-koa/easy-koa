@@ -2,6 +2,7 @@ import { Component } from '@kaola/kapp-core'
 import { LoggerOptions } from './interfaces/logger-options'
 import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@kaola/kapp-shared'
 import * as path from 'path'
+import * as cluster from 'cluster'
 
 export class Logger extends Component {
     private logger: any
@@ -55,13 +56,14 @@ export class Logger extends Component {
         }
 
         if (isNil(options) || isEmptyObject(options)) {
+            const id: string = cluster.isWorker && cluster.worker.id
             options = {
                 appenders: {
                     frameworks: {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp.log`
+                            `${application}-kapp-${id}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -71,7 +73,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-application.log`
+                            `${application}-kapp-application-${id}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -81,7 +83,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-monitor.log`
+                            `${application}-kapp-monitor-${id}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -116,6 +118,10 @@ export class Logger extends Component {
 
         if (isUndefined(options.pm2)) {
             options.pm2 = true
+        }
+
+        if (isUndefined(options.disableClustering)) {
+            options.disableClustering = true
         }
 
         // use a default configuration
