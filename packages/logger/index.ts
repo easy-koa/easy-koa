@@ -50,14 +50,13 @@ export class Logger extends Component {
         }
     }
 
-    static configure({ application, options, logdir, logfile }: LoggerOptions): LoggerOptions {
+    static configure({ application, options, logdir, logfile, splitCluster }: LoggerOptions): LoggerOptions {
         if (isUndefined(application)) {
             application = 'kapp-application'
         }
 
         if (isNil(options) || isEmptyObject(options)) {
-            const clusterId: string = cluster.isWorker && cluster.worker.id
-            const clusterSuffix: string = clusterId ? '-' + clusterId : ''
+            const clusterId: string = (splitCluster && cluster.isWorker) ? '-' + cluster.worker.id : ''
 
             options = {
                 appenders: {
@@ -65,7 +64,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp${clusterSuffix}.log`
+                            `${application}-kapp${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -75,7 +74,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-application${clusterSuffix}.log`
+                            `${application}-kapp-application${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -85,7 +84,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-monitor${clusterSuffix}.log`
+                            `${application}-kapp-monitor${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,

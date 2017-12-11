@@ -5,4 +5,5 @@ export interface LoggerOptions {
     logdir?: string
     logfile?: string
     options?: any
+    splitCluster?: any
 }

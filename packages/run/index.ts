@@ -9,12 +9,16 @@ import { moduleMeta } from '@kaola/kapp-shared/constants'
 import { Config } from '@kaola/kapp-config'
 
 export default class Kapp {
-    readonly application: Application = new Application()
     private moduleContext: ModuleContext
+    readonly application: Application
     private registerCache: Set<any> = new Set()
 
     constructor(moduleOptions: ModuleOptions) {
+        // must do some config by all plugins first
         this.configure(moduleOptions)
+
+        this.application = new Application()
+
         this.cacheResgiterModule()
         this.install()
     }
