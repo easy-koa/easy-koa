@@ -56,14 +56,16 @@ export class Logger extends Component {
         }
 
         if (isNil(options) || isEmptyObject(options)) {
-            const id: string = cluster.isWorker && cluster.worker.id
+            const clusterId: string = cluster.isWorker && cluster.worker.id
+            const clusterSuffix: string = clusterId ? '-' + clusterId : ''
+
             options = {
                 appenders: {
                     frameworks: {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-${id}.log`
+                            `${application}-kapp${clusterSuffix}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -73,7 +75,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-application-${id}.log`
+                            `${application}-kapp-application${clusterSuffix}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -83,7 +85,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-monitor-${id}.log`
+                            `${application}-kapp-monitor${clusterSuffix}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
