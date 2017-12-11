@@ -57,11 +57,31 @@ export class Logger extends Component {
         if (isNil(options) || isEmptyObject(options)) {
             options = {
                 appenders: {
-                    dateFile: {
+                    frameworks: {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-runtime.log`
+                            `${application}-kapp.log`
+                        ),
+                        pattern: '.yyyy-MM-dd-hh',
+                        compress: false,
+                        alwaysIncludePattern: true,
+                    },
+                    application: {
+                        type: 'dateFile',
+                        filename: path.join(
+                            isNil(logdir) ? './logs' : logdir,
+                            `${application}-kapp-application.log`
+                        ),
+                        pattern: '.yyyy-MM-dd-hh',
+                        compress: false,
+                        alwaysIncludePattern: true,
+                    },
+                    monitor: {
+                        type: 'dateFile',
+                        filename: path.join(
+                            isNil(logdir) ? './logs' : logdir,
+                            `${application}-kapp-monitor.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -72,9 +92,21 @@ export class Logger extends Component {
                     },
                 },
                 categories: {
+                    'kapp-monitor': {
+                        appenders: [
+                            'monitor', 'console',
+                        ],
+                        level: 'all',
+                    },
                     default: {
                         appenders: [
-                            'dateFile', 'console',
+                            'application', 'console',
+                        ],
+                        level: 'all',
+                    },
+                    kapp: {
+                        appenders: [
+                            'frameworks', 'console',
                         ],
                         level: 'all',
                     },

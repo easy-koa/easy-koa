@@ -17,7 +17,7 @@ import path = require('path')
 export default {
     logger: {
         application: 'kapp-example',
-        logdir: path.join(__dirname, 'temp'),
+        logdir: path.join(__dirname, 'logs'),
         options: {},
     },
     monitor: {
