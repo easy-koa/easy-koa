@@ -1,9 +1,9 @@
 {
   "name": "@kaola/kapp-forwarder",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "dependencies": {
     "@kaola/kapp-core": "^0.1.16",
-    "@kaola/kapp-monitor": "^0.1.16",
+    "@kaola/kapp-monitor": "^0.1.17",
     "@kaola/kapp-shared": "^0.1.16",
     "@types/http-proxy": "^1.12.2",
     "http-proxy": "^1.16.2"

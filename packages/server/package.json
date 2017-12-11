@@ -1,10 +1,10 @@
 {
   "name": "@kaola/kapp-server",
-  "version": "0.1.16",
+  "version": "0.1.17",
   "dependencies": {
     "@kaola/kapp-core": "^0.1.16",
-    "@kaola/kapp-logger": "^0.1.16",
-    "@kaola/kapp-monitor": "^0.1.16",
+    "@kaola/kapp-logger": "^0.1.17",
+    "@kaola/kapp-monitor": "^0.1.17",
     "@kaola/kapp-shared": "^0.1.16",
     "@types/koa-router": "^7.0.26",
     "@types/path-to-regexp": "^1.7.0",

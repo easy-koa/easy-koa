@@ -1,13 +1,13 @@
 {
     "name": "@kaola/kapp",
-    "version": "0.1.16",
+    "version": "0.1.17",
     "dependencies": {
         "@kaola/kapp-config": "^0.1.16",
         "@kaola/kapp-core": "^0.1.16",
         "@kaola/kapp-cron": "^0.1.16",
-        "@kaola/kapp-logger": "^0.1.16",
-        "@kaola/kapp-monitor": "^0.1.16",
-        "@kaola/kapp-server": "^0.1.16",
+        "@kaola/kapp-logger": "^0.1.17",
+        "@kaola/kapp-monitor": "^0.1.17",
+        "@kaola/kapp-server": "^0.1.17",
         "@kaola/kapp-shared": "^0.1.16"
     }
 }
