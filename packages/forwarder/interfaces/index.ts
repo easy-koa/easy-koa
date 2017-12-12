@@ -1,2 +1,2 @@
-export * from './forwarder-options';
-export * from './proxy-server-config';
+export * from './proxy-server-config'
+export * from './forwarder-options'

@@ -1,70 +1,66 @@
-import { Agent, IncomingMessage } from 'http';
-import httpProxy = require('http-proxy');
-import { ProxyServerConfig, ForwarderOptions } from './interfaces';
-
+import { Agent, IncomingMessage } from 'http'
+import httpProxy = require('http-proxy')
+import { ProxyServerConfig, ForwarderOptions } from './interfaces'
 
 export class ProxyServer {
-    private proxyServer: any;
-    private proxyServerConfig: ProxyServerConfig;
+    private proxyServer: any
+    private proxyServerConfig: ProxyServerConfig
 
     constructor(options: ForwarderOptions) {
-
-        this.configiure(options);
-        
-        this.startProxyServer();
-
-        this.bindProxyServerEvents();
+        this.configiure(options)
+        this.startProxyServer()
+        this.bindProxyServerEvents()
     }
 
-    configiure(options: ForwarderOptions) {
+    configiure(options: ForwarderOptions): void {
 
-        let { headers, secure, proxyTimeout, host, xfwd, agent, target } = options;
-        
+        let { headers, target } = options
+        const { secure, proxyTimeout, host, xfwd, agent } = options
+
         if (!headers) {
-            headers = {};
+            headers = {}
         }
 
         headers = Object.assign({}, headers, {
             Host: host,
             'X-Special-Proxy-Header': 'foxman',
-            'accept-encoding': ''
-        });
-
+            'accept-encoding': '',
+        })
 
         if (!target) {
-            target = 'http://' + host;
+            target = 'http://' + host
         }
 
         this.proxyServerConfig = {
-            headers, secure, proxyTimeout, host, xfwd, agent, target
+            headers, secure, proxyTimeout, host, xfwd, agent, target,
         }
     }
 
-    startProxyServer() {
-        this.proxyServer = httpProxy.createProxyServer(this.proxyServerConfig);
+    startProxyServer(): void {
+        this.proxyServer = httpProxy.createProxyServer(this.proxyServerConfig)
     }
 
-    static create(options: any) {
-        return new this(options);
+    static create(options: any): ProxyServer {
+        return new this(options)
     }
 
-    bindProxyServerEvents() {
-        const { proxyServer, proxyServerConfig } = this;
+    bindProxyServerEvents(): any {
+        const { proxyServer, proxyServerConfig } = this
 
-        proxyServer.on('proxyReq', (req: any) => {});
-    
+        proxyServer.on('proxyReq', (req: any) => {})
+
         proxyServer.on('end', (req: any, res: any, proxyRes: any) => {
-            res.emit('proxyed', req, res, proxyRes);
-        });
-    
-        return proxyServer;
+            res.emit('proxyed', req, res, proxyRes)
+        })
+
+        return proxyServer
     }
 
-    on(...args: any[]) {
-        this.proxyServer.on(...args);
+    on(...args: any[]): void {
+        this.proxyServer.on(...args)
     }
 
-    web(...args: any[]) {
-        this.proxyServer.web(...args);
+    web(...args: any[]): void {
+        this.proxyServer.web(...args)
     }
 }

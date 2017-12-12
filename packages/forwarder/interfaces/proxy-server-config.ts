@@ -1,12 +1,11 @@
-import { Agent } from 'http';
-
+import { Agent } from 'http'
 
 export interface ProxyServerConfig {
-    secure: boolean;
-    agent?: Agent;
-    proxyTimeout: number;
-    host: string;
-    headers?: any;
-    xfwd: boolean;
-    target: string;
+    secure: boolean
+    agent?: Agent
+    proxyTimeout: number
+    host: string
+    headers?: any
+    xfwd: boolean
+    target: string
 }

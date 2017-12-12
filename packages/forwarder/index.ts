@@ -7,7 +7,6 @@ import { ProxyServer } from './proxy-server'
 import { ProxyServerConfig } from './interfaces'
 import * as createMonitorPlainObject from './utils/create-monitor-plain-object'
 
-
 declare module 'http' {
     interface ServerResponse {
         _headers: any[]
