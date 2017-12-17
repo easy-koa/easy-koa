@@ -1,8 +1,8 @@
-import { BaseObject, isUndefined, isNil } from "@kaola/kapp-shared/index";
-import { pathMeta, methodsMeta } from "@kaola/kapp-shared/constants";
+import { BaseObject, isUndefined, isNil } from "@koap/shared/index";
+import { pathMeta, methodsMeta } from "@koap/shared/constants";
 import { IRouter, IRouters } from "../interfaces/index";
 import Router = require('koa-router');
-import { Koa } from '@kaola/kapp-shared';
+import { Koa } from '@koap/shared';
 
 export class RouterExplorer {
     private controller: any;
@@ -45,9 +45,8 @@ export class RouterExplorer {
         }, []);
 
         return {
-            prefix: prefix,
-            routers: routers
-        };
+            prefix, routers,
+        }
     }
 
     private create() {
@@ -56,7 +55,7 @@ export class RouterExplorer {
         routers.forEach(({ path, handle, methods, controller }: IRouter) => {
             this.router.register(path, methods, handle);
         });
-        
+
         return { prefix, router: this.router, raw: routers }
     }
     static create(controller: any) {
@@ -65,7 +64,7 @@ export class RouterExplorer {
 }
 
 
-export class RoutersExplorer{
+export class RoutersExplorer {
     static createRouters(Controllers: any) {
         const compose = new Router();
         const rawRouters: IRouters[] = [];
@@ -76,18 +75,18 @@ export class RoutersExplorer{
             const { prefix, router, raw } = RouterExplorer.create(controller);
 
             rawRouters.push({
-                prefix, routers: raw
-            });
+                prefix, routers: raw,
+            })
 
             compose.use(
                 prefix,
                 router.routes(),
                 router.allowedMethods()
             )
-        });
+        })
         return {
             router: compose,
-            rawRouters
-        };
+            rawRouters,
+        }
     }
 }

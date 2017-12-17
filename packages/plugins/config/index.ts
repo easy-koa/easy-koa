@@ -1,5 +1,5 @@
-import { Component } from "@kaola/kapp-core"
-import { BaseObject } from "@kaola/kapp-shared"
+import { Component } from "@koap/core"
+import { BaseObject } from "@koap/shared"
 
 export class Config extends Component {
     private config: BaseObject

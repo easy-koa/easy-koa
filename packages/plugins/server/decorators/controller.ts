@@ -1,5 +1,5 @@
-import { classType, classTypes, pathMeta } from '@kaola/kapp-shared/constants';
-import { isUndefined, isString } from '@kaola/kapp-shared';
+import { classType, classTypes, pathMeta } from '@koap/shared/constants';
+import { isUndefined, isString } from '@koap/shared';
 
 export function Controller (prefix?: string) {
     const path = (isUndefined(prefix) || (isString(prefix) && prefix.trim() === '/') ) ? '' : prefix;

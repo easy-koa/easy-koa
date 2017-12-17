@@ -1,10 +1,10 @@
-import { Component } from '@kaola/kapp-core';
-import { InitOptions, BaseObject, startTime } from '@kaola/kapp-shared';
+import { Component } from '@koap/core';
+import { InitOptions, BaseObject, startTime } from '@koap/shared';
 import * as rpc from '@kaola/rpc';
-import { InjectPlugin, entries } from '@kaola/kapp-shared';
-import { Logger } from '@kaola/kapp-logger';
-import { Monitor } from '@kaola/kapp-monitor';
-import { Cron } from '@kaola/kapp-cron';
+import { InjectPlugin, entries } from '@koap/shared';
+import { Logger } from '@koap/plugin-logger';
+import { Monitor } from '@koap/plugin-monitor';
+import { Cron } from '@koap/plugin-cron';
 import { wrapServiceMonitor } from './utils/wrap-service-monitor';
 
 interface Services {

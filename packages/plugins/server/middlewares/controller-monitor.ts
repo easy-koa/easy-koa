@@ -1,4 +1,4 @@
-import { Koa, startTime } from '@kaola/kapp-shared';
+import { Koa, startTime } from '@koap/shared';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function controllerMonitorMiddleware () {

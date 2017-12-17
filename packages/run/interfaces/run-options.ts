@@ -1,8 +1,8 @@
-import { ServerOptions } from "@kaola/kapp-server/interfaces/server-options"
-import { LoggerOptions } from "@kaola/kapp-logger/interfaces/logger-options"
-import { MonitorOptions } from "@kaola/kapp-monitor/interfaces/index"
-import { Component } from "@kaola/kapp-core/index"
-import { BaseObject } from "@kaola/kapp-shared"
+import { ServerOptions } from "@koap/plugin-server/interfaces/server-options"
+import { LoggerOptions } from "@koap/plugin-logger/interfaces/logger-options"
+import { MonitorOptions } from "@koap/plugin-monitor/interfaces/index"
+import { Component } from "@koap/core/index"
+import { BaseObject } from "@koap/shared"
 
 export interface ModuleOptions {
     components?: Component[]

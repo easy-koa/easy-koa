@@ -1,5 +1,5 @@
 {
-  "name": "@kaola/kapp.js",
+  "name": "koap",
   "version": "0.0.0",
   "description": "A Microservices framework for node.js",
   "main": "dist/index.js",
@@ -9,7 +9,7 @@
     "test": "npm run build",
     "build": "tsc",
     "dev": "npm run build -- -w",
-    "start": "npm run reboot && ts-node ./examples/web-architecture/bootstrap",
+    "start": "ts-node ./examples/web-architecture/bootstrap",
     "boot": "lerna bootstrap",
     "clear": "rm -rf dist && lerna clean",
     "reboot": "npm run clear && npm run boot",

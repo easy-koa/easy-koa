@@ -1,4 +1,4 @@
-import { isUndefined } from "@kaola/kapp-shared";
+import { isUndefined } from "@koap/shared";
 
 export function interceptor(action: string, {
     preHandleTime, postHandleTime

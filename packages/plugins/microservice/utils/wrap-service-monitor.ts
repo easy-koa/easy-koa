@@ -1,5 +1,5 @@
-import { InjectPlugin, entries, BaseObject, startTime } from '@kaola/kapp-shared';
-import { Monitor } from '@kaola/kapp-monitor';
+import { InjectPlugin, entries, BaseObject, startTime } from '@koap/shared';
+import { Monitor } from '@koap/plugin-monitor';
 
 export function wrapServiceMonitor(services: BaseObject, monitor: Monitor) {
     const plaignServicesObject: any = {};

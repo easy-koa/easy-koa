@@ -1,10 +1,10 @@
 {
-  "name": "@kaola/kapp-forwarder",
+  "name": "@koap/plugin-forwarder",
   "version": "0.1.18",
   "dependencies": {
-    "@kaola/kapp-core": "^0.1.16",
-    "@kaola/kapp-monitor": "^0.1.18",
-    "@kaola/kapp-shared": "^0.1.16",
+    "@koap/core": "^0.1.16",
+    "@koap/plugin-monitor": "^0.1.18",
+    "@koap/shared": "^0.1.16",
     "@types/http-proxy": "^1.12.2",
     "http-proxy": "^1.16.2"
   }

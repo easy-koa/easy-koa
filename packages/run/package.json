@@ -1,13 +1,13 @@
 {
-    "name": "@kaola/kapp",
+    "name": "koap",
     "version": "0.1.18",
     "dependencies": {
-        "@kaola/kapp-config": "^0.1.16",
-        "@kaola/kapp-core": "^0.1.16",
-        "@kaola/kapp-cron": "^0.1.16",
-        "@kaola/kapp-logger": "^0.1.18",
-        "@kaola/kapp-monitor": "^0.1.18",
-        "@kaola/kapp-server": "^0.1.18",
-        "@kaola/kapp-shared": "^0.1.16"
+        "@koap/plugin-config": "^0.1.16",
+        "@koap/core": "^0.1.16",
+        "@koap/plugin-cron": "^0.1.16",
+        "@koap/plugin-logger": "^0.1.18",
+        "@koap/plugin-monitor": "^0.1.18",
+        "@koap/plugin-server": "^0.1.18",
+        "@koap/shared": "^0.1.16"
     }
 }

@@ -1,5 +1,5 @@
-import { createSystemId } from "@kaola/kapp-shared"
-import { BaseObject, Services, InitOptions } from "@kaola/kapp-shared"
+import { createSystemId } from "@koap/shared"
+import { BaseObject, Services, InitOptions } from "@koap/shared"
 
 const pid: Function = createSystemId()
 

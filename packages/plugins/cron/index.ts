@@ -1,4 +1,4 @@
-import { Component } from "@kaola/kapp-core";
+import { Component } from "@koap/core";
 
 export class Cron extends Component{
     name() {

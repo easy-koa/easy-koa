@@ -1,6 +1,6 @@
-import { Component } from '@kaola/kapp-core'
+import { Component } from '@koap/core'
 import { LoggerOptions } from './interfaces/logger-options'
-import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@kaola/kapp-shared'
+import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@koap/shared'
 import * as path from 'path'
 import * as cluster from 'cluster'
 

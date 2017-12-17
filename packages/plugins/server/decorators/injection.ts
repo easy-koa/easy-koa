@@ -1,5 +1,5 @@
-import { classType, classTypes, pathMeta, registry } from '@kaola/kapp-shared/constants';
-import { isUndefined, isString, isNil } from '@kaola/kapp-shared';
+import { classType, classTypes, pathMeta, registry } from '@koap/shared/constants';
+import { isUndefined, isString, isNil } from '@koap/shared';
 
 
 function inject(key: string) {

@@ -1,6 +1,6 @@
 import { Registry } from './registry'
 import { Component } from './component'
-import { loggerFactory } from '@kaola/kapp-shared'
+import { loggerFactory } from '@koap/shared'
 
 export class Application {
     readonly logger: any = loggerFactory.getLogger('kapp')

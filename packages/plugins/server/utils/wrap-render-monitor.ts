@@ -1,4 +1,4 @@
-import { BaseObject, startTime } from "@kaola/kapp-shared";
+import { BaseObject, startTime } from "@koap/shared";
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function wrapRenderMonitor (render: Function) {

@@ -1,12 +1,12 @@
-import { Application } from '@kaola/kapp-core'
-import { isNumber } from '@kaola/kapp-shared'
+import { Application } from '@koap/core'
+import { isNumber } from '@koap/shared'
 import { ModuleContext, ModuleOptions } from './interfaces'
-import { Logger } from '@kaola/kapp-logger'
-import { Monitor } from '@kaola/kapp-monitor'
-import { Server } from '@kaola/kapp-server'
-import { Cron } from '@kaola/kapp-cron'
-import { moduleMeta } from '@kaola/kapp-shared/constants'
-import { Config } from '@kaola/kapp-config'
+import { Logger } from '@koap/plugin-logger'
+import { Monitor } from '@koap/plugin-monitor'
+import { Server } from '@koap/plugin-server'
+import { Cron } from '@koap/plugin-cron'
+import { moduleMeta } from '@koap/shared/constants'
+import { Config } from '@koap/plugin-config'
 
 export default class Kapp {
     private moduleContext: ModuleContext

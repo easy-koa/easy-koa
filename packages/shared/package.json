@@ -1,5 +1,5 @@
 {
-  "name": "@kaola/kapp-shared",
+  "name": "@koap/shared",
   "version": "0.1.16",
   "dependencies": {
     "@types/koa": "^2.0.41",

@@ -1,5 +1,5 @@
-import Kapp from '@kaola/kapp'
-import { Module } from '@kaola/kapp-shared'
+import Kapp from 'koap'
+import { Module } from '@koap/shared'
 import KappConfig from './kapp-config'
 
 @Module(KappConfig)
@@ -13,5 +13,5 @@ zoneKapp
         // do something in completed
     })
     .catch((e: any) => {
-        console.log(e)
+        // console.log(e)
     })
