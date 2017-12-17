@@ -6,7 +6,7 @@
     "@easy-koa/plugin-cron": "^1.0.0",
     "@easy-koa/plugin-logger": "^1.0.0",
     "@easy-koa/plugin-monitor": "^1.0.0",
-    "@easy-koa/shared": "^0.1.23",
+    "@easy-koa/shared": "^1.0.0",
     "@kaola/rpc": "^0.1.5"
   }
 }

@@ -3,6 +3,6 @@
     "version": "1.0.0",
     "dependencies": {
         "@easy-koa/core": "^1.0.0",
-        "@easy-koa/shared": "^0.1.23"
+        "@easy-koa/shared": "^1.0.0"
     }
 }
