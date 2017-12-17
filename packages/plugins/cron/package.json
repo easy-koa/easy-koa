@@ -1,7 +1,7 @@
 {
-    "name": "@koap/plugin-cron",
+    "name": "@one-koa/plugin-cron",
     "version": "0.1.16",
     "dependencies": {
-        "@koap/core": "^0.1.16"
+        "@one-koa/core": "^0.1.16"
     }
 }

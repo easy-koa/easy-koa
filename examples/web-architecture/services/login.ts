@@ -1,5 +1,5 @@
-import { InjectPlugin, InjectService } from '@koap/plugin-server/decorators/injection'
-import { MicroService } from '@koap/plugin-microservice'
+import { InjectPlugin, InjectService } from '@one-koa/plugin-server/decorators/injection'
+import { MicroService } from '@one-koa/plugin-microservice'
 
 interface TypeInfo {
     $class: string

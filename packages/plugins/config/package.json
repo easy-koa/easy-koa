@@ -1,8 +1,8 @@
 {
-    "name": "@koap/plugin-config",
+    "name": "@one-koa/plugin-config",
     "version": "0.1.16",
     "dependencies": {
-        "@koap/core": "^0.1.16",
-        "@koap/shared": "^0.1.16"
+        "@one-koa/core": "^0.1.16",
+        "@one-koa/shared": "^0.1.16"
     }
 }

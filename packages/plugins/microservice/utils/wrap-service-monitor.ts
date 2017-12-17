@@ -1,5 +1,5 @@
-import { InjectPlugin, entries, BaseObject, startTime } from '@koap/shared';
-import { Monitor } from '@koap/plugin-monitor';
+import { InjectPlugin, entries, BaseObject, startTime } from '@one-koa/shared';
+import { Monitor } from '@one-koa/plugin-monitor';
 
 export function wrapServiceMonitor(services: BaseObject, monitor: Monitor) {
     const plaignServicesObject: any = {};

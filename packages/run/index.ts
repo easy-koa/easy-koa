@@ -1,14 +1,14 @@
-import { Application } from '@koap/core'
-import { isNumber } from '@koap/shared'
+import { Application } from '@one-koa/core'
+import { isNumber } from '@one-koa/shared'
 import { ModuleContext, ModuleOptions } from './interfaces'
-import { Logger } from '@koap/plugin-logger'
-import { Monitor } from '@koap/plugin-monitor'
-import { Server } from '@koap/plugin-server'
-import { Cron } from '@koap/plugin-cron'
-import { moduleMeta } from '@koap/shared/constants'
-import { Config } from '@koap/plugin-config'
+import { Logger } from '@one-koa/plugin-logger'
+import { Monitor } from '@one-koa/plugin-monitor'
+import { Server } from '@one-koa/plugin-server'
+import { Cron } from '@one-koa/plugin-cron'
+import { moduleMeta } from '@one-koa/shared/constants'
+import { Config } from '@one-koa/plugin-config'
 
-export default class Koap {
+export default class OneKoa {
     private moduleContext: ModuleContext
     readonly application: Application
     private registerCache: Set<any> = new Set()
@@ -44,7 +44,7 @@ export default class Koap {
         application.use(new Server(server))
     }
 
-    public static create(): Koap {
+    public static create(): OneKoa {
         const moduleOptions: ModuleOptions = <ModuleOptions> Reflect.getMetadata(moduleMeta, this)
         return new this(moduleOptions)
     }

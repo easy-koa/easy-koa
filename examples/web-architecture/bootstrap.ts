@@ -1,9 +1,9 @@
-import Koap from 'koap'
-import { Module } from '@koap/shared'
-import KoapConfig from './koap-config'
+import OneKoa from 'one-koa'
+import { Module } from '@one-koa/shared'
+import EasyKoaConfig from './one-koa-config'
 
-@Module(KoapConfig)
-class ZoneKoap extends Koap {}
+@Module(EasyKoaConfig)
+class ZoneKoap extends OneKoa {}
 
 const zoneKoap: ZoneKoap = ZoneKoap.create()
 

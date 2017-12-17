@@ -1,13 +1,13 @@
 {
-    "name": "koap",
+    "name": "one-koa",
     "version": "0.1.18",
     "dependencies": {
-        "@koap/plugin-config": "^0.1.16",
-        "@koap/core": "^0.1.16",
-        "@koap/plugin-cron": "^0.1.16",
-        "@koap/plugin-logger": "^0.1.18",
-        "@koap/plugin-monitor": "^0.1.18",
-        "@koap/plugin-server": "^0.1.18",
-        "@koap/shared": "^0.1.16"
+        "@one-koa/plugin-config": "^0.1.16",
+        "@one-koa/core": "^0.1.16",
+        "@one-koa/plugin-cron": "^0.1.16",
+        "@one-koa/plugin-logger": "^0.1.18",
+        "@one-koa/plugin-monitor": "^0.1.18",
+        "@one-koa/plugin-server": "^0.1.18",
+        "@one-koa/shared": "^0.1.16"
     }
 }

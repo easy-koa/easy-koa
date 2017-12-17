@@ -1,5 +1,5 @@
-import { Koa, InjectPlugin } from '@koap/shared'
-import { Forwarder } from '@koap/plugin-forwarder'
+import { Koa, InjectPlugin } from '@one-koa/shared'
+import { Forwarder } from '@one-koa/plugin-forwarder'
 
 export class RawForwardInterceptor {
     @InjectPlugin(Forwarder)

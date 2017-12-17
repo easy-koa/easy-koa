@@ -1,10 +1,10 @@
 {
-  "name": "@koap/plugin-forwarder",
+  "name": "@one-koa/plugin-forwarder",
   "version": "0.1.18",
   "dependencies": {
-    "@koap/core": "^0.1.16",
-    "@koap/plugin-monitor": "^0.1.18",
-    "@koap/shared": "^0.1.16",
+    "@one-koa/core": "^0.1.16",
+    "@one-koa/plugin-monitor": "^0.1.18",
+    "@one-koa/shared": "^0.1.16",
     "@types/http-proxy": "^1.12.2",
     "http-proxy": "^1.16.2"
   }

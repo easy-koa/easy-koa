@@ -2,15 +2,15 @@
   "name": "web-architecture",
   "version": "0.1.0",
   "dependencies": {
-    "@koap/core": "^0.1.0",
-    "@koap/plugin-cron": "^0.1.0",
-    "@koap/plugin-forwarder": "^0.1.0",
-    "koap": "^0.1.0",
-    "@koap/plugin-logger": "^0.1.0",
-    "@koap/plugin-microservice": "^0.1.0",
-    "@koap/plugin-monitor": "^0.1.0",
-    "@koap/plugin-server": "^0.1.0",
-    "@koap/shared": "^0.1.0",
-    "@koap/plugin-config": "^0.1.0"
+    "@one-koa/core": "^0.1.0",
+    "@one-koa/plugin-cron": "^0.1.0",
+    "@one-koa/plugin-forwarder": "^0.1.0",
+    "one-koa": "^0.1.0",
+    "@one-koa/plugin-logger": "^0.1.0",
+    "@one-koa/plugin-microservice": "^0.1.0",
+    "@one-koa/plugin-monitor": "^0.1.0",
+    "@one-koa/plugin-server": "^0.1.0",
+    "@one-koa/shared": "^0.1.0",
+    "@one-koa/plugin-config": "^0.1.0"
   }
 }

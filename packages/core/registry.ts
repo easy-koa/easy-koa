@@ -1,5 +1,5 @@
-import { BaseObject } from "@koap/shared"
-import { registry } from "@koap/shared/constants"
+import { BaseObject } from "@one-koa/shared"
+import { registry } from "@one-koa/shared/constants"
 import { Component } from "./component"
 
 export class Registry {

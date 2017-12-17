@@ -1,4 +1,4 @@
-import { Component } from "@koap/core";
+import { Component } from "@one-koa/core";
 
 export class Cron extends Component{
     name() {

@@ -1,4 +1,4 @@
-import { isUndefined, Koa, startTime } from '@koap/shared';
+import { isUndefined, Koa, startTime } from '@one-koa/shared';
 import { InterceptorMapping } from '../interfaces/interceptor';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 

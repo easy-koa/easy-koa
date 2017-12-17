@@ -1,4 +1,4 @@
-import { BaseObject } from "@koap/shared"
+import { BaseObject } from "@one-koa/shared"
 
 export interface LoggerOptions {
     application?: string

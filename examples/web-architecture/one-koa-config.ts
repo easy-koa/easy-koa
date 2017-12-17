@@ -9,14 +9,14 @@ import { LoginInterceptor } from "./interceptors/login"
 import { RawForwardInterceptor, APIForwardInterceptor, PageForwardInterceptor } from "./interceptors/forwarder"
 import TopicController from "./controllers/topic"
 import { loginProvider } from "./services/login"
-import { MicroService } from "@koap/plugin-microservice"
-import { Forwarder } from "@koap/plugin-forwarder"
+import { MicroService } from "@one-koa/plugin-microservice"
+import { Forwarder } from "@one-koa/plugin-forwarder"
 import { Agent } from "http"
 import path = require('path')
 
 export default {
     logger: {
-        application: 'koap-example',
+        application: 'one-koa-example',
         logdir: path.join(__dirname, 'logs'),
         options: {},
     },

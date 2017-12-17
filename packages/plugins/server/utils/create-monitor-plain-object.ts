@@ -1,4 +1,4 @@
-import { isUndefined } from "@koap/shared";
+import { isUndefined } from "@one-koa/shared";
 
 export function interceptor(action: string, {
     preHandleTime, postHandleTime

@@ -1,5 +1,5 @@
 {
-  "name": "koap",
+  "name": "one-koa",
   "version": "0.0.0",
   "description": "A Microservices framework for node.js",
   "main": "dist/index.js",
@@ -25,15 +25,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaola-fed/Koap.js.git"
+    "url": "git+https://github.com/kaola-fed/OneKoa.js.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaola-fed/Koap.js/issues"
+    "url": "https://github.com/kaola-fed/OneKoa.js/issues"
   },
-  "homepage": "https://github.com/kaola-fed/Koap.js#readme",
+  "homepage": "https://github.com/kaola-fed/OneKoa.js#readme",
   "devDependencies": {
     "@types/node": "^8.0.47",
     "gulp": "^3.9.1",

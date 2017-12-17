@@ -1,4 +1,4 @@
-import { pathMeta, methodsMeta, methodTypes } from '@koap/shared/constants';
+import { pathMeta, methodsMeta, methodTypes } from '@one-koa/shared/constants';
 
 export function RequestMapping ({
     path = '/', methods = [

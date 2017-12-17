@@ -1,6 +1,6 @@
-import { Component } from '@koap/core'
+import { Component } from '@one-koa/core'
 import { LoggerOptions } from './interfaces/logger-options'
-import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@koap/shared'
+import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@one-koa/shared'
 import * as path from 'path'
 import * as cluster from 'cluster'
 
@@ -52,7 +52,7 @@ export class Logger extends Component {
 
     static configure({ application, options, logdir, logfile, splitCluster }: LoggerOptions): LoggerOptions {
         if (isUndefined(application)) {
-            application = 'koap-application'
+            application = 'one-koa-application'
         }
 
         if (isNil(options) || isEmptyObject(options)) {
@@ -64,7 +64,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-koap${clusterId}.log`
+                            `${application}-one-koa${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -74,7 +74,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-koap-application${clusterId}.log`
+                            `${application}-one-koa-application${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -84,7 +84,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-koap-monitor${clusterId}.log`
+                            `${application}-one-koa-monitor${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -95,7 +95,7 @@ export class Logger extends Component {
                     },
                 },
                 categories: {
-                    'koap-monitor': {
+                    'one-koa-monitor': {
                         appenders: [
                             'monitor', 'console',
                         ],
@@ -107,7 +107,7 @@ export class Logger extends Component {
                         ],
                         level: 'all',
                     },
-                    koap: {
+                    'one-koa': {
                         appenders: [
                             'frameworks', 'console',
                         ],

@@ -1,10 +1,10 @@
-import { Component } from '@koap/core';
-import { InitOptions, BaseObject, startTime } from '@koap/shared';
+import { Component } from '@one-koa/core';
+import { InitOptions, BaseObject, startTime } from '@one-koa/shared';
 import * as rpc from '@kaola/rpc';
-import { InjectPlugin, entries } from '@koap/shared';
-import { Logger } from '@koap/plugin-logger';
-import { Monitor } from '@koap/plugin-monitor';
-import { Cron } from '@koap/plugin-cron';
+import { InjectPlugin, entries } from '@one-koa/shared';
+import { Logger } from '@one-koa/plugin-logger';
+import { Monitor } from '@one-koa/plugin-monitor';
+import { Cron } from '@one-koa/plugin-cron';
 import { wrapServiceMonitor } from './utils/wrap-service-monitor';
 
 interface Services {

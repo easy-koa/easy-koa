@@ -1,9 +1,9 @@
-import { ServerOptions, ServerContext } from "@koap/plugin-server/interfaces"
+import { ServerOptions, ServerContext } from "@one-koa/plugin-server/interfaces"
 
-import { LoggerOptions } from "@koap/plugin-logger/interfaces/logger-options"
-import { MonitorOptions } from "@koap/plugin-monitor/interfaces/index"
-import { Component } from "@koap/core/index"
-import { BaseObject } from "@koap/shared"
+import { LoggerOptions } from "@one-koa/plugin-logger/interfaces/logger-options"
+import { MonitorOptions } from "@one-koa/plugin-monitor/interfaces/index"
+import { Component } from "@one-koa/core/index"
+import { BaseObject } from "@one-koa/shared"
 
 export interface ModuleContext {
     components: Component[]
