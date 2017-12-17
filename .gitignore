@@ -65,7 +65,7 @@ package-lock.json
 .vscode/
 
 packages/**/*.d.ts
-!packages/**/@types/**/index.d.ts
+!packages/**/types/**/index.d.ts
 packages/**/*.js
 packages/**/*.js.map
 
