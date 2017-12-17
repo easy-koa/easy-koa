@@ -3,7 +3,7 @@ import { Component } from './component'
 import { loggerFactory } from '@koap/shared'
 
 export class Application {
-    readonly logger: any = loggerFactory.getLogger('kapp')
+    readonly logger: any = loggerFactory.getLogger('koap')
     readonly registry: Registry = new Registry()
     public use(component: Component): void {
         if (!(Component.isInstance(component))) {

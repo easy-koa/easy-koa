@@ -52,7 +52,7 @@ export class Logger extends Component {
 
     static configure({ application, options, logdir, logfile, splitCluster }: LoggerOptions): LoggerOptions {
         if (isUndefined(application)) {
-            application = 'kapp-application'
+            application = 'koap-application'
         }
 
         if (isNil(options) || isEmptyObject(options)) {
@@ -64,7 +64,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp${clusterId}.log`
+                            `${application}-koap${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -74,7 +74,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-application${clusterId}.log`
+                            `${application}-koap-application${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -84,7 +84,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-kapp-monitor${clusterId}.log`
+                            `${application}-koap-monitor${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -95,7 +95,7 @@ export class Logger extends Component {
                     },
                 },
                 categories: {
-                    'kapp-monitor': {
+                    'koap-monitor': {
                         appenders: [
                             'monitor', 'console',
                         ],
@@ -107,7 +107,7 @@ export class Logger extends Component {
                         ],
                         level: 'all',
                     },
-                    kapp: {
+                    koap: {
                         appenders: [
                             'frameworks', 'console',
                         ],

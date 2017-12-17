@@ -16,7 +16,7 @@ import path = require('path')
 
 export default {
     logger: {
-        application: 'kapp-example',
+        application: 'koap-example',
         logdir: path.join(__dirname, 'logs'),
         options: {},
     },

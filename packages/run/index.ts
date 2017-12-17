@@ -8,7 +8,7 @@ import { Cron } from '@koap/plugin-cron'
 import { moduleMeta } from '@koap/shared/constants'
 import { Config } from '@koap/plugin-config'
 
-export default class Kapp {
+export default class Koap {
     private moduleContext: ModuleContext
     readonly application: Application
     private registerCache: Set<any> = new Set()
@@ -44,7 +44,7 @@ export default class Kapp {
         application.use(new Server(server))
     }
 
-    public static create(): Kapp {
+    public static create(): Koap {
         const moduleOptions: ModuleOptions = <ModuleOptions> Reflect.getMetadata(moduleMeta, this)
         return new this(moduleOptions)
     }

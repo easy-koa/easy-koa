@@ -25,15 +25,15 @@
   },
   "repository": {
     "type": "git",
-    "url": "git+https://github.com/kaola-fed/Kapp.js.git"
+    "url": "git+https://github.com/kaola-fed/Koap.js.git"
   },
   "keywords": [],
   "author": "",
   "license": "MIT",
   "bugs": {
-    "url": "https://github.com/kaola-fed/Kapp.js/issues"
+    "url": "https://github.com/kaola-fed/Koap.js/issues"
   },
-  "homepage": "https://github.com/kaola-fed/Kapp.js#readme",
+  "homepage": "https://github.com/kaola-fed/Koap.js#readme",
   "devDependencies": {
     "@types/node": "^8.0.47",
     "gulp": "^3.9.1",

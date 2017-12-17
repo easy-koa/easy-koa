@@ -26,7 +26,7 @@ export class Monitor extends Component {
     }
 
     init(): void {
-        this.monitor = this.logger.create(`kapp-${this.name()}`)
+        this.monitor = this.logger.create(`koap-${this.name()}`)
     }
 
     collect(message: any, ctx?: Koa.Context): void {

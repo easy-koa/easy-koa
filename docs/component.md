@@ -1,1 +1,1 @@
-This document describes the basics of kapp.js component.
+This document describes the basics of koap.js component.

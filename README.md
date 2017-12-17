@@ -1,11 +1,11 @@
-<h1 align="center">Kapp.js</h1>
+<h1 align="center">Koap.js</h1>
 
 A lightweight dependency injection container, also an enterprise solution for node.js project, and written in typescript.
 
 ## Installation
 
 ```bash
-$ npm install kapp.js --save
+$ npm install koap.js --save
 ```
 
 ## Features
@@ -23,7 +23,7 @@ $ npm install kapp.js --save
 
 #### Core
 
-Kapp.js provides a lightweight dependency injection container with strict process control.
+Koap.js provides a lightweight dependency injection container with strict process control.
 
 If any one component failed to load, Application will also fail to start.  This measure can expose the problem as much as possible, and reducing the impact on the production environment.
 
@@ -33,9 +33,9 @@ And the components will achieve specific functions.
 
 Just mentioned, Components are units that implement specific functions.
 
-You can indicate the dependencies of a component via the `@InjectPlugin` annotation. Kapp.js will help you to manage component dependencies. If a component's dependencies are not initialized, Kapp.js will give priority to initializing that component. But remember, do not appear circular dependencies.
+You can indicate the dependencies of a component via the `@InjectPlugin` annotation. Koap.js will help you to manage component dependencies. If a component's dependencies are not initialized, Koap.js will give priority to initializing that component. But remember, do not appear circular dependencies.
 
-Kapp.js has some built-in components, including `Cron`, `Logger`, `Monitor`, `Server`.
+Koap.js has some built-in components, including `Cron`, `Logger`, `Monitor`, `Server`.
 
 You can also develop the components you need, just follow our rules - each component will inherit from a base class - `Component`.
 
@@ -63,7 +63,7 @@ Service is the role used to fulfill a specific requirement. Including the packag
 
 #### Middlewares
 
-Kapp.js is based on koa, so it supports all koa middleware. But we want you to use async function whenever possible. This is also koa's hope.
+Koap.js is based on koa, so it supports all koa middleware. But we want you to use async function whenever possible. This is also koa's hope.
 
 ## Docs
 

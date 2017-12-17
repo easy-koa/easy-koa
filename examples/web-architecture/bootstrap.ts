@@ -1,13 +1,13 @@
-import Kapp from 'koap'
+import Koap from 'koap'
 import { Module } from '@koap/shared'
-import KappConfig from './kapp-config'
+import KoapConfig from './koap-config'
 
-@Module(KappConfig)
-class ZoneKapp extends Kapp {}
+@Module(KoapConfig)
+class ZoneKoap extends Koap {}
 
-const zoneKapp: ZoneKapp = ZoneKapp.create()
+const zoneKoap: ZoneKoap = ZoneKoap.create()
 
-zoneKapp
+zoneKoap
     .run()
     .then(function(): any {
         // do something in completed
