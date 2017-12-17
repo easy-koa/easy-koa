@@ -1,25 +1,23 @@
-import { classType, classTypes, pathMeta, registry } from '../constants';
-import { isUndefined, isString, isNil } from '../index';
+import { classType, classTypes, pathMeta, registry } from '../constants'
+import { isUndefined, isString, isNil } from '../index'
 
 
-function inject(key: string) {
-    return function (constructor: any) {
+function inject(key: string): Function {
+    return function (constructor: any): Function {
         if (isNil(constructor)) {
-            throw new Error('请确保注入操作传入非空的类');
+            throw new Error('请确保注入操作传入非空的类')
         }
 
-        return function(target: any, propertyKey?: string | symbol) {
-            
-            let services = Reflect.getMetadata(key, target);
+        return function(target: any, propertyKey?: string | symbol): void {
+            let services: Map<string, any> = Reflect.getMetadata(key, target)
             if (isNil(services)) {
-                services = new Map();
-                Reflect.defineMetadata(key, services, target);
+                services = new Map()
             }
-            
-            services.set(propertyKey, constructor);
+            services.set(<string> propertyKey, constructor)
+            Reflect.defineMetadata(key, services, target)
         }
     }
 }
 
-export const InjectPlugin = inject(registry.component);
-export const InjectService = inject(registry.service);
+export const InjectPlugin: Function = inject(registry.component)
+export const InjectService: Function = inject(registry.service)

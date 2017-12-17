@@ -10,7 +10,7 @@
     "@easy-koa/plugin-microservice": "^1.0.1",
     "@easy-koa/plugin-monitor": "^1.0.1",
     "@easy-koa/plugin-server": "^1.0.1",
-    "@easy-koa/shared": "^0.1.23",
+    "@easy-koa/shared": "^1.0.1",
     "easy-koa": "^1.0.1"
   }
 }

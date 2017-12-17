@@ -1,4 +1,3 @@
-import 'reflect-metadata'
 import { moduleMeta } from '../constants'
 
 export function Module(appConfig: any): Function {

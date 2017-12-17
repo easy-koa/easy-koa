@@ -13,5 +13,5 @@ zoneKoap
         // do something in completed
     })
     .catch((e: any) => {
-        // console.log(e)
+        console.log(e)
     })
