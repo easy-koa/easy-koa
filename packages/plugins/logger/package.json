@@ -1,8 +1,8 @@
 {
   "name": "@easy-koa/plugin-logger",
-  "version": "0.1.18",
+  "version": "0.1.20",
   "dependencies": {
-    "@easy-koa/core": "^0.1.18",
-    "@easy-koa/shared": "^0.1.18"
+    "@easy-koa/core": "^0.1.20",
+    "@easy-koa/shared": "^0.1.20"
   }
 }
