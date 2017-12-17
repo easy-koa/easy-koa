@@ -13,7 +13,7 @@
     "boot": "lerna bootstrap",
     "clear": "rm -rf dist && lerna clean",
     "reboot": "npm run clear && npm run boot",
-    "prerelease": "npm run build",
+    "prerelease": "npm run build && gulp mvreadme",
     "afterrelease": "gulp clear",
     "release": "npm run prerelease && lerna publish -f && npm run afterrelease"
   },
