@@ -1,7 +1,7 @@
 {
   "name": "@easy-koa/core",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
-    "@easy-koa/shared": "^1.0.1"
+    "@easy-koa/shared": "^1.0.2"
   }
 }

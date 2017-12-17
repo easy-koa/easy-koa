@@ -1,16 +1,16 @@
 {
   "name": "web-architecture",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
-    "@easy-koa/core": "^1.0.1",
-    "@easy-koa/plugin-config": "^1.0.1",
-    "@easy-koa/plugin-cron": "^1.0.1",
-    "@easy-koa/plugin-forwarder": "^1.0.1",
-    "@easy-koa/plugin-logger": "^1.0.1",
-    "@easy-koa/plugin-microservice": "^1.0.1",
-    "@easy-koa/plugin-monitor": "^1.0.1",
-    "@easy-koa/plugin-server": "^1.0.1",
-    "@easy-koa/shared": "^1.0.1",
-    "easy-koa": "^1.0.1"
+    "@easy-koa/core": "^1.0.2",
+    "@easy-koa/plugin-config": "^1.0.2",
+    "@easy-koa/plugin-cron": "^1.0.2",
+    "@easy-koa/plugin-forwarder": "^1.0.2",
+    "@easy-koa/plugin-logger": "^1.0.2",
+    "@easy-koa/plugin-microservice": "^1.0.2",
+    "@easy-koa/plugin-monitor": "^1.0.2",
+    "@easy-koa/plugin-server": "^1.0.2",
+    "@easy-koa/shared": "^1.0.2",
+    "easy-koa": "^1.0.2"
   }
 }

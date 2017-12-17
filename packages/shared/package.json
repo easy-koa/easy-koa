@@ -1,6 +1,6 @@
 {
   "name": "@easy-koa/shared",
-  "version": "1.0.1",
+  "version": "1.0.2",
   "dependencies": {
     "@types/koa": "^2.0.41",
     "@types/pify": "^3.0.0",
