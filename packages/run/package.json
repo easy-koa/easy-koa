@@ -1,13 +1,13 @@
 {
     "name": "easy-koa",
-    "version": "0.1.23",
+    "version": "1.0.0",
     "dependencies": {
-        "@easy-koa/core": "^0.1.23",
-        "@easy-koa/plugin-config": "^0.1.23",
-        "@easy-koa/plugin-cron": "^0.1.23",
-        "@easy-koa/plugin-logger": "^0.1.23",
-        "@easy-koa/plugin-monitor": "^0.1.23",
-        "@easy-koa/plugin-server": "^0.1.23",
+        "@easy-koa/core": "^1.0.0",
+        "@easy-koa/plugin-config": "^1.0.0",
+        "@easy-koa/plugin-cron": "^1.0.0",
+        "@easy-koa/plugin-logger": "^1.0.0",
+        "@easy-koa/plugin-monitor": "^1.0.0",
+        "@easy-koa/plugin-server": "^1.0.0",
         "@easy-koa/shared": "^0.1.23"
     }
 }

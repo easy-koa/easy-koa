@@ -1,9 +1,9 @@
 {
   "name": "@easy-koa/plugin-forwarder",
-  "version": "0.1.23",
+  "version": "1.0.0",
   "dependencies": {
-    "@easy-koa/core": "^0.1.23",
-    "@easy-koa/plugin-monitor": "^0.1.23",
+    "@easy-koa/core": "^1.0.0",
+    "@easy-koa/plugin-monitor": "^1.0.0",
     "@easy-koa/shared": "^0.1.23",
     "@types/http-proxy": "^1.12.2",
     "http-proxy": "^1.16.2"
