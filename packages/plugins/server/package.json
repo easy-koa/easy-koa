@@ -1,11 +1,11 @@
 {
   "name": "@easy-koa/plugin-server",
-  "version": "1.0.0",
+  "version": "1.0.1",
   "dependencies": {
-    "@easy-koa/core": "^1.0.0",
-    "@easy-koa/plugin-logger": "^1.0.0",
-    "@easy-koa/plugin-monitor": "^1.0.0",
-    "@easy-koa/shared": "^1.0.0",
+    "@easy-koa/core": "^1.0.1",
+    "@easy-koa/plugin-logger": "^1.0.1",
+    "@easy-koa/plugin-monitor": "^1.0.1",
+    "@easy-koa/shared": "^1.0.1",
     "@types/koa-router": "^7.0.26",
     "@types/path-to-regexp": "^1.7.0",
     "art-template": "^4.12.2",
