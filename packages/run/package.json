@@ -1,6 +1,7 @@
 {
     "name": "easy-koa",
     "version": "1.0.0",
+    "description": "A lightweight dependency injection container, also an enterprise solution for node.js project, and written in typescript.",
     "dependencies": {
         "@easy-koa/core": "^1.0.0",
         "@easy-koa/plugin-config": "^1.0.0",
