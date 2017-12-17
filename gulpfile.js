@@ -17,3 +17,11 @@ gulp.task('clear', function () {
     ], { read: false })
         .pipe( rm({ async: false }) )
 })
+
+
+gulp.task('mvreadme', function () {
+    return gulp.src( [
+        './README.md'
+    ])
+        .pipe( gulp.dest('./packages/run') )
+})

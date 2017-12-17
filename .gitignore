@@ -75,3 +75,5 @@ examples/**/*.js.map
 
 **.DS_Store**
 yarn.lock
+
+packages/run/readme.md

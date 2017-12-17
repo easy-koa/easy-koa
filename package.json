@@ -15,7 +15,7 @@
     "reboot": "npm run clear && npm run boot",
     "prerelease": "npm run build",
     "afterrelease": "gulp clear",
-    "release": "npm run prerelease && lerna publish --registry http://rnpm.hz.netease.com/ -f && npm run afterrelease"
+    "release": "npm run prerelease && lerna publish -f && npm run afterrelease"
   },
   "lint-staged": {
     "packages/**/*.ts": [
