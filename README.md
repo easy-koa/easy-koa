@@ -1,11 +1,11 @@
-<h1 align="center">OneKoa</h1>
+<h1 align="center">EasyKoa</h1>
 
 A lightweight dependency injection container, also an enterprise solution for node.js project, and written in typescript.
 
 ## Installation
 
 ```bash
-$ npm install one-koa --save
+$ npm install easy-koa --save
 ```
 
 ## Features
@@ -23,7 +23,7 @@ $ npm install one-koa --save
 
 #### Core
 
-OneKoa provides a lightweight dependency injection container with strict process control.
+EasyKoa provides a lightweight dependency injection container with strict process control.
 
 If any one component failed to load, Application will also fail to start.  This measure can expose the problem as much as possible, and reducing the impact on the production environment.
 
@@ -33,9 +33,9 @@ And the components will achieve specific functions.
 
 Just mentioned, Components are units that implement specific functions.
 
-You can indicate the dependencies of a component via the `@InjectPlugin` annotation. OneKoa will help you to manage component dependencies. If a component's dependencies are not initialized, OneKoa will give priority to initializing that component. But remember, do not appear circular dependencies.
+You can indicate the dependencies of a component via the `@InjectPlugin` annotation. EasyKoa will help you to manage component dependencies. If a component's dependencies are not initialized, EasyKoa will give priority to initializing that component. But remember, do not appear circular dependencies.
 
-OneKoa has some built-in components, including `Cron`, `Logger`, `Monitor`, `Server`.
+EasyKoa has some built-in components, including `Cron`, `Logger`, `Monitor`, `Server`.
 
 You can also develop the components you need, just follow our rules - each component will inherit from a base class - `Component`.
 
@@ -63,7 +63,7 @@ Service is the role used to fulfill a specific requirement. Including the packag
 
 #### Middlewares
 
-OneKoa is based on koa, so it supports all koa middleware. But we want you to use async function whenever possible. This is also koa's hope.
+EasyKoa is based on koa, so it supports all koa middleware. But we want you to use async function whenever possible. This is also koa's hope.
 
 ## Docs
 

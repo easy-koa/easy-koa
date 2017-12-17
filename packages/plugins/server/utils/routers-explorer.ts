@@ -1,8 +1,8 @@
-import { BaseObject, isUndefined, isNil } from "@one-koa/shared/index";
-import { pathMeta, methodsMeta } from "@one-koa/shared/constants";
+import { BaseObject, isUndefined, isNil } from "@easy-koa/shared/index";
+import { pathMeta, methodsMeta } from "@easy-koa/shared/constants";
 import { IRouter, IRouters } from "../interfaces/index";
 import Router = require('koa-router');
-import { Koa } from '@one-koa/shared';
+import { Koa } from '@easy-koa/shared';
 
 export class RouterExplorer {
     private controller: any;

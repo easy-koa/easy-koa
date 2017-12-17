@@ -1,6 +1,6 @@
-import { Component } from '@one-koa/core'
+import { Component } from '@easy-koa/core'
 import { LoggerOptions } from './interfaces/logger-options'
-import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@one-koa/shared'
+import { loggerFactory, isUndefined, isNil, isEmptyObject } from '@easy-koa/shared'
 import * as path from 'path'
 import * as cluster from 'cluster'
 
@@ -52,7 +52,7 @@ export class Logger extends Component {
 
     static configure({ application, options, logdir, logfile, splitCluster }: LoggerOptions): LoggerOptions {
         if (isUndefined(application)) {
-            application = 'one-koa-application'
+            application = 'easy-koa-application'
         }
 
         if (isNil(options) || isEmptyObject(options)) {
@@ -64,7 +64,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-one-koa${clusterId}.log`
+                            `${application}-easy-koa${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -74,7 +74,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-one-koa-application${clusterId}.log`
+                            `${application}-easy-koa-application${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -84,7 +84,7 @@ export class Logger extends Component {
                         type: 'dateFile',
                         filename: path.join(
                             isNil(logdir) ? './logs' : logdir,
-                            `${application}-one-koa-monitor${clusterId}.log`
+                            `${application}-easy-koa-monitor${clusterId}.log`
                         ),
                         pattern: '.yyyy-MM-dd-hh',
                         compress: false,
@@ -95,7 +95,7 @@ export class Logger extends Component {
                     },
                 },
                 categories: {
-                    'one-koa-monitor': {
+                    'easy-koa-monitor': {
                         appenders: [
                             'monitor', 'console',
                         ],
@@ -107,7 +107,7 @@ export class Logger extends Component {
                         ],
                         level: 'all',
                     },
-                    'one-koa': {
+                    'easy-koa': {
                         appenders: [
                             'frameworks', 'console',
                         ],

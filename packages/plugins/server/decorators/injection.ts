@@ -1,5 +1,5 @@
-import { classType, classTypes, pathMeta, registry } from '@one-koa/shared/constants';
-import { isUndefined, isString, isNil } from '@one-koa/shared';
+import { classType, classTypes, pathMeta, registry } from '@easy-koa/shared/constants';
+import { isUndefined, isString, isNil } from '@easy-koa/shared';
 
 
 function inject(key: string) {

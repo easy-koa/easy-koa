@@ -1,5 +1,5 @@
-import { BaseObject } from "@one-koa/shared"
-import { registry } from "@one-koa/shared/constants"
+import { BaseObject } from "@easy-koa/shared"
+import { registry } from "@easy-koa/shared/constants"
 import { Component } from "./component"
 
 export class Registry {

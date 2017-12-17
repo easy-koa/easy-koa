@@ -1,4 +1,4 @@
-import { Koa } from '@one-koa/shared';
+import { Koa } from '@easy-koa/shared';
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function errorHandleMiddleware() {

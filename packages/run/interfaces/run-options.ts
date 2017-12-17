@@ -1,8 +1,8 @@
-import { ServerOptions } from "@one-koa/plugin-server/interfaces/server-options"
-import { LoggerOptions } from "@one-koa/plugin-logger/interfaces/logger-options"
-import { MonitorOptions } from "@one-koa/plugin-monitor/interfaces/index"
-import { Component } from "@one-koa/core/index"
-import { BaseObject } from "@one-koa/shared"
+import { ServerOptions } from "@easy-koa/plugin-server/interfaces/server-options"
+import { LoggerOptions } from "@easy-koa/plugin-logger/interfaces/logger-options"
+import { MonitorOptions } from "@easy-koa/plugin-monitor/interfaces/index"
+import { Component } from "@easy-koa/core/index"
+import { BaseObject } from "@easy-koa/shared"
 
 export interface ModuleOptions {
     components?: Component[]

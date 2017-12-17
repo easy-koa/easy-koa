@@ -1,1 +1,1 @@
-This document describes the basics of one-koa.js applition.
+This document describes the basics of easy-koa.js applition.

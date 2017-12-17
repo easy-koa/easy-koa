@@ -1,4 +1,4 @@
-import { BaseObject, startTime } from "@one-koa/shared";
+import { BaseObject, startTime } from "@easy-koa/shared";
 import * as createMonitorPlainObject from '../utils/create-monitor-plain-object';
 
 export function wrapRenderMonitor (render: Function) {

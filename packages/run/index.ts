@@ -1,14 +1,14 @@
-import { Application } from '@one-koa/core'
-import { isNumber } from '@one-koa/shared'
+import { Application } from '@easy-koa/core'
+import { isNumber } from '@easy-koa/shared'
 import { ModuleContext, ModuleOptions } from './interfaces'
-import { Logger } from '@one-koa/plugin-logger'
-import { Monitor } from '@one-koa/plugin-monitor'
-import { Server } from '@one-koa/plugin-server'
-import { Cron } from '@one-koa/plugin-cron'
-import { moduleMeta } from '@one-koa/shared/constants'
-import { Config } from '@one-koa/plugin-config'
+import { Logger } from '@easy-koa/plugin-logger'
+import { Monitor } from '@easy-koa/plugin-monitor'
+import { Server } from '@easy-koa/plugin-server'
+import { Cron } from '@easy-koa/plugin-cron'
+import { moduleMeta } from '@easy-koa/shared/constants'
+import { Config } from '@easy-koa/plugin-config'
 
-export default class OneKoa {
+export default class EasyKoa {
     private moduleContext: ModuleContext
     readonly application: Application
     private registerCache: Set<any> = new Set()
@@ -44,7 +44,7 @@ export default class OneKoa {
         application.use(new Server(server))
     }
 
-    public static create(): OneKoa {
+    public static create(): EasyKoa {
         const moduleOptions: ModuleOptions = <ModuleOptions> Reflect.getMetadata(moduleMeta, this)
         return new this(moduleOptions)
     }

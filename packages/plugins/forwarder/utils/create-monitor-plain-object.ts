@@ -1,4 +1,4 @@
-import { isUndefined } from "@one-koa/shared"
+import { isUndefined } from "@easy-koa/shared"
 
 export interface ForwardPayload {
     time: number,

@@ -9,14 +9,14 @@ import { LoginInterceptor } from "./interceptors/login"
 import { RawForwardInterceptor, APIForwardInterceptor, PageForwardInterceptor } from "./interceptors/forwarder"
 import TopicController from "./controllers/topic"
 import { loginProvider } from "./services/login"
-import { MicroService } from "@one-koa/plugin-microservice"
-import { Forwarder } from "@one-koa/plugin-forwarder"
+import { MicroService } from "@easy-koa/plugin-microservice"
+import { Forwarder } from "@easy-koa/plugin-forwarder"
 import { Agent } from "http"
 import path = require('path')
 
 export default {
     logger: {
-        application: 'one-koa-example',
+        application: 'easy-koa-example',
         logdir: path.join(__dirname, 'logs'),
         options: {},
     },

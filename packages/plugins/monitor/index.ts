@@ -1,10 +1,10 @@
-import { Component } from "@one-koa/core"
-import { InjectPlugin, Koa } from "@one-koa/shared"
-import { Logger } from "@one-koa/plugin-logger"
+import { Component } from "@easy-koa/core"
+import { InjectPlugin, Koa } from "@easy-koa/shared"
+import { Logger } from "@easy-koa/plugin-logger"
 import { MonitorOptions } from "./interfaces/index"
-import { BaseObject } from "@one-koa/shared"
+import { BaseObject } from "@easy-koa/shared"
 import { setInterval } from "timers"
-import { Cron } from "@one-koa/plugin-cron"
+import { Cron } from "@easy-koa/plugin-cron"
 import { MonitorLogger } from "./interfaces/monitor-logger"
 
 
@@ -26,7 +26,7 @@ export class Monitor extends Component {
     }
 
     init(): void {
-        this.monitor = this.logger.create(`one-koa-${this.name()}`)
+        this.monitor = this.logger.create(`easy-koa-${this.name()}`)
     }
 
     collect(message: any, ctx?: Koa.Context): void {

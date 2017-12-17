@@ -1,8 +1,8 @@
 {
-  "name": "@one-koa/core",
+  "name": "@easy-koa/core",
   "version": "0.1.16",
   "dependencies": {
-    "@one-koa/core": "^0.1.16",
-    "@one-koa/shared": "^0.1.16"
+    "@easy-koa/core": "^0.1.16",
+    "@easy-koa/shared": "^0.1.16"
   }
 }

@@ -1,5 +1,5 @@
 import { LoginService } from '../services/login'
-import { InjectService, Koa } from '@one-koa/shared'
+import { InjectService, Koa } from '@easy-koa/shared'
 import TopicService from '../services/topic'
 
 export class LoginInterceptor {

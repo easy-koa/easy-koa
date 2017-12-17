@@ -1,5 +1,5 @@
-import { createSystemId } from "@one-koa/shared"
-import { BaseObject, Services, InitOptions } from "@one-koa/shared"
+import { createSystemId } from "@easy-koa/shared"
+import { BaseObject, Services, InitOptions } from "@easy-koa/shared"
 
 const pid: Function = createSystemId()
 

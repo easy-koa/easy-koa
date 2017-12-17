@@ -1,5 +1,5 @@
-import { Component } from "@one-koa/core"
-import { BaseObject } from "@one-koa/shared"
+import { Component } from "@easy-koa/core"
+import { BaseObject } from "@easy-koa/shared"
 
 export class Config extends Component {
     private config: BaseObject

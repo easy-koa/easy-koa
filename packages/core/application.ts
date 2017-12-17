@@ -1,9 +1,9 @@
 import { Registry } from './registry'
 import { Component } from './component'
-import { loggerFactory } from '@one-koa/shared'
+import { loggerFactory } from '@easy-koa/shared'
 
 export class Application {
-    readonly logger: any = loggerFactory.getLogger('one-koa')
+    readonly logger: any = loggerFactory.getLogger('easy-koa')
     readonly registry: Registry = new Registry()
     public use(component: Component): void {
         if (!(Component.isInstance(component))) {

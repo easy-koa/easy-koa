@@ -1,9 +1,9 @@
-import { Controller, RequestMapping } from '@one-koa/plugin-server/decorators'
-import { Koa } from '@one-koa/shared'
+import { Controller, RequestMapping } from '@easy-koa/plugin-server/decorators'
+import { Koa } from '@easy-koa/shared'
 import TopicService from '../services/topic'
-import { methodTypes } from '@one-koa/shared/constants'
-import { InjectPlugin } from '@one-koa/plugin-server/decorators/injection'
-import { Config } from '@one-koa/plugin-config/index'
+import { methodTypes } from '@easy-koa/shared/constants'
+import { InjectPlugin } from '@easy-koa/plugin-server/decorators/injection'
+import { Config } from '@easy-koa/plugin-config/index'
 
 @Controller('/test')
 export default class TopicController {
