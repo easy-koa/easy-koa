@@ -1,12 +1,12 @@
 {
   "name": "@easy-koa/plugin-microservice",
-  "version": "0.1.21",
+  "version": "0.1.22",
   "dependencies": {
-    "@easy-koa/core": "^0.1.21",
-    "@easy-koa/plugin-cron": "^0.1.21",
-    "@easy-koa/plugin-logger": "^0.1.21",
-    "@easy-koa/plugin-monitor": "^0.1.21",
-    "@easy-koa/shared": "^0.1.20",
+    "@easy-koa/core": "^0.1.22",
+    "@easy-koa/plugin-cron": "^0.1.22",
+    "@easy-koa/plugin-logger": "^0.1.22",
+    "@easy-koa/plugin-monitor": "^0.1.22",
+    "@easy-koa/shared": "^0.1.22",
     "@kaola/rpc": "^0.1.5"
   }
 }
