@@ -2,6 +2,7 @@
   "name": "@easy-koa/core",
   "version": "1.0.2",
   "dependencies": {
-    "@easy-koa/shared": "^1.0.2"
+    "@easy-koa/shared": "^1.0.2",
+    "reflect-metadata": "^0.1.10"
   }
 }
