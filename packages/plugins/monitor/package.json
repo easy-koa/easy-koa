@@ -1,10 +1,10 @@
 {
     "name": "@easy-koa/plugin-monitor",
-    "version": "0.1.22",
+    "version": "0.1.23",
     "dependencies": {
-        "@easy-koa/core": "^0.1.22",
-        "@easy-koa/plugin-cron": "^0.1.22",
-        "@easy-koa/plugin-logger": "^0.1.22",
-        "@easy-koa/shared": "^0.1.22"
+        "@easy-koa/core": "^0.1.23",
+        "@easy-koa/plugin-cron": "^0.1.23",
+        "@easy-koa/plugin-logger": "^0.1.23",
+        "@easy-koa/shared": "^0.1.23"
     }
 }
