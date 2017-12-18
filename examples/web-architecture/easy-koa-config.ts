@@ -1,10 +1,3 @@
-declare module 'koa' {
-    interface Context {
-        kaolaContext: any
-        render(path: string, data?: any): void
-    }
-}
-
 import { LoginInterceptor } from "./interceptors/login"
 import { RawForwardInterceptor, APIForwardInterceptor, PageForwardInterceptor } from "./interceptors/forwarder"
 import TopicController from "./controllers/topic"
@@ -26,20 +19,12 @@ export default {
     server: {
         middlewares: [], // koa middlewares, async function first
         interceptors: [
-            // LoginInterceptor, {
-            //     path: [
-            //         '/h5/hotKey.html',
-            //     ],
-            //     interceptor: APIForwardInterceptor,
-            // }, {
-            //     path: ['/user/ajax/getUserProfile.html'],
-            //     interceptor: PageForwardInterceptor,
-            // }, {
-            //     path: [
-            //         '/',
-            //     ],
-            //     interceptor: RawForwardInterceptor,
-            // },
+            {
+                path: [
+                    '/',
+                ],
+                interceptor: RawForwardInterceptor,
+            },
         ],
         controllers: [
             TopicController,
@@ -53,12 +38,12 @@ export default {
         new Forwarder({
             secure: false,
             proxyTimeout: 3000,
-            host: 'm.kaola.com',
+            host: 'www.baidu.com',
             headers: {
                 'a': 'b',
             },
             xfwd: true,
-            target: 'https://m.kaola.com',
+            target: 'https://www.baidu.com',
         }),
     ],
 

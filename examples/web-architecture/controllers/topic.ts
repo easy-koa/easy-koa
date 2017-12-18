@@ -12,13 +12,6 @@ export default class TopicController {
     private config: Config
 
     @RequestMapping({
-        path: '/account',
-    })
-    async getYourName(ctx: any): Promise<void> {
-        ctx.body = `您的账号是：${ctx.kaolaContext.accountId}`
-    }
-
-    @RequestMapping({
         path: '/topic',
     })
     topic(ctx: any): void {
