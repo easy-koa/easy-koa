@@ -19,7 +19,7 @@ $ npm install easy-koa --save
 
 ## Basics
 
-### Abort application
+### About application
 
 #### Core
 
