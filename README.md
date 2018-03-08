@@ -41,7 +41,7 @@ You can also develop the components you need, just follow our rules - each compo
 
 [See more information](./component.md)
 
-### Abort Web Layered
+### About Web Layered
 
 You can indicate the dependencies of in the following three via the `@InjectPlugin` and `@InjectService` annotation.
 
